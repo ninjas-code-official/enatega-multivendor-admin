@@ -15,7 +15,7 @@ function Header() {
           backgroundSize: '105% 188px',
           backgroundPosition: 'center',
           background: matches
-            ? 'linear-gradient(91.15deg, #90EA93 4.41%, #6FCF97 99.86%)'
+            ? 'linear-gradient(91.15deg, #DFCCFB 4.41%, #D0BFFF 99.86%)'
             : '',
           borderRadius: matches ? '0 0 40px 40px' : '',
           marginLeft: matches ? 0 : -3.5,

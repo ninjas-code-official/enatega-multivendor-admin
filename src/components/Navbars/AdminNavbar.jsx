@@ -84,7 +84,7 @@ function AdminNavbar(props) {
                 mt={1}
                 sx={{ fontWeight: 'bold' }}
                 color="common.black">
-                Ninja
+                Rumi
               </Typography>
             </Box>
             <Menu

@@ -140,12 +140,23 @@ function Addon(props) {
     addonSetter([...addons])
   }
   const onSelectOption = (index, id) => {
-    const addons = addon
-    const option = addons[index].options.indexOf(id)
-    if (option < 0) addons[index].options.push(id)
-    else addons[index].options.splice(option, 1)
-    addonSetter([...addons])
-  }
+    const addons = [...addon]; // Create a copy of the addon array
+    const optionIndex = addons[index].options.indexOf(id);
+
+    if (optionIndex < 0) {
+      addons[index] = {
+        ...addons[index], // Create a copy of the addon object
+        options: [...addons[index].options, id], // Create a new options array
+      };
+    } else {
+      addons[index] = {
+        ...addons[index], // Create a copy of the addon object
+        options: addons[index].options.filter(optionId => optionId !== id), // Remove the selected option
+      };
+    }
+
+    addonSetter(addons); // Update the state with the modified array
+  };
   const updateOptions = ids => {
     const addons = addon
     addons[addonIndex].options = addons[addonIndex].options.concat(ids)
@@ -232,7 +243,7 @@ function Addon(props) {
               <RemoveIcon
                 style={{
                   backgroundColor: '#000',
-                  color: '#90EA93',
+                  color: '#DFCCFB',
                   borderRadius: '50%',
                   marginLeft: 12,
                   marginRight: 10
@@ -243,7 +254,7 @@ function Addon(props) {
               />
               <AddIcon
                 style={{
-                  backgroundColor: '#90EA93',
+                  backgroundColor: '#DFCCFB',
                   color: '#000',
                   borderRadius: '50%'
                 }}

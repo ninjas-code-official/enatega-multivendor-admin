@@ -54,7 +54,7 @@ const Restaurant = props => {
           height: '160px',
           width: '100%',
           background:
-            'linear-gradient(91.18deg, #90EA93 1.49%, #6FCF97 99.86%);',
+            'linear-gradient(91.18deg, #DFCCFB 1.49%, #D0BFFF 99.86%);',
           borderRadius: '0 0 40px 40px',
           marginBottom: 1,
           mt: -10
@@ -80,7 +80,7 @@ const Restaurant = props => {
             }}
             style={{
               backgroundColor: '#000',
-              color: '#90EA93',
+              color: '#DFCCFB',
               borderRadius: 10
             }}
             startIcon={<AddIcon fill="#000" />}>

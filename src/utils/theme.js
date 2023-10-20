@@ -142,9 +142,9 @@ const theme = createTheme({
       white: '#fff'
     },
     primary: {
-      main: '#6FCF97',
-      main2: '#90EA93',
-      main3: '#3C8F7C',
+      main: '#D0BFFF',
+      main2: '#DFCCFB',
+      main3: '#a594e0',
       light: '#fff',
       dark: '#000',
       contrastText: '#fff'
@@ -156,7 +156,7 @@ const theme = createTheme({
       contrastText: '#fff'
     },
     success: {
-      main: '#1DB20D',
+      main: '#a594e0',
       contrastText: '#fff'
     },
     info: {

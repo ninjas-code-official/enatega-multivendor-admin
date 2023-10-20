@@ -1,10 +1,10 @@
 {
-  "name": "enatega-multivendor",
+  "name": "rumi-multivendor",
   "version": "2.0.0",
   "engines": {
     "node": ">=18.17.1"
   },
-  "description": "Enatega MultiVendor dashboard",
+  "description": "Rumi MultiVendor dashboard",
   "main": "index.js",
   "homepage": "https://multivendor-admin.ninjascode.com/",
   "scripts": {

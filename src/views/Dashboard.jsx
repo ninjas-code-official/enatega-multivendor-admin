@@ -56,8 +56,8 @@ const dataLine = {
 const dataBar = {
   datasets: {
     label: 'Order count',
-    backgroundColor: '#90EA93',
-    borderColor: '#90EA93'
+    backgroundColor: '#DFCCFB',
+    borderColor: '#DFCCFB'
   }
 }
 
@@ -195,14 +195,14 @@ const Dashboard = props => {
                 labels: loadingSales
                   ? []
                   : dataSales &&
-                    dataSales.getDashboardSales.orders.map(d => d.day),
+                  dataSales.getDashboardSales.orders.map(d => d.day),
                 datasets: [
                   {
                     ...dataLine.datasets,
                     data: loadingSales
                       ? []
                       : dataSales &&
-                        dataSales.getDashboardSales.orders.map(d => d.amount),
+                      dataSales.getDashboardSales.orders.map(d => d.amount),
                     lineTension: 0.8
                   },
                   {
@@ -210,7 +210,7 @@ const Dashboard = props => {
                     data: loadingOrders
                       ? []
                       : dataOrders &&
-                        dataOrders.getDashboardOrders.orders.map(d => d.count)
+                      dataOrders.getDashboardOrders.orders.map(d => d.count)
                   }
                 ]
               }}
@@ -273,7 +273,7 @@ const Dashboard = props => {
               sx={{
                 fontSize: 35,
                 fontWeight: 'bold',
-                color: '#3C8F7C',
+                color: '#a594e0',
                 textAlign: 'center'
               }}>
               {loadingTotal
@@ -302,7 +302,7 @@ const Dashboard = props => {
               sx={{
                 fontSize: 35,
                 fontWeight: 'bold',
-                color: '#3C8F7C',
+                color: '#a594e0',
                 textAlign: 'center'
               }}>
               {loadingTotal

@@ -34,7 +34,7 @@ function AdminSidebar(props) {
         <Typography
           variant="h2"
           className={[classes.headingText, classes.logoText]}>
-          ENATEGA
+          RUMI
         </Typography>
       </Toolbar>
       <Box className={classes.sidebarList}>
@@ -57,7 +57,7 @@ function AdminSidebar(props) {
                   classes.rowDisplay,
                   classes.sidebarLink,
                   location.pathname === `${prop.layout}${prop.path}` &&
-                    classes.active
+                  classes.active
                 ]}
                 href={'#' + prop.layout + prop.path}
                 underline="none">
@@ -140,7 +140,7 @@ function AdminSidebar(props) {
               boxSizing: 'border-box',
               width: drawerWidth,
               background:
-                'linear-gradient(180deg, #90EA93 50%, transparent 50%)',
+                'linear-gradient(180deg, #DFCCFB 50%, transparent 50%)',
               borderRight: 'none'
             }
           }}

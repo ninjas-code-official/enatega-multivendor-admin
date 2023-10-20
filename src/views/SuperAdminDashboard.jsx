@@ -53,14 +53,14 @@ export const data = {
     {
       label: 'Restaurants',
       data: [1, 2, 3, 4, 5, 6, 7],
-      borderColor: '#90EA93',
-      backgroundColor: '#90EA93'
+      borderColor: '#DFCCFB',
+      backgroundColor: '#DFCCFB'
     },
     {
       label: 'Vendors',
       data: [8, 7, 6, 5, 4, 3, 2],
-      borderColor: '#3C8F7C',
-      backgroundColor: '#3C8F7C'
+      borderColor: '#a594e0',
+      backgroundColor: '#a594e0'
     },
     {
       label: 'Riders',
@@ -228,7 +228,7 @@ const imgStyle = { marginLeft: '40%' }
 const sty = {
   fontSize: 35,
   fontWeight: 'bold',
-  color: '#3C8F7C',
+  color: '#a594e0',
   textAlign: 'center'
 }
 const headSty = { fontSize: 15, fontWeight: 'bold' }

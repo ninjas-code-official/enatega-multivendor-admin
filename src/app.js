@@ -64,7 +64,7 @@ const App = () => {
             // Customize notification here
             // const { title, body } = payload.notification
             // eslint-disable-next-line no-restricted-globals
-            var notificationTitle = 'New Order on Enatega Multivendor'
+            var notificationTitle = 'New Order on Rumi Multivendor'
             var notificationOptions = {
               body: payload.data.orderid,
               icon: 'https://multivendor-admin.ninjascode.com/favicon.png'
@@ -89,12 +89,12 @@ const App = () => {
   return (
     <Sentry.ErrorBoundary>
       <TawkMessengerReact
-          propertyId="5d0f4f6b36eab9721118c84e"
-          widgetId="1ftnb355n"
-          customStyle={{
-            color: "red",
-          }}
-        />
+        propertyId="5d0f4f6b36eab9721118c84e"
+        widgetId="1ftnb355n"
+        customStyle={{
+          color: "red",
+        }}
+      />
       <HashRouter basename="/">
         <Switch>
           <AdminPrivateRoute

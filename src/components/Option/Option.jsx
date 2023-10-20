@@ -206,7 +206,7 @@ function Option(props) {
                     <RemoveIcon
                       style={{
                         backgroundColor: '#000',
-                        color: '#90EA93',
+                        color: '#DFCCFB',
                         borderRadius: '50%',
                         marginTop: 12,
                         marginRight: 10,
@@ -217,7 +217,7 @@ function Option(props) {
                     />
                     <AddIcon
                       style={{
-                        backgroundColor: '#90EA93',
+                        backgroundColor: '#DFCCFB',
                         color: '#000',
                         borderRadius: '50%',
                         marginTop: 12,

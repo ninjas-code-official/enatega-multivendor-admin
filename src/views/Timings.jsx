@@ -113,49 +113,49 @@ const Timings = props => {
               value={transformedTimes.SUN || [['00:00', '23:59']]}
               onChangeTime={onChangeTime}
             />
-              <Button
-                onClick={e => {
-                  e.preventDefault();
-                  const openingTimes = getTransformedTimings();
-                  mutate({
-                    variables: {
-                      id: restaurantId,
-                      openingTimes
-                    },
-                    onCompleted: () => {
-                      setSuccessMessage('Time saved successfully');
-                      setTimeout(() => setSuccessMessage(''), 5000);
-                      setErrorMessage('');
-                    },
-                    onError: (error) => {
-                      setErrorMessage('Error while saving time');
-                      setTimeout(() => setErrorMessage(''), 5000);
-                      setSuccessMessage('');
-                    }
-                  });
-                }}
-                className={[globalClasses.button, globalClasses.mb]}
+            <Button
+              onClick={e => {
+                e.preventDefault();
+                const openingTimes = getTransformedTimings();
+                mutate({
+                  variables: {
+                    id: restaurantId,
+                    openingTimes
+                  },
+                  onCompleted: () => {
+                    setSuccessMessage('Time saved successfully');
+                    setTimeout(() => setSuccessMessage(''), 5000);
+                    setErrorMessage('');
+                  },
+                  onError: (error) => {
+                    setErrorMessage('Error while saving time');
+                    setTimeout(() => setErrorMessage(''), 5000);
+                    setSuccessMessage('');
+                  }
+                });
+              }}
+              className={[globalClasses.button, globalClasses.mb]}
+            >
+              {loading ? 'Saving...' : 'Save'}
+            </Button>
+            {successMessage && (
+              <Alert
+                className={globalClasses.alertSuccess}
+                variant="filled"
+                severity="success"
               >
-                {loading ? 'Saving...' : 'Save'}
-              </Button>
-              {successMessage && (
-                <Alert
-                  className={globalClasses.alertSuccess}
-                  variant="filled"
-                  severity="success"
-                >
-                  {successMessage}
-                </Alert>
-              )}
-              {errorMessage && (
-                <Alert
-                  className={globalClasses.alertError}
-                  variant="filled"
-                  severity="error"
-                >
-                  {errorMessage}
-                </Alert>
-              )}
+                {successMessage}
+              </Alert>
+            )}
+            {errorMessage && (
+              <Alert
+                className={globalClasses.alertError}
+                variant="filled"
+                severity="error"
+              >
+                {errorMessage}
+              </Alert>
+            )}
 
           </Box>
         )}
@@ -196,7 +196,7 @@ const DayComponent = ({ day, value, onChangeTime }) => {
             {index === values.length - 1 && (
               <AddIcon
                 style={{
-                  backgroundColor: '#90EA93',
+                  backgroundColor: '#DFCCFB',
                   color: '#000',
                   borderRadius: '50%',
                   marginBottom: -5,
@@ -212,7 +212,7 @@ const DayComponent = ({ day, value, onChangeTime }) => {
               <RemoveIcon
                 style={{
                   backgroundColor: '#000',
-                  color: '#90EA93',
+                  color: '#DFCCFB',
                   borderRadius: '50%',
                   marginLeft: 10,
                   marginRight: 10,
