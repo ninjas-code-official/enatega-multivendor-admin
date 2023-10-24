@@ -53,7 +53,7 @@
       setTimeout(hideAlert, 5000);
     };
 
-    const [mutate, { loading }] = useMutation(mutation, {
+    const [mutate, /*{ loading }*/] = useMutation(mutation, {
       refetchQueries: [{ query: GET_ZONE }],
       onError,
       onCompleted,
@@ -239,7 +239,8 @@
           <Box>
             <Button
               className={globalClasses.button}
-              disabled={loading}
+              //disabled={loading}
+              disabled
               onClick={async (e) => {
                 e.preventDefault();
                 if (onSubmitValidation()) {
