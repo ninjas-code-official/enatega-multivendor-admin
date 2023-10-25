@@ -49,6 +49,9 @@ const Zones = props => {
     setEditModal(!editModal)
     setZone(zone)
   }
+  const closeEditModal = () => {
+    setEditModal(false);
+  };
 
   useEffect(() => {
     localStorage.removeItem('restaurant_id')
@@ -210,7 +213,7 @@ const Zones = props => {
           onClose={() => {
             toggleModal()
           }}>
-          <ZoneComponent zone={zones} closeModal={setEditModal} />
+          <ZoneComponent zone={zones} onClose={closeEditModal} />
         </Modal>
       </Container>
     </>

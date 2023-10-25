@@ -33,7 +33,7 @@ function Vendor(props) {
       : 'Vendor added successfully'
     errorSetter('')
     successSetter(message)
-    setTimeout(hideAlert, 5000)
+    setTimeout(hideAlert, 3000)
   }
 
   const onError = ({ graphQLErrors, networkError }) => {
@@ -41,7 +41,7 @@ function Vendor(props) {
     if (graphQLErrors) errorSetter(graphQLErrors[0].message)
     else if (networkError) errorSetter(networkError.result.errors[0].message)
     else errorSetter('Something went wrong!')
-    setTimeout(hideAlert, 5000)
+    setTimeout(hideAlert, 3000)
   }
   const [mutate, { loading: mutateLoading }] = useMutation(mutation, {
     refetchQueries: [{ query: GET_VENDORS }],
@@ -160,7 +160,11 @@ function Vendor(props) {
                         : ''
                     }
                   }
-                })
+                });
+                // Close the modal after 3 seconds by calling the parent's onClose callback
+                setTimeout(() => {
+                  props.onClose(); // Close the modal
+                }, 4000);
               }
             }}>
             {props.vendor ? 'Update' : 'Save'}

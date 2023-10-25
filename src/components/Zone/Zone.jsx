@@ -44,13 +44,13 @@
         : 'Zone added successfully';
       setErrors('');
       setSuccess(message);
-      setTimeout(hideAlert, 5000);
+      setTimeout(hideAlert, 3000);
     };
 
     const onError = (error) => {
       setErrors(error.message);
       setSuccess('');
-      setTimeout(hideAlert, 5000);
+      setTimeout(hideAlert, 3000);
     };
 
     const [mutate, /*{ loading }*/] = useMutation(mutation, {
@@ -254,6 +254,10 @@
                       },
                     },
                   });
+                  // Close the modal after 3 seconds by calling the parent's onClose callback
+                  setTimeout(() => {
+                    props.onClose(); // Close the modal
+                  }, 4000);
                 }
               }}
             >

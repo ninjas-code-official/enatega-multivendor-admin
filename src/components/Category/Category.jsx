@@ -31,13 +31,13 @@ function Category(props) {
     successSetter(message)
     mainErrorSetter('')
     setCategory('')
-    setTimeout(hideAlert, 5000)
+    setTimeout(hideAlert, 3000)
   }
   const onError = error => {
     const message = `Action failed. Please Try again ${error}`
     successSetter('')
     mainErrorSetter(message)
-    setTimeout(hideAlert, 5000)
+    setTimeout(hideAlert, 3000)
   }
   const [mutate, { loading }] = useMutation(mutation, { onError, onCompleted })
   const hideAlert = () => {
@@ -93,6 +93,10 @@ function Category(props) {
                       }
                     }
                   })
+                  // Close the modal after 3 seconds by calling the parent's onClose callback
+                  setTimeout(() => {
+                    props.onClose(); // Close the modal
+                  }, 4000);
                 }
               }}>
               SAVE

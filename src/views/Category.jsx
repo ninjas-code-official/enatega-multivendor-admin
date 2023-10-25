@@ -46,6 +46,9 @@ const Category = props => {
     setEditModal(!editModal)
     setCategory(category)
   }
+  const closeEditModal = () => {
+    setEditModal(false);
+  };
   const restaurantId = localStorage.getItem('restaurantId')
 
   const [/*mutate*/ { loading }] = useMutation(DELETE_CATEGORY)
@@ -212,7 +215,7 @@ const Category = props => {
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-          <CategoryComponent category={category} />
+          <CategoryComponent category={category} onClose={closeEditModal} />
         </Modal>
       </Container>
     </>

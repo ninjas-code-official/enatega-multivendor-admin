@@ -69,6 +69,10 @@ function Riders(props) {
     setRider(rider)
   }
 
+  const closeEditModal = () => {
+    setEditModal(false);
+  };
+
   const customSort = (rows, field, direction) => {
     const handleField = row => {
       if (row[field]) {
@@ -281,7 +285,7 @@ function Riders(props) {
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-          <RiderComponent rider={rider} />
+          <RiderComponent rider={rider} onClose={closeEditModal}/>
         </Modal>
       </Container>
     </>

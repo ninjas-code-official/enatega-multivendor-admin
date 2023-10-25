@@ -200,6 +200,10 @@ function Section(props) {
                   });
                   // Clear the form fields after submission
                   clearFields();
+                  // Close the modal after 3 seconds
+                  setTimeout(() => {
+                    props.onClose(); // Close the modal
+                  }, 4000);
                 }
               }}>
               {props.section ? 'Update' : t('Save')}

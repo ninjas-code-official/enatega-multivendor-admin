@@ -54,12 +54,12 @@ function Addon(props) {
       successSetter('Saved')
       mainErrorSetter('')
     }
-    setTimeout(onDismiss, 5000)
+    setTimeout(onDismiss, 3000)
   }
   const onError = error => {
     mainErrorSetter(`An error occured while saving,Try again ${error}`)
     successSetter('')
-    setTimeout(onDismiss, 5000)
+    setTimeout(onDismiss, 3000)
   }
   const [addon, addonSetter] = useState(
     props.addon
@@ -411,6 +411,10 @@ function Addon(props) {
                       }
                     }
                   })
+                // Close the modal after 3 seconds by calling the parent's onClose callback
+                setTimeout(() => {
+                  props.onClose(); // Close the modal
+                }, 4000);
               }
             }}>
             SAVE

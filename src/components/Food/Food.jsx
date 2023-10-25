@@ -57,7 +57,7 @@ function Food(props) {
   const onError = error => {
     mainErrorSetter(`Failed. Please try again. ${error}`)
     successSetter('')
-    setTimeout(onDismiss, 5000)
+    setTimeout(onDismiss, 3000)
   }
   const onCompleted = data => {
     if (!props.food) clearFields()
@@ -68,7 +68,7 @@ function Food(props) {
     successSetter(message)
     setTitle('');
     setDescription('');
-    setTimeout(onDismiss, 5000)
+    setTimeout(onDismiss, 3000)
   }
   const [mutate, { loading: mutateLoading }] = useMutation(mutation, {
     onError,
@@ -605,7 +605,11 @@ function Food(props) {
                         )
                       }
                     }
-                  })
+                  });
+                  // Close the modal after 3 seconds by calling the parent's onClose callback
+                  setTimeout(() => {
+                    props.onClose(); // Close the modal
+                  }, 4000);
                 }
               }}>
               SAVE

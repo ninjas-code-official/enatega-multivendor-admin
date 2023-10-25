@@ -51,6 +51,11 @@ function Sections(props) {
     setSections(section)
   }
 
+  // Callback function to close the modal
+  const closeEditModal = () => {
+    setEditModal(false);
+  };
+
   const restaurantId = localStorage.getItem('restaurantId')
 
   const [mutateEdit] = useMutation(EDIT_SECTION)
@@ -267,7 +272,7 @@ function Sections(props) {
             marginLeft: '18%',
             overflowY: 'auto'
           }}>
-          <SectionComponent section={sections} />
+          <SectionComponent section={sections} onClose={closeEditModal} />
         </Modal>
       </Container>
     </>

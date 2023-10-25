@@ -47,7 +47,7 @@ function Option(props) {
       ])
       successSetter('Saved')
       mainErrorSetter('')
-      setTimeout(hideAlert, 5000)
+      setTimeout(hideAlert, 3000)
     }
     if (editOption) {
       successSetter('Saved')
@@ -57,7 +57,7 @@ function Option(props) {
   const onError = error => {
     mainErrorSetter(`An error occured while saving. Try again ${error}`)
     successSetter('')
-    setTimeout(hideAlert, 5000)
+    setTimeout(hideAlert, 3000)
   }
   const [mutate, { loading }] = useMutation(mutation, { onError, onCompleted })
   const hideAlert = () => {
@@ -266,6 +266,10 @@ function Option(props) {
                         }
                       }
                     })
+                  // Close the modal after 3 seconds by calling the parent's onClose callback
+                  setTimeout(() => {
+                    props.onClose(); // Close the modal
+                  }, 4000);
                 }
               }}>
               SAVE

@@ -57,6 +57,9 @@ const Food = props => {
     setEditModal(!editModal)
     setFood(food)
   }
+  const closeEditModal = () => {
+    setEditModal(false);
+  };
 
   const propExists = (obj, path) => {
     return path.split('.').reduce((obj, prop) => {
@@ -275,7 +278,7 @@ const Food = props => {
             marginLeft: '13%',
             overflowY: 'auto'
           }}>
-          <FoodComponent food={food} />
+          <FoodComponent food={food} onClose={closeEditModal} />
         </Modal>
       </Container>
     </>

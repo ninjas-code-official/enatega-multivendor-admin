@@ -44,6 +44,9 @@ const Addon = props => {
     setEditModal(!editModal)
     setAddon(addon)
   }
+  const closeEditModal = () => {
+    setEditModal(false);
+  };
   const restaurantId = localStorage.getItem('restaurantId')
 
   const { data, error: errorQuery, loading: loadingQuery, refetch } = useQuery(
@@ -226,7 +229,7 @@ const Addon = props => {
           onClose={() => {
             toggleModal()
           }}>
-          <AddonComponent addon={addon} />
+          <AddonComponent addon={addon} onClose={closeEditModal} />
         </Modal>
       </Container>
     </>

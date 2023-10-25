@@ -44,6 +44,10 @@ const Vendors = props => {
   const onChangeSearch = e => setSearchQuery(e.target.value)
   const golbalClasses = useGlobalStyles()
 
+  const closeEditModal = () => {
+    setEditModal(false);
+  };
+
   const { loading: loadingQuery, error: errorQuery, data, refetch } = useQuery(
     GET_VENDORS
   )
@@ -159,6 +163,8 @@ const Vendors = props => {
                   setTimeout(() => {
                     setIsOpen(false)
                   }, 5000)
+                  // uncomment this for paud version
+                  toggleModal(row);
                 }}
                 style={{ height: 25 }}>
                 <ListItemIcon>
@@ -173,6 +179,8 @@ const Vendors = props => {
                   setTimeout(() => {
                     setIsOpen(false)
                   }, 5000)
+                  // uncomment this for paud version
+                  // mutate({ variables: { id: row._id } });
                 }}
                 style={{ height: 25 }}>
                 <ListItemIcon>
@@ -248,7 +256,7 @@ const Vendors = props => {
           onClose={() => {
             toggleModal()
           }}>
-          <VendorComponent vendor={vendors} />
+          <VendorComponent vendor={vendors} onClose={closeEditModal} />
         </Modal>
       </Container>
     </>

@@ -69,7 +69,7 @@ function Rider(props) {
       : 'Rider added successfully'
     mainErrorSetter('')
     successSetter(message)
-    setTimeout(hideAlert, 5000)
+    setTimeout(hideAlert, 3000)
   }
   const onError = ({ graphQLErrors, networkError }) => {
     if (graphQLErrors) {
@@ -79,7 +79,7 @@ function Rider(props) {
       mainErrorSetter(networkError.result.errors[0].message)
     }
     successSetter('')
-    setTimeout(hideAlert, 5000)
+    setTimeout(hideAlert, 3000)
   }
   const [mutate, { loading }] = useMutation(mutation, {
     refetchQueries: [{ query: GET_RIDERS }, { query: GET_AVAILABLE_RIDERS }],
@@ -333,7 +333,11 @@ function Rider(props) {
                       available: riderAvailable
                     }
                   }
-                })
+                });
+                // Close the modal after 3 seconds by calling the parent's onClose callback
+                setTimeout(() => {
+                  props.onClose(); // Close the modal
+                }, 4000);
               }
             }}>
             SAVE

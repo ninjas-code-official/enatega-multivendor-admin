@@ -46,6 +46,10 @@ const Option = props => {
     setEditModal(!editModal)
     setOption(option)
   }
+  const closeEditModal = () => {
+    setEditModal(false);
+  };
+
   const restaurantId = localStorage.getItem('restaurantId')
 
   const { data, error: errorQuery, loading: loadingQuery, refetch } = useQuery(
@@ -232,7 +236,7 @@ const Option = props => {
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-          <OptionComponent option={option} />
+          <OptionComponent option={option} onClose={closeEditModal} />
         </Modal>
       </Container>
     </>
