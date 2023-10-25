@@ -6,7 +6,7 @@ import SectionComponent from '../components/Section/Section'
 import CustomLoader from '../components/Loader/CustomLoader'
 
 // core components
-import {/*deleteSection*/editSection, getSections } from '../apollo'
+import {deleteSection,editSection, getSections } from '../apollo'
 import Header from '../components/Headers/Header'
 import DataTable from 'react-data-table-component'
 import orderBy from 'lodash/orderBy'
@@ -30,7 +30,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import TableHeader from '../components/TableHeader'
 import SearchBar from '../components/TableHeader/SearchBar'
 import { ReactComponent as SectionIcon } from '../assets/svg/svg/RestaurantSection.svg'
-import Alert from '../components/Alert'
+
 
 const GET_SECTIONS = gql`
   ${getSections}
@@ -38,14 +38,14 @@ const GET_SECTIONS = gql`
 const EDIT_SECTION = gql`
   ${editSection}
 `
-// const DELETE_SECTION = gql`
-//   ${deleteSection}
-// `
+const DELETE_SECTION = gql`
+  ${deleteSection}
+`
 
 function Sections(props) {
   const [editModal, setEditModal] = useState(false)
   const [sections, setSections] = useState(null)
-  const [isOpen, setIsOpen] = useState(false)
+ 
   const toggleModal = section => {
     setEditModal(!editModal)
     setSections(section)
@@ -54,9 +54,9 @@ function Sections(props) {
   const restaurantId = localStorage.getItem('restaurantId')
 
   const [mutateEdit] = useMutation(EDIT_SECTION)
-  // const [mutateDelete] = useMutation(DELETE_SECTION, {
-  //   refetchQueries: [{ query: GET_SECTIONS }]
-  // })
+  const [mutateDelete] = useMutation(DELETE_SECTION, {
+    refetchQueries: [{ query: GET_SECTIONS }]
+  })
   const { data, error: errorQuery, loading: loadingQuery } = useQuery(
     GET_SECTIONS,
     {
@@ -156,12 +156,7 @@ function Sections(props) {
               <MenuItem
                 onClick={e => {
                   e.preventDefault()
-                  setIsOpen(true)
-                  setTimeout(() => {
-                    setIsOpen(false)
-                  }, 5000)
-                  //uncomment this for paid version
-                  //toggleModal(row)
+                  toggleModal(row)
                 }}
                 style={{ height: 25 }}>
                 <ListItemIcon>
@@ -171,13 +166,8 @@ function Sections(props) {
               </MenuItem>
               <MenuItem
                 onClick={e => {
-                  e.preventDefault()
-                  setIsOpen(true)
-                  setTimeout(() => {
-                    setIsOpen(false)
-                  }, 5000)
-                  //uncomment this for paid version
-                  //mutateDelete({ variables: { id: row._id } })
+                  e.preventDefault()  
+                  mutateDelete({ variables: { id: row._id } })
                 }}
                 style={{ height: 25 }}>
                 <ListItemIcon>
@@ -224,13 +214,7 @@ function Sections(props) {
             <SectionIcon />
           </Grid>
         </Grid>
-        {isOpen && (
-            <Alert
-              message="This feature will available after purchasing product"
-              severity="warning"
-              />
-          )}
-
+      
         {/* Table */}
         {errorQuery && `${t('Error')}! ${errorQuery.message}`}
         {loadingQuery ? (
