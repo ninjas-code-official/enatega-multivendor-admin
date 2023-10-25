@@ -25,7 +25,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import TableHeader from '../components/TableHeader'
-import Alert from '../components/Alert'
+
 
 const GET_ADDONS = gql`
   ${getRestaurantDetail}
@@ -37,7 +37,7 @@ const Addon = props => {
   const [addon, setAddon] = useState(null)
   const [editModal, setEditModal] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const [isOpen, setIsOpen] = useState(false)
+
   const onChangeSearch = e => setSearchQuery(e.target.value)
 
   const toggleModal = addon => {
@@ -52,7 +52,7 @@ const Addon = props => {
       variables: { id: restaurantId }
     }
   )
-  const [/*mutate*/ { loading }] = useMutation(DELETE_ADDON, {
+  const [mutate, { loading }] = useMutation(DELETE_ADDON, {
     refetchQueries: [{ query: GET_ADDONS, variables: { id: restaurantId } }]
   })
 
@@ -124,12 +124,7 @@ const Addon = props => {
               <MenuItem
                 onClick={e => {
                   e.preventDefault()
-                  setIsOpen(true)
-                  setTimeout(() => {
-                    setIsOpen(false)
-                  }, 5000)
-                  //uncomment this for paid version
-                  //toggleModal(row)
+                  toggleModal(row)
                 }}
                 style={{ height: 25 }}>
                 <ListItemIcon>
@@ -140,14 +135,10 @@ const Addon = props => {
               <MenuItem
                 onClick={e => {
                   e.preventDefault()
-                  setIsOpen(true)
-                  setTimeout(() => {
-                    setIsOpen(false)
-                  }, 5000)
-                  //uncomment this for paid version
-                  // mutate({  
-                  //   variables: { id: row._id, restaurant: restaurantId }
-                  // })
+    
+                  mutate({  
+                    variables: { id: row._id, restaurant: restaurantId }
+                  })
                 }}
                 style={{ height: 25 }}>
                 <ListItemIcon>
@@ -179,12 +170,7 @@ const Addon = props => {
   return (
     <>
       <Header />
-      {isOpen && (
-            <Alert
-              message="This feature will available after purchasing product"
-              severity="warning"
-              />
-          )}
+     
       {/* Page content */}
       <Container className={globalClasses.flex} fluid>
         <AddonComponent />

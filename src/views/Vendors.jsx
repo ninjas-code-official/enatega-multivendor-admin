@@ -27,7 +27,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert'
 import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import TableHeader from '../components/TableHeader'
-import Alert from '../components/Alert'
+
 
 
 const GET_VENDORS = gql`
@@ -39,7 +39,7 @@ const DELETE_VENDOR = gql`
 const Vendors = props => {
   const [editModal, setEditModal] = useState(false)
   const [vendors, setVendor] = useState(null)
-  const [isOpen, setIsOpen] = useState(false)
+
   const [searchQuery, setSearchQuery] = useState('')
   const onChangeSearch = e => setSearchQuery(e.target.value)
   const golbalClasses = useGlobalStyles()
@@ -47,7 +47,7 @@ const Vendors = props => {
   const { loading: loadingQuery, error: errorQuery, data, refetch } = useQuery(
     GET_VENDORS
   )
-  const [/*mutate*/, { loading }] = useMutation(DELETE_VENDOR, {
+  const [mutate, { loading }] = useMutation(DELETE_VENDOR, {
     refetchQueries: [{ query: GET_VENDORS }]
   })
 
@@ -155,10 +155,8 @@ const Vendors = props => {
               <MenuItem
                 onClick={e => {
                   e.preventDefault()
-                  setIsOpen(true)
-                  setTimeout(() => {
-                    setIsOpen(false)
-                  }, 5000)
+                     
+                  toggleModal(row)
                 }}
                 style={{ height: 25 }}>
                 <ListItemIcon>
@@ -168,11 +166,9 @@ const Vendors = props => {
               </MenuItem>
               <MenuItem
                 onClick={e => {
+
                   e.preventDefault()
-                  setIsOpen(true)
-                  setTimeout(() => {
-                    setIsOpen(false)
-                  }, 5000)
+                    mutate({ variables: { id: row._id } })
                 }}
                 style={{ height: 25 }}>
                 <ListItemIcon>
@@ -189,14 +185,7 @@ const Vendors = props => {
 
   return (
     <>
-      <Header />
-      {isOpen && (
-        <Alert
-          message="This feature will available after purchasing product"
-          severity="warning"
-        />
-      )}
-
+      <Header />  
       <Container className={golbalClasses.flex}>
         <Grid container>
           {/* <Grid item order={{ xs: 2, lg: 1 }}> */}
