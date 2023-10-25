@@ -164,7 +164,7 @@ const Vendors = props => {
                     setIsOpen(false)
                   }, 5000)
                   // uncomment this for paud version
-                  toggleModal(row);
+                  // toggleModal(row);
                 }}
                 style={{ height: 25 }}>
                 <ListItemIcon>
