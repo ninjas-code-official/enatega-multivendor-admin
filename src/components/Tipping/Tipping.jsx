@@ -34,6 +34,7 @@ function Tipping(props) {
     setTip3Error(null)
     mainErrorSetter('')
     clearFields()
+    setTimeout(hideAlert, 3000)
   }
   const onError = error => {
     let message = ''
@@ -44,6 +45,7 @@ function Tipping(props) {
     }
     successSetter('')
     mainErrorSetter(message)
+    setTimeout(hideAlert, 3000)
   }
   const onSubmitValidaiton = () => {
     const form = formRef.current
@@ -63,14 +65,20 @@ function Tipping(props) {
       mainErrorSetter('Fields Required')
     }
     return tip1Errors && tip2Errors && tip3Errors
+    // setTimeout(hideAlert, 3000)
   }
   const { data } = useQuery(GET_TIPPING, onError, onCompleted)
   const mutation = data && data.tips._id ? EDIT_TIPPING : CREATE_TIPPING
 
-  const [mutate, { loading }] = useMutation(mutation)
+  const [mutate, { loading }] = useMutation(mutation, {onError, onCompleted})
 
   const clearFields = () => {
     formRef.current.reset()
+  }
+
+  const hideAlert = () => {
+    mainErrorSetter('')
+    successSetter('')
   }
 
   const { t } = props
