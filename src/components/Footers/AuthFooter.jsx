@@ -20,7 +20,7 @@ export default function AuthFooter(props) {
 
         <Link
           className={classes.link}
-          href="https://multivendor.ninjascode.com/"
+          href="https://multivendor.enatega.com/"
           target="_blank"
           underline="none">
           Enatega Multivendor
@@ -34,7 +34,7 @@ export default function AuthFooter(props) {
         </Link>
         <Link
           className={classes.link}
-          href="https://medium.com/@sharangohar"
+          href="https://enatega.com/blog/"
           target="_blank"
           underline="none">
           Blog
