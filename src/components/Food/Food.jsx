@@ -356,7 +356,6 @@ function Food(props) {
               type="text"
               value={description}
               onChange={e => setDescription(e.target.value)}
-              multiline
               disableUnderline
               className={[globalClasses.input]}
             />
