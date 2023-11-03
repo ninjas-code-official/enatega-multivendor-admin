@@ -389,6 +389,7 @@ const CreateRestaurant = props => {
               className={classes.file}
               id="file-upload"
               type="file"
+              accept="image/*"
               onChange={event => {
                 selectImage(event, 'image_url')
               }}

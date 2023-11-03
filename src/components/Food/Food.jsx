@@ -414,6 +414,7 @@ function Food(props) {
                 className={classes.file}
                 id="file-upload"
                 type="file"
+                accept="image/*"
                 onChange={event => {
                   selectImage(event, 'imgMenu')
                 }}
