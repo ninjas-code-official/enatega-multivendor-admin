@@ -5,6 +5,7 @@ import RefreshIcon from '@mui/icons-material/Refresh'
 import useStyles from './styles'
 
 export default function SearchBar(props) {
+  const { t } = props;
   const classes = useStyles()
 
   return (
@@ -17,7 +18,7 @@ export default function SearchBar(props) {
         />
       </IconButton>
       <Input
-        placeholder="Search"
+        placeholder={t('Search')}
         onChange={props.onChange}
         value={props.value}
         sx={{

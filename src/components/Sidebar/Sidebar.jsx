@@ -27,7 +27,7 @@ function Sidebar(props) {
   const restaurantImage = localStorage.getItem('restaurantImage')
   const restaurantName = localStorage.getItem('restaurantName')
   const [mobileOpen, setMobileOpen] = React.useState(false)
-  const { window } = props
+  const { window, t } = props;
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -74,12 +74,12 @@ function Sidebar(props) {
               <>
                 {key === 14 ? (
                   <Typography className={classes.headingText} variant="h3">
-                    RESTAURANT
+                    {t('RESTAURANT')}
                   </Typography>
                 ) : null}
                 {key === 19 ? (
                   <Typography className={classes.headingText} variant="h3">
-                    MANAGEMENT
+                    {t('MANAGEMENT')}
                   </Typography>
                 ) : null}
                 <Link
@@ -110,7 +110,7 @@ function Sidebar(props) {
           } else {
             return prop.appearInSidebar &&
               !prop.admin &&
-              prop.name != 'Back to Admin' ? (
+              prop.name != t('BackToAdmin') ? (
               <>
                 <Link
                   className={[

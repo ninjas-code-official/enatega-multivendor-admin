@@ -17,6 +17,7 @@ import { useLocation } from 'react-router-dom'
 
 const drawerWidth = 240
 function AdminSidebar(props) {
+  const { t } = props;
   const location = useLocation()
   const classes = useStyles()
   const { window } = props
@@ -44,12 +45,12 @@ function AdminSidebar(props) {
             <>
               {key === 1 ? (
                 <Typography className={classes.headingText} variant="h3">
-                  GENERAL
+                  {t('GENERAL')}
                 </Typography>
               ) : null}
               {key === 6 ? (
                 <Typography className={classes.headingText} variant="h3">
-                  MANAGEMENT
+                  {t('MANAGEMENT')}
                 </Typography>
               ) : null}
               <Link
