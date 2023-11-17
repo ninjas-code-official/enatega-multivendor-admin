@@ -71,7 +71,11 @@ const km = {
     'Character limit of max length 140': 'ដែនកំណត់តួអក្សរនៃប្រវែងអតិបរមា 140',
     Currency: 'រូបិយប័ណ្ណ',
     'Currency Code': 'លេខកូដរូបិយប័ណ្ណ',
-    'Currency Symbol': 'និមិត្តសញ្ញារូបិយប័ណ្ណ'
+    'Currency Symbol': 'និមិត្តសញ្ញារូបិយប័ណ្ណ',
+    enterYourDetailsBelow: 'បញ្ចូលព័ត៌មានរបស់អ្នកខាងក្រោម',
+    LogintoEnatega: 'ចូលគណនីទៅ Enatega',
+    RememberMe: 'ចងចាំខ្ញុំ',
+    ForgotYourPassword: 'ភ្លេចពាក្យសម្ងាត់របស់អ្នក?',
   }
 }
 
