@@ -11,6 +11,7 @@ const SAVE_EMAIL_CONFIGURATION = gql`
 `
 
 function Email(props) {
+  const { t } = props;
   const formRef = useRef()
   const email = props.email || ''
   const password = props.password || ''
@@ -53,11 +54,11 @@ function Email(props) {
       <Box className={classes.flexRow}>
         <Box item className={classes.heading}>
           <Typography variant="h6" className={classes.text}>
-            Email
+            {t('Email')}
           </Typography>
         </Box>
         <Box ml={20} mt={1}>
-          <label>{enableEmail ? 'Disable' : 'Enable'}</label>
+          <label>{enableEmail ? t('Disable') : t('Enable')}</label>
           <Switch
             defaultChecked={enableEmail}
             value={enableEmail}
@@ -75,12 +76,12 @@ function Email(props) {
             {/* First Row */}
             <Grid item xs={12} sm={6}>
               <Box>
-                <Typography className={classes.labelText}>Email</Typography>
+                <Typography className={classes.labelText}>{t('Email')}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   id="input-email"
                   name="input-email"
-                  placeholder="e.g something@email.com"
+                  placeholder={t('PHMail')}
                   type="text"
                   defaultValue={email}
                   onBlur={event =>
@@ -100,12 +101,12 @@ function Email(props) {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box>
-                <Typography className={classes.labelText}>Email Name</Typography>
+                <Typography className={classes.labelText}>{t('EmailName')}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   id="input-emailName"
                   name="input-emailName"
-                  placeholder="e.g Enatega"
+                  placeholder={t('PHEnatega')}
                   type="text"
                   defaultValue={emailName}
                   onBlur={event =>
@@ -125,12 +126,12 @@ function Email(props) {
             </Grid>
             <Grid item xs={12}>
               <Box>
-                <Typography className={classes.labelText}>Password</Typography>
+                <Typography className={classes.labelText}>{t('Password')}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   id="input-password"
                   name="input-password"
-                  placeholder="e.g FOOD-"
+                  placeholder={t('PHFood')}
                   type="password"
                   defaultValue={password}
                   onBlur={event =>

@@ -12,6 +12,7 @@ const SAVE_PAYPAL_CONFIGURATION = gql`
 `
 
 function Paypal(props) {
+  const { t } = props;
   const formRef = useRef()
   const clientId = props.clientId || ''
   const clientSecret = props.clientSecret || ''
@@ -40,11 +41,11 @@ function Paypal(props) {
       <Box className={classes.flexRow}>
         <Box item className={classes.heading}>
           <Typography variant="h6" className={classes.text}>
-            Paypal
+            {t('Paypal')}
           </Typography>
         </Box>
         <Box ml={5} mt={1}>
-          <label>Sandbox</label>
+          <label>{t('Sandbox')}</label>
           <Switch
             defaultChecked={sandbox}
             value={sandbox}
@@ -59,7 +60,7 @@ function Paypal(props) {
       <Box className={classes.form}>
         <form ref={formRef}>
           <Box>
-            <Typography className={classes.labelText}>Client ID</Typography>
+            <Typography className={classes.labelText}>{t('Client ID')}</Typography>
             <Input
               style={{ marginTop: -1 }}
               id="input-clientid"
@@ -82,7 +83,7 @@ function Paypal(props) {
             />
           </Box>
           <Box>
-            <Typography className={classes.labelText}>Client Secret Key</Typography>
+            <Typography className={classes.labelText}>{t('ClientSecretKey')}</Typography>
             <Input
               style={{ marginTop: -1 }}
               id="input-clientsecret"
@@ -127,7 +128,7 @@ function Paypal(props) {
                   })
                 }
               }}>
-              SAVE
+              {t('Save')}
             </Button>
           </Box>
         </form>

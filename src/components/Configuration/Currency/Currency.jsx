@@ -13,6 +13,7 @@ const SAVE_CURRENCY_CONFIGURATION = gql`
 `
 
 function Currency(props) {
+  const { t } = props;
   const [currencyCode, currencyCodeSetter] = useState(props.currencyCode || '')
   const [currencySymbol, currencySymbolSetter] = useState(
     props.currencySymbol || ''
@@ -52,7 +53,7 @@ function Currency(props) {
       <Box className={classes.flexRow}>
         <Box item className={classes.heading}>
           <Typography variant="h6" className={classes.text}>
-            Currency
+            {t('Currency')}
           </Typography>
         </Box>
       </Box>
@@ -60,7 +61,7 @@ function Currency(props) {
       <Box className={classes.form}>
         <form>
           <Box>
-            <Typography className={classes.labelText}>Choose Currency</Typography>
+            <Typography className={classes.labelText}>{t('ChooseCurrency')}</Typography>
             <Select
               style={{ marginTop: -1 }}
               id="input-currency"
@@ -89,7 +90,7 @@ function Currency(props) {
             </Select>
           </Box>
           <Box>
-            <Typography className={classes.labelText}>Choose Symbol</Typography>
+            <Typography className={classes.labelText}>{t('ChooseSymbol')}</Typography>
             <Select
               style={{ marginTop: -1 }}
               id="input-symbol"
@@ -134,7 +135,7 @@ function Currency(props) {
                   })
                 }
               }}>
-              SAVE
+              {t('Save')}
             </Button>
           </Box>
         </form>

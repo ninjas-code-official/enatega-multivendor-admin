@@ -103,7 +103,7 @@ const Food = props => {
           <img
             className="img-responsive"
             style={{ width: 30, height: 30, borderRadius: 15 }}
-            src={row.image || 'https://enatega.com/wp-content/uploads/2023/09/default-img.jpg'}
+            src={row.image || 'https://enatega.com/wp-content/uploads/2023/11/man-suit-having-breakfast-kitchen-side-view.webp'}
             alt={row.image ? 'img menu' : 'Default Image'}
           />
         </>
@@ -224,8 +224,8 @@ const Food = props => {
       : foodsList(data && data.restaurant.categories).filter(food => {
         return (
           food.title.toLowerCase().search(regex) > -1 ||
-            food.description.toLowerCase().search(regex) > -1 ||
-            food.category.toLowerCase().search(regex) > -1
+          food.description.toLowerCase().search(regex) > -1 ||
+          food.category.toLowerCase().search(regex) > -1
         )
       })
   const globalClasses = useGlobalStyles()
@@ -235,11 +235,11 @@ const Food = props => {
       <Header />
       {/* Page content */}
       {isOpen && (
-            <Alert
-              message="This feature will available after purchasing product"
-              severity="warning"
-              />
-          )}
+        <Alert
+          message="This feature will available after purchasing product"
+          severity="warning"
+        />
+      )}
       <Container className={globalClasses.flex} fluid>
         <FoodComponent />
         {errorQuery && <span>`Error! ${errorQuery.message}`</span>}

@@ -11,6 +11,7 @@ const SAVE_DELIVERY_RATE_CONFIGURATION = gql`
 `
 
 function Currency(props) {
+  const { t } = props;
   const [deliveryRate, setDeliveryRate] = useState(props.deliveryRate || 0)
 
   const [deliveryRateError, setDeliveryRateError] = useState(null)
@@ -34,7 +35,7 @@ function Currency(props) {
       <Box className={classes.flexRow}>
         <Box item className={classes.heading}>
           <Typography variant="h6" className={classes.text}>
-            Delivery Rate
+            {t('Delivery Rate')}
           </Typography>
         </Box>
       </Box>
@@ -42,13 +43,13 @@ function Currency(props) {
       <Box className={classes.form}>
         <form>
           <Box>
-            <Typography className={classes.labelText}>Delivery Rate</Typography>
+            <Typography className={classes.labelText}>{t('Delivery Rate')}</Typography>
             <Input
               style={{ marginTop: -1 }}
               disabled
               id="input-delivery"
               name="input-delivery"
-              placeholder="Delivery rate"
+              placeholder={t('Delivery Rate')}
               type="text"
               defaultValue={deliveryRate}
               onChange={e => {
@@ -79,7 +80,7 @@ function Currency(props) {
                   })
                 }
               }}>
-              SAVE
+              {t('Save')}
             </Button>
           </Box>
         </form>

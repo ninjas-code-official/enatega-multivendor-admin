@@ -408,7 +408,7 @@ const VendorProfile = () => {
                     src={
                       imgUrl ||
                       (data && data.restaurant.image) ||
-                      'https://enatega.com/wp-content/uploads/2023/09/default-img.jpg'
+                      'https://enatega.com/wp-content/uploads/2023/11/man-suit-having-breakfast-kitchen-side-view.webp'
                     }
                   />
                   <label htmlFor="file-upload" className={classes.fileUpload}>
@@ -450,7 +450,7 @@ const VendorProfile = () => {
                               image:
                                 imgUpload ||
                                 data.restaurant.image ||
-                                'https://enatega.com/wp-content/uploads/2023/09/default-img.jpg',
+                                'https://enatega.com/wp-content/uploads/2023/11/man-suit-having-breakfast-kitchen-side-view.webp',
                               orderPrefix: prefix,
                               deliveryTime: Number(deliveryTime),
                               minimumOrder: Number(minimumOrder),

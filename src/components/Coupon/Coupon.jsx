@@ -33,7 +33,7 @@ function Category(props) {
     setter(!validateFunc({ [field]: state }, field))
   }
   const onCompleted = data => {
-    const message = props.coupon ? 'Coupon updated' : 'Coupon added'
+    const message = props.coupon ? t('CouponUpdated') : t('CouponAdded')
     successSetter(message)
     mainErrorSetter('')
     if (!props.coupon) clearFields()
@@ -43,7 +43,7 @@ function Category(props) {
     try {
       message = error.graphQLErrors[0].message
     } catch (err) {
-      message = 'Action failed. Please Try again'
+      message = t('ActionFailedTryAgain')
     }
     successSetter('')
     mainErrorSetter(message)
@@ -90,7 +90,7 @@ function Category(props) {
           </Typography>
         </Box>
         <Box ml={10} mt={1}>
-          <label>{enabled ? 'Disable' : 'Enable'}</label>
+          <label>{enabled ? t('Disable') : t('Enable')}</label>
           <Switch
             defaultChecked={enabled}
             value={enabled}
@@ -107,13 +107,13 @@ function Category(props) {
             <Grid container spacing={0}>
               <Grid item xs={12} sm={6}>
                 <Typography className={classes.labelText}>
-                  Code
+                  {t('Code')}
                 </Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   id="input-code"
                   name="input-code"
-                  placeholder="Code e.g SALE50"
+                  placeholder={t('PHCode')}
                   type="text"
                   defaultValue={title}
                   onBlur={event =>
@@ -138,7 +138,7 @@ function Category(props) {
                   style={{ marginTop: -1 }}
                   id="input-discount"
                   name="input-discount"
-                  placeholder="Discount % i.e 1-99"
+                  placeholder={t('PHDiscount')}
                   type="number"
                   defaultValue={discount}
                   onBlur={event => {
@@ -178,7 +178,7 @@ function Category(props) {
                   })
                 }
               }}>
-              SAVE
+              {t('Save')}
             </Button>
           </Box>
         </form>
