@@ -283,6 +283,14 @@ const en = {
     AddCoupon: 'Add Coupon',
     SalesAmount: 'Sales Amount',
     OrderCount: 'Order Count',
+    MON: 'MON',
+    TUE: 'TUE',
+    WED: 'WED',
+    THU: 'THU',
+    FRI: 'FRI',
+    SAT: 'SAT',
+    SUN: 'SUN',
+    Open: 'Open'
   }
 }
 

@@ -282,7 +282,15 @@ const fr = {
     EditCoupon: "Modifier le coupon",
     AddCoupon: "Ajouter un coupon",
     SalesAmount: "Montant des ventes",
-    OrderCount: "Nombre de commandes"
+    OrderCount: "Nombre de commandes",
+    MON: "Lun",
+    TUE: "Mar",
+    WED: "Mer",
+    THU: "Jeu",
+    FRI: "Ven",
+    SAT: "Sam",
+    SUN: "Dim",
+    Open: "Ouvert"
   }
 }
 

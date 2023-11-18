@@ -248,7 +248,7 @@ const DayComponent = ({ day, value, onChangeTime }) => {
               onChange([['00:00', '23:59']])
             }}
             className={globalClasses.openBtn}>
-            Open
+            {t('Open')}
           </Button>
         ) : null}
       </Grid>

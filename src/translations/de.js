@@ -282,7 +282,15 @@ const de = {
     EditCoupon: 'Gutschein bearbeiten',
     AddCoupon: 'Gutschein hinzufügen',
     SalesAmount: 'Verkaufsbetrag',
-    OrderCount: 'Bestellanzahl'
+    OrderCount: 'Bestellanzahl',
+    MON: "Mo",
+    TUE: "Di",
+    WED: "Mi",
+    THU: "Do",
+    FRI: "Fr",
+    SAT: "Sa",
+    SUN: "So",
+    Open: "Geöffnet"
   }
 }
 
