@@ -205,11 +205,11 @@ const CreateRestaurant = props => {
       <Box style={{ alignItems: 'start' }} className={classes.flexRow}>
         <Box item className={classes.heading}>
           <Typography variant="h6" className={classes.text}>
-            Add Restaurant
+            {t('AddRestaurant')}
           </Typography>
         </Box>
         <Box ml={30} mt={1}>
-          <label>Available</label>
+          <label>{t('Available')}</label>
           <Switch defaultChecked style={{ color: 'black' }} />
         </Box>
       </Box>
@@ -430,7 +430,7 @@ const CreateRestaurant = props => {
                   })
                 }
               }}>
-              SAVE
+              {t('Save')}
             </Button>
           </Box>
         </form>

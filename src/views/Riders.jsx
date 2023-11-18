@@ -120,7 +120,7 @@ function Riders(props) {
       cell: row => <>{availableStatus(row)}</>
     },
     {
-      name: 'Action',
+      name: t('Action'),
       cell: row => <>{actionButtons(row)}</>
     }
   ]
@@ -183,7 +183,7 @@ function Riders(props) {
                 <ListItemIcon>
                   <EditIcon fontSize="small" style={{ color: 'green' }} />
                 </ListItemIcon>
-                <Typography color="green">Edit</Typography>
+                <Typography color="green">{t('Edit')}</Typography>
               </MenuItem>
               <MenuItem
                 onClick={e => {
@@ -199,7 +199,7 @@ function Riders(props) {
                 <ListItemIcon>
                   <DeleteIcon fontSize="small" style={{ color: 'red' }} />
                 </ListItemIcon>
-                <Typography color="red">Delete</Typography>
+                <Typography color="red">{t('Delete')}</Typography>
               </MenuItem>
             </Menu>
           </Paper>
@@ -241,7 +241,7 @@ function Riders(props) {
         </Grid>
         {isOpen && (
             <Alert
-              message="This feature will available after purchasing product"
+            message={t('AvailableAfterPurchasing')}
               severity="warning"
               />
           )}
@@ -263,7 +263,7 @@ function Riders(props) {
                 onClick={() => refetch()}
               />
             }
-            title={<TableHeader title="Riders" />}
+              title={<TableHeader title={t('Riders')} />}
             columns={columns}
             data={filtered}
             pagination

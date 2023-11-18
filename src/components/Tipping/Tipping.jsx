@@ -19,6 +19,7 @@ const CREATE_TIPPING = gql`
 `
 
 function Tipping(props) {
+  const { t } = props;
   const formRef = useRef()
   // const mutation = props.coupon ? EDIT_COUPON : CREATE_COUPON
   const [tip1Error, setTip1Error] = useState(null)
@@ -81,7 +82,6 @@ function Tipping(props) {
     successSetter('')
   }
 
-  const { t } = props
   const classes = useStyles()
   const globalClasses = useGlobalStyles()
 

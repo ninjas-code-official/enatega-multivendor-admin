@@ -50,7 +50,7 @@ function Stripe(props) {
       <Box className={classes.form}>
         <form ref={formRef}>
           <Box>
-            <Typography className={classes.labelText}>{t('Publish Key')}</Typography>
+            <Typography className={classes.labelText}>{t('PublishKey')}</Typography>
             <Input
               style={{ marginTop: -1 }}
               id="input-publishablekey"

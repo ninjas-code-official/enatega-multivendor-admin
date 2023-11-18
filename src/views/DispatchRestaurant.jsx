@@ -25,6 +25,7 @@ const GET_ACTIVE_ORDERS = gql`
 `
 
 const DispatchRestaurant = props => {
+  const { t } = props;
   const params = useParams()
 
   const [restaurantId, seteRestaurantId] = useState(
@@ -60,7 +61,7 @@ const DispatchRestaurant = props => {
           style={{ width: '50px' }}
           className={globalClasses.selectInput}>
           <MenuItem style={{ color: 'black' }} value={''}>
-            Rider
+            {t('Rider')}
           </MenuItem>
           {row.orderStatus === 'PENDING' && (
             <MenuItem
@@ -73,41 +74,41 @@ const DispatchRestaurant = props => {
                   }
                 })
               }}>
-              Accept
+              {t('Accept')}
             </MenuItem>
           )}
           {['PENDING', 'ACCEPTED', 'PICKED', 'ASSIGNED'].includes(
             row.orderStatus
           ) && (
-            <MenuItem
-              style={{ color: 'black' }}
-              onClick={() => {
-                mutateUpdate({
-                  variables: {
-                    id: row._id,
-                    orderStatus: 'CANCELLED'
-                  }
-                })
-              }}>
-              Reject
-            </MenuItem>
-          )}
+              <MenuItem
+                style={{ color: 'black' }}
+                onClick={() => {
+                  mutateUpdate({
+                    variables: {
+                      id: row._id,
+                      orderStatus: 'CANCELLED'
+                    }
+                  })
+                }}>
+                {t('Reject')}
+              </MenuItem>
+            )}
           {['PENDING', 'ACCEPTED', 'PICKED', 'ASSIGNED'].includes(
             row.orderStatus
           ) && (
-            <MenuItem
-              style={{ color: 'black' }}
-              onClick={() => {
-                mutateUpdate({
-                  variables: {
-                    id: row._id,
-                    orderStatus: 'DELIVERED'
-                  }
-                })
-              }}>
-              Delivered
-            </MenuItem>
-          )}
+              <MenuItem
+                style={{ color: 'black' }}
+                onClick={() => {
+                  mutateUpdate({
+                    variables: {
+                      id: row._id,
+                      orderStatus: 'DELIVERED'
+                    }
+                  })
+                }}>
+                {t('Delivered')}
+              </MenuItem>
+            )}
         </Select>
       </>
     )
@@ -128,21 +129,21 @@ const DispatchRestaurant = props => {
   }
   const columns = [
     {
-      name: 'Order Information',
+      name: t('OrderInformation'),
       sortable: true,
       selector: 'orderId',
       cell: row => subscribeFunc(row)
     },
     {
-      name: 'Restaurant',
+      name: t('RestaurantCol'),
       selector: 'restaurant.name'
     },
     {
-      name: 'Payment',
+      name: t('Payment'),
       selector: 'paymentMethod'
     },
     {
-      name: 'Status',
+      name: t('Status'),
       selector: 'orderStatus',
       cell: row => (
         <div style={{ overflow: 'visible' }}>
@@ -154,7 +155,7 @@ const DispatchRestaurant = props => {
       )
     },
     {
-      name: 'Order time',
+      name: t('OrderTime'),
       cell: row => (
         <>{new Date(row.createdAt).toLocaleString().replace(/ /g, '\n')}</>
       )
@@ -176,20 +177,20 @@ const DispatchRestaurant = props => {
     searchQuery.length < 3
       ? dataOrders && dataOrders.getActiveOrders
       : dataOrders &&
-        dataOrders.getActiveOrders.filter(order => {
-          return (
-            order.restaurant.name.toLowerCase().search(regex) > -1 ||
-            order.orderId.toLowerCase().search(regex) > -1 ||
-            order.deliveryAddress.deliveryAddress.toLowerCase().search(regex) >
-              -1 ||
-            order.orderId.toLowerCase().search(regex) > -1 ||
-            order.paymentMethod.toLowerCase().search(regex) > -1 ||
-            order.orderStatus.toLowerCase().search(regex) > -1 ||
-            (order.rider !== null
-              ? order.rider.name.toLowerCase().search(regex) > -1
-              : false)
-          )
-        })
+      dataOrders.getActiveOrders.filter(order => {
+        return (
+          order.restaurant.name.toLowerCase().search(regex) > -1 ||
+          order.orderId.toLowerCase().search(regex) > -1 ||
+          order.deliveryAddress.deliveryAddress.toLowerCase().search(regex) >
+          -1 ||
+          order.orderId.toLowerCase().search(regex) > -1 ||
+          order.paymentMethod.toLowerCase().search(regex) > -1 ||
+          order.orderStatus.toLowerCase().search(regex) > -1 ||
+          (order.rider !== null
+            ? order.rider.name.toLowerCase().search(regex) > -1
+            : false)
+        )
+      })
 
   return (
     <>
@@ -198,7 +199,7 @@ const DispatchRestaurant = props => {
       <Container className={globalClasses.flex} fluid>
         {errorOrders ? (
           <tr>
-            <td>{`Error! ${errorOrders.message}`}</td>
+            <td>{`${t('Error')} ${errorOrders.message}`}</td>
           </tr>
         ) : null}
         {loadingOrders ? (
@@ -213,7 +214,7 @@ const DispatchRestaurant = props => {
                 onClick={() => refetchOrders()}
               />
             }
-            title={<TableHeader title="Dispatch" />}
+            title={<TableHeader title={t('Dispatch')} />}
             columns={columns}
             data={filtered}
             progressPending={loadingOrders}

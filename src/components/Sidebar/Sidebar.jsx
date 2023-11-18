@@ -28,7 +28,7 @@ function Sidebar(props) {
   const restaurantName = localStorage.getItem('restaurantName')
   const [mobileOpen, setMobileOpen] = React.useState(false)
   const { window, t } = props;
-
+  console.log("SideBar props are here: ", props);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
   }
@@ -102,7 +102,7 @@ function Sidebar(props) {
                         ? classes.blackText
                         : classes.whiteText
                     ]}>
-                    {prop.name}
+                    {t(prop.name)}
                   </Typography>
                 </Link>
               </>

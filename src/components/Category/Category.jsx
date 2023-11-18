@@ -94,11 +94,11 @@ function Category(props) {
                   })
                   // Close the modal after 3 seconds by calling the parent's onClose callback
                   setTimeout(() => {
-                    props.onClose(); // Close the modal
+                    // props.onClose(); // Close the modal
                   }, 4000);
                 }
               }}>
-              SAVE
+              {t('Save')}
             </Button>
           </Box>
           <Box mt={2}>

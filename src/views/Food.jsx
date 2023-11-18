@@ -35,6 +35,7 @@ const DELETE_FOOD = gql`
   ${deleteFood}
 `
 const Food = props => {
+  const { t } = props;
   const [editModal, setEditModal] = useState(false)
   const [food, setFood] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
@@ -80,24 +81,24 @@ const Food = props => {
 
   const columns = [
     {
-      name: 'Title',
+      name: t('Title'),
       selector: 'title',
       sortable: true
     },
     {
-      name: 'Description',
+      name: t('Description'),
       sortable: true,
       selector: 'description',
       cell: row => <>{transformToNewline(row.description, 3)}</>
     },
     {
-      name: 'Category',
+      name: t('Category'),
       sortable: true,
       selector: 'category.category',
       cell: row => <>{row.category}</>
     },
     {
-      name: 'Image',
+      name: t('Image'),
       cell: row => (
         <>
           <img
@@ -110,7 +111,7 @@ const Food = props => {
       )
     },
     {
-      name: 'Action',
+      name: t('Action'),
       cell: row => <>{actionButtons(row)}</>
     }
   ]
@@ -156,7 +157,7 @@ const Food = props => {
                 <ListItemIcon>
                   <EditIcon fontSize="small" style={{ color: 'green' }} />
                 </ListItemIcon>
-                <Typography color="green">Edit</Typography>
+                <Typography color="green">{t('Edit')}</Typography>
               </MenuItem>
               <MenuItem
                 onClick={e => {
@@ -178,7 +179,7 @@ const Food = props => {
                 <ListItemIcon>
                   <DeleteIcon fontSize="small" style={{ color: 'red' }} />
                 </ListItemIcon>
-                <Typography color="red">Delete</Typography>
+                <Typography color="red">{t('Delete')}</Typography>
               </MenuItem>
             </Menu>
           </Paper>
@@ -236,7 +237,7 @@ const Food = props => {
       {/* Page content */}
       {isOpen && (
         <Alert
-          message="This feature will available after purchasing product"
+          message={t('AvailableAfterPurchasing')}
           severity="warning"
         />
       )}
@@ -255,7 +256,7 @@ const Food = props => {
                 onClick={() => refetch()}
               />
             }
-            title={<TableHeader title="Food" />}
+              title={<TableHeader title={t('Food')} />}
             columns={columns}
             data={data && data.restaurant ? filtered : {}}
             pagination

@@ -127,6 +127,7 @@ function AdminNavbar(props) {
                     style={{ color: '#000'}}
                   >
                     <MenuItem sx={{ color: '#000' }} value="en">English</MenuItem>
+                    <MenuItem sx={{ color: '#000' }} value="ar">Arabic</MenuItem>
                     <MenuItem sx={{ color: '#000' }} value="de">Deutsche</MenuItem>
                     <MenuItem sx={{ color: '#000' }} value="zh">中文</MenuItem>
                     <MenuItem sx={{ color: '#000' }} value="km">ភាសាខ្មែរ</MenuItem>

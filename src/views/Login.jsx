@@ -194,7 +194,7 @@ const Login = props => {
                     onBlur={event => {
                       onBlur(event, 'email')
                     }}
-                    placeholder="Email"
+                    placeholder={t('Email')}
                     type="email"
                     disableUnderline
                     className={[
@@ -215,7 +215,7 @@ const Login = props => {
                     style={{ marginTop: -1 }}
                     id="input-password"
                     name="input-password"
-                    placeholder="Password"
+                    placeholder={t('Password')}
                     value={stateData.password}
                     onChange={event => {
                       setStateData({

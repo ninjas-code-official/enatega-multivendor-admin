@@ -257,7 +257,7 @@ function Addon(props) {
             <Input
               style={{ marginTop: -1 }}
               id="input-title"
-              placeholder="Title"
+              placeholder={t('Title')}
               type="text"
               value={addonItem.title}
               onChange={event => {
@@ -269,11 +269,11 @@ function Addon(props) {
                 addonItem.titleError === true ? globalClasses.inputError : ''
               ]}
             />
-            <Typography className={classes.labelText}>Description</Typography>
+            <Typography className={classes.labelText}>{t('Description')}</Typography>
             <Input
               style={{ marginTop: -1 }}
               id="input-description"
-              placeholder="Description"
+              placeholder={t('Description')}
               type="text"
               value={addonItem.description || ''}
               onChange={event => {
@@ -418,7 +418,7 @@ function Addon(props) {
                 }, 4000);
               }
             }}>
-            SAVE
+            {t('Save')}
           </Button>
         </Box>
         <Box mt={2}>

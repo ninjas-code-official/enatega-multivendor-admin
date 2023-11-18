@@ -86,7 +86,7 @@ function Category(props) {
           <Typography
             variant="h6"
             className={props.coupon ? classes.textWhite : classes.text}>
-            {props.coupon ? t('Edit Coupon') : t('Add Coupon')}
+            {props.coupon ? t('EditCoupon') : t('AddCoupon')}
           </Typography>
         </Box>
         <Box ml={10} mt={1}>
@@ -132,7 +132,7 @@ function Category(props) {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Typography className={classes.labelText}>
-                  Discount
+                  {t('Discount')}
                 </Typography>
                 <Input
                   style={{ marginTop: -1 }}
