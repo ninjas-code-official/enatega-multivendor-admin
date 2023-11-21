@@ -10,6 +10,7 @@ import StripeConfiguration from '../components/Configuration/Stripe/Stripe'
 import CurrencyConfiguration from '../components/Configuration/Currency/Currency'
 import { Grid } from '@mui/material'
 import { ReactComponent as ConfigIcon } from '../assets/svg/svg/Configuration.svg'
+import TwilioConfiguration from '../components/Configuration/Twilio/Twilio'
 
 const GET_CONFIGURATION = gql`
   ${getConfiguration}
@@ -63,6 +64,15 @@ const Configuration = props => {
           <Grid item sx={12} md={12} lg={5}>
             <DeliveryRateConfiguration
               deliveryRate={data && data.configuration.deliveryRate}
+            />
+          </Grid>
+          <Grid item sx={12} md={12} lg={5}>
+            
+            <TwilioConfiguration
+              twilioAccountSid={data && data.configuration.twilioAccountSid}
+              twilioAuthToken={data && data.configuration.twilioAuthToken}
+              twilioPhoneNumber={data && data.configuration.twilioPhoneNumber}
+              twilioEnabled={data && data.configuration.twilioEnabled}
             />
           </Grid>
         </Grid>

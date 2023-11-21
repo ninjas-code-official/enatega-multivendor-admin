@@ -210,6 +210,10 @@ export const getConfiguration = `query GetConfiguration{
       currency
       currencySymbol
       deliveryRate
+      twilioAccountSid
+      twilioAuthToken
+      twilioPhoneNumber
+      twilioEnabled
     }
   }`
 

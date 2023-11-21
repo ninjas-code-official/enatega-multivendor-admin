@@ -201,6 +201,17 @@ export const saveStripeConfiguration = `mutation SaveStripeConfiguration($config
     _id
     publishableKey
     secretKey
+  
+  }
+}`
+
+export const saveTwilioConfiguration = `mutation saveTwilioConfiguration($configurationInput:TwilioConfigurationInput!){
+  saveTwilioConfiguration(configurationInput:$configurationInput){
+    _id
+    twilioAccountSid
+    twilioAuthToken
+    twilioPhoneNumber
+    twilioEnabled
   }
 }`
 
