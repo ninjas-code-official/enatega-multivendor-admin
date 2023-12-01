@@ -7,11 +7,13 @@ import CreateRestaurant from '../components/Restaurant/CreateRestaurant'
 import { Box, Button, Modal, Container, Grid } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import useGlobalStyles from '../utils/globalStyles'
+import { withTranslation } from 'react-i18next'
 
 const RESTAURANT_BY_OWNER = gql`
   ${restaurantByOwner}
 `
 const Restaurant = props => {
+  const { t } = props;
   const [owner, setOwner] = useState()
   const [isModalVisible, setIsModalVisible] = useState(false)
   const vendorId = localStorage.getItem('vendorId')
@@ -63,7 +65,7 @@ const Restaurant = props => {
       {/* Page content */}
       <Container fluid>
         <Box mt={-10}>
-          {loadingQuery ? <div>loading</div> : null}
+          {loadingQuery ? <div>{t('Loading')}</div> : null}
           {errorQuery ? <span>`${errorQuery.message}`</span> : null}
           {!loadingQuery && !errorQuery && (
             <Grid container spacing={2}>
@@ -84,7 +86,7 @@ const Restaurant = props => {
               borderRadius: 10
             }}
             startIcon={<AddIcon fill="#000" />}>
-            Add New Restaurant
+            {t('AddNewRestaurant')}
           </Button>
         </Box>
         <Modal
@@ -101,4 +103,4 @@ const Restaurant = props => {
     </>
   )
 }
-export default Restaurant
+export default withTranslation()(Restaurant)

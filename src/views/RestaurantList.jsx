@@ -24,6 +24,7 @@ const DELETE_RESTAURANT = gql`
 `
 
 const Restaurants = props => {
+  const { t } = props;
   const [searchQuery, setSearchQuery] = useState('')
   const onChangeSearch = e => setSearchQuery(e.target.value)
   const globalClasses = useGlobalStyles()
@@ -50,14 +51,14 @@ const Restaurants = props => {
 
   const columns = [
     {
-      name: 'Image',
+      name: t('Image'),
       cell: row => (
         <>
           {!!row.image && (
             <img
               className="img-responsive"
               src={row.image}
-              alt="img menu"
+              alt={t('ImageMenu')}
               style={{ width: 30, height: 30, borderRadius: 15 }}
               onClick={() => {
                 localStorage.setItem('restaurant_id', row._id)
@@ -71,25 +72,25 @@ const Restaurants = props => {
       selector: 'image'
     },
     {
-      name: 'Name',
+      name: t('Name'),
       // sortable: true,
       selector: 'name'
     },
     {
-      name: 'Address',
+      name: t('Address'),
       selector: 'address'
     },
     {
-      name: 'Order Prefix',
+      name: t('OrderPrefix'),
       selector: 'orderPrefix'
     },
     {
-      name: 'Vendor',
+      name: t('Vendor'),
       selector: 'owner',
       cell: row => <>{row.owner ? row.owner.email : null}</>
     },
     {
-      name: 'Action',
+      name: t('Action'),
       cell: row => <>{actionButtons(row)}</>
     }
   ]
@@ -114,7 +115,7 @@ const Restaurants = props => {
             e.preventDefault()
             mutate({ variables: { id: row._id } })
           }}>
-          {row.isActive ? 'Disable' : 'Enable'}
+          {row.isActive ? t('Disable') : t('Enable')}
         </Button>
       </>
     )
@@ -164,7 +165,7 @@ const Restaurants = props => {
                 onClick={() => onClickRefetch(refetch)}
               />
             }
-            title={<TableHeader title="Restaurants" />}
+              title={<TableHeader title={t('Restaurants')} />}
             columns={columns}
             data={filtered}
             pagination

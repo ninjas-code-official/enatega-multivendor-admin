@@ -19,6 +19,7 @@ const CREATE_TIPPING = gql`
 `
 
 function Tipping(props) {
+  const { t } = props;
   const formRef = useRef()
   // const mutation = props.coupon ? EDIT_COUPON : CREATE_COUPON
   const [tip1Error, setTip1Error] = useState(null)
@@ -27,7 +28,7 @@ function Tipping(props) {
   const [mainError, mainErrorSetter] = useState('')
   const [success, successSetter] = useState('')
   const onCompleted = data => {
-    const message = 'Tipping updated'
+    const message = t('TippingUpdated')
     successSetter(message)
     setTip1Error(null)
     setTip2Error(null)
@@ -41,7 +42,7 @@ function Tipping(props) {
     try {
       message = error.graphQLErrors[0].message
     } catch (err) {
-      message = 'Action failed. Please Try again'
+      message = t('ActionFailedTryAgain')
     }
     successSetter('')
     mainErrorSetter(message)
@@ -62,7 +63,7 @@ function Tipping(props) {
     setTip3Error(tip3Errors)
 
     if (!(tip1Errors && tip2Errors && tip3Errors)) {
-      mainErrorSetter('Fields Required')
+      mainErrorSetter(t('FieldsRequired'))
     }
     return tip1Errors && tip2Errors && tip3Errors
     // setTimeout(hideAlert, 3000)
@@ -81,7 +82,6 @@ function Tipping(props) {
     successSetter('')
   }
 
-  const { t } = props
   const classes = useStyles()
   const globalClasses = useGlobalStyles()
 
@@ -90,7 +90,7 @@ function Tipping(props) {
       <Box className={classes.flexRow}>
         <Box item className={classes.heading}>
           <Typography variant="h6" className={classes.text}>
-            {props.coupon ? t('Edit Tipping') : t('Add Tipping')}
+            {props.coupon ? t('EditTipping') : t('AddTipping')}
           </Typography>
         </Box>
       </Box>
@@ -100,12 +100,12 @@ function Tipping(props) {
           <Grid container spacing={0}>
             <Grid item xs={12} sm={6}>
               <Box>
-                <Typography className={classes.labelText}>Tip 1</Typography>
+                <Typography className={classes.labelText}>{t('Tip1')}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   name="tip1"
                   id="input-type-tip1"
-                  placeholder="Tip1 e.g 10"
+                  placeholder={t('PHTip1')}
                   type="number"
                   defaultValue={
                     data && data.tips.tipVariations
@@ -126,12 +126,12 @@ function Tipping(props) {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box>
-                <Typography className={classes.labelText}>Tip 2</Typography>
+                <Typography className={classes.labelText}>{t('Tip2')}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   name="tip2"
                   id="input-type-tip2"
-                  placeholder="Tip2 e.g 12"
+                  placeholder={t('PHTip2')}
                   type="number"
                   defaultValue={
                     data && data.tips.tipVariations
@@ -155,12 +155,12 @@ function Tipping(props) {
           <Grid container spacing={0}>
             <Grid item xs={12} sm={6}>
               <Box>
-                <Typography className={classes.labelText}>Tip 3</Typography>
+                <Typography className={classes.labelText}>{t('Tip3')}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   name="tip3"
                   id="input-type-tip3"
-                  placeholder="Tip3 e.g 15"
+                  placeholder={t('PHTip2')}
                   type="number"
                   defaultValue={
                     data && data.tips.tipVariations
@@ -203,7 +203,7 @@ function Tipping(props) {
                   })
                 }
               }}>
-              SAVE
+              {t('Save')}
             </Button>
           </Box>
         </form>

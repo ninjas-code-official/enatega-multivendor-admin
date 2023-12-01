@@ -55,15 +55,15 @@ function Food(props) {
   const restaurantId = localStorage.getItem('restaurantId')
 
   const onError = error => {
-    mainErrorSetter(`Failed. Please try again. ${error}`)
+    mainErrorSetter(`${t('ActionFailedTryAgain')} ${error}`)
     successSetter('')
     setTimeout(onDismiss, 3000)
   }
   const onCompleted = data => {
     if (!props.food) clearFields()
     const message = props.food
-      ? 'Food updated successfully'
-      : 'Food added successfully'
+      ? t('FoodUpdatedSuccessfully')
+      : t('FoodAddedSuccessfully')
     mainErrorSetter('')
     successSetter(message)
     setTitle('');
@@ -322,13 +322,13 @@ function Food(props) {
         <form ref={formRef}>
           <Box>
             <Typography className={classes.labelText}>
-              Title
+              {t('Title')}
             </Typography>
             <Input
               style={{ marginTop: -1 }}
               id="input-title"
               name="input-title"
-              placeholder="Title"
+              placeholder={t('Title')}
               type="text"
               value={title}
               onChange={e => setTitle(e.target.value)}
@@ -346,13 +346,13 @@ function Food(props) {
               ]}
             />
             <Typography className={classes.labelText}>
-              Description
+              {t('Description')}
             </Typography>
             <Input
               style={{ marginTop: -1 }}
               id="input-description"
               name="input-description"
-              placeholder="Description"
+              placeholder={t('Description')}
               type="text"
               value={description}
               onChange={e => setDescription(e.target.value)}
@@ -384,7 +384,7 @@ function Food(props) {
                 ]}>
                 {!category && (
                   <MenuItem value="" style={{ color: 'black' }}>
-                    Select Category
+                    {t('SelectCategory')}
                   </MenuItem>
                 )}
                 {dataCategories &&
@@ -405,10 +405,10 @@ function Food(props) {
               <img
                 className={classes.image}
                 alt="..."
-                src={imgMenu || 'https://enatega.com/wp-content/uploads/2023/09/default-img.jpg'}
+                src={imgMenu || 'https://enatega.com/wp-content/uploads/2023/11/man-suit-having-breakfast-kitchen-side-view.webp'}
               />
               <label htmlFor="file-upload" className={classes.fileUpload}>
-                Upload an image
+                {t('UploadAnImage')}
               </label>
               <input
                 className={classes.file}
@@ -425,7 +425,7 @@ function Food(props) {
               <Box className={classes.flexRow}>
                 <Box item className={classes.heading}>
                   <Typography variant="p" className={classes.textWhite}>
-                    Variations
+                    {t('Variations')}
                   </Typography>
                 </Box>
               </Box>
@@ -437,12 +437,12 @@ function Food(props) {
                         <Grid item xs={12} sm={6}>
                           <Box mt={2}>
                             <Typography className={classes.labelText}>
-                              Title (must be unique)
+                              {t('UniqueTitle')}
                             </Typography>
                             <Input
                               style={{ marginTop: -1 }}
                               id="input-type"
-                              placeholder="Title"
+                              placeholder={t('Title')}
                               type="text"
                               value={variationItem.title}
                               onChange={event => {
@@ -465,12 +465,12 @@ function Food(props) {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                           <Box mt={2}>
-                            <Typography className={classes.labelText}>Price</Typography>
+                            <Typography className={classes.labelText}>{t('Price')}</Typography>
                             <Input
                               style={{ marginTop: -1 }}
                               value={variationItem.price}
                               id="input-price"
-                              placeholder="Price"
+                              placeholder={t('Price')}
                               type="number"
                               onChange={event => {
                                 handleVariationChange(event, index, 'price', 'variations');
@@ -492,12 +492,12 @@ function Food(props) {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                           <Box mt={2}>
-                            <Typography className={classes.labelText}>Discounted</Typography>
+                            <Typography className={classes.labelText}>{t('Discounted')}</Typography>
                             <Input
                               style={{ marginTop: -1 }}
                               value={variationItem.discounted}
                               id="input-discounted"
-                              placeholder="Discounted"
+                              placeholder={t('Discounted')}
                               type="number"
                               onChange={event => {
                                 handleVariationChange(event, index, 'discounted', 'variations');
@@ -540,8 +540,8 @@ function Food(props) {
                       />
                     </Box>
                     <Box>
-                      {loadingAddons && 'Loading ...'}
-                      {errorAddons && 'Error ...'}
+                      {loadingAddons && t('LoadingDots')}
+                      {errorAddons && t('ErrorDots')}
                       {dataAddons &&
                         dataAddons.restaurant.addons.map(addon => (
                           <Grid
@@ -570,7 +570,7 @@ function Food(props) {
                     <Button
                       className={classes.button}
                       onClick={() => toggleModal(index)}>
-                      New Addon
+                      {t('NewAddon')}
                     </Button>
                   </Box>
                 ))}
@@ -612,7 +612,7 @@ function Food(props) {
                   }, 4000);
                 }
               }}>
-              SAVE
+              {t('Save')}
             </Button>
           </Box>
           <Box mt={2}>

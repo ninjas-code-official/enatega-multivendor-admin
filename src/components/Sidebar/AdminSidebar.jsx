@@ -14,12 +14,15 @@ import routes from '../../routes'
 import useStyles from './styles'
 import { ReactComponent as Logo } from '../../assets/svg/logo.svg'
 import { useLocation } from 'react-router-dom'
+import { useTranslation, withTranslation } from 'react-i18next'
 
 const drawerWidth = 240
 function AdminSidebar(props) {
+  const { t } = useTranslation();
   const location = useLocation()
   const classes = useStyles()
   const { window } = props
+  console.log("Admin Sidebarprops are here: ", props);
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   const handleDrawerToggle = () => {
@@ -44,12 +47,12 @@ function AdminSidebar(props) {
             <>
               {key === 1 ? (
                 <Typography className={classes.headingText} variant="h3">
-                  GENERAL
+                  {t('GENERAL')}
                 </Typography>
               ) : null}
               {key === 6 ? (
                 <Typography className={classes.headingText} variant="h3">
-                  MANAGEMENT
+                  {t('MANAGEMENT')}
                 </Typography>
               ) : null}
               <Link
@@ -74,7 +77,7 @@ function AdminSidebar(props) {
                       ? classes.blackText
                       : classes.whiteText
                   ]}>
-                  {prop.name}
+                  {t(prop.name)}
                 </Typography>
               </Link>
             </>
@@ -152,4 +155,4 @@ function AdminSidebar(props) {
   )
 }
 
-export default AdminSidebar
+export default withTranslation()(AdminSidebar)

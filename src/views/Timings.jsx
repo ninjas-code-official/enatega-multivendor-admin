@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import React, { useState, useEffect } from 'react'
 import { useQuery, useMutation, gql } from '@apollo/client'
-import { withTranslation } from 'react-i18next'
+import { withTranslation, useTranslation } from 'react-i18next'
 // core components
 import Header from '../components/Headers/Header'
 import { getRestaurantProfile, updateTimings } from '../apollo'
@@ -72,10 +72,10 @@ const Timings = props => {
           <Box className={globalClasses.timing}>
             <Grid container className={globalClasses.timingHeader}>
               <Grid item md={2} lg={2}>
-                Days
+                  {t('Days')}
               </Grid>
               <Grid item md={7} lg={7}>
-                Open Times
+                  {t('OpenTimes')}
               </Grid>
             </Grid>
             <DayComponent
@@ -123,12 +123,12 @@ const Timings = props => {
                       openingTimes
                     },
                     onCompleted: () => {
-                      setSuccessMessage('Time saved successfully');
+                      setSuccessMessage(t('TimeSavedSuccessfully'));
                       setTimeout(() => setSuccessMessage(''), 5000);
                       setErrorMessage('');
                     },
                     onError: (error) => {
-                      setErrorMessage('Error while saving time');
+                      setErrorMessage(t('ErrorWhileSavingTime'));
                       setTimeout(() => setErrorMessage(''), 5000);
                       setSuccessMessage('');
                     }
@@ -136,7 +136,7 @@ const Timings = props => {
                 }}
                 className={[globalClasses.button, globalClasses.mb]}
               >
-                {loading ? 'Saving...' : 'Save'}
+                {loading ? t('SavingDots') : t('Save')}
               </Button>
               {successMessage && (
                 <Alert
@@ -166,6 +166,7 @@ const Timings = props => {
 
 export default withTranslation()(Timings)
 const DayComponent = ({ day, value, onChangeTime }) => {
+  const { t } = useTranslation();
   useEffect(() => {
     onChangeTime(day, values)
   })
@@ -227,7 +228,7 @@ const DayComponent = ({ day, value, onChangeTime }) => {
             )}
           </Box>
         ))}
-        {values.length === 0 && <span>Closed All day</span>}
+        {values.length === 0 && <span>{t('ClosedAllDay')}</span>}
       </Grid>
       <Grid item lg={3} md={3}>
         {values.length > 0 ? (
@@ -237,7 +238,7 @@ const DayComponent = ({ day, value, onChangeTime }) => {
               onChange([])
             }}
             className={globalClasses.closeBtn}>
-            Closed all Day
+            {t('ClosedAllDay')}
           </Button>
         ) : null}
         {values.length === 0 ? (
@@ -247,7 +248,7 @@ const DayComponent = ({ day, value, onChangeTime }) => {
               onChange([['00:00', '23:59']])
             }}
             className={globalClasses.openBtn}>
-            Open
+            {t('Open')}
           </Button>
         ) : null}
       </Grid>

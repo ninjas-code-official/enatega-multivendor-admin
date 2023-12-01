@@ -35,6 +35,7 @@ const Login = props => {
     redirectToReferrer: !!localStorage.getItem('user-enatega')
   })
   const formRef = useRef()
+  const { t } = props;
 
   const [isLogged, setIsLogged] = useState(false)
   const onBlur = (event, field) => {
@@ -165,13 +166,13 @@ const Login = props => {
             justifyContent: 'center'
           }}>
           <Typography sx={{ fontSize: 20, fontWeight: 'bold' }}>
-            Enter your details below
+            {t('enterYourDetailsBelow')}
           </Typography>
           <Box container sx={{ width: 600 }} className={classes.container}>
             <Box className={classes.flexRow}>
               <Box item className={classes.heading}>
                 <Typography variant="h6" className={classes.text}>
-                  Login to Enatega
+                  {t('LogintoEnatega')}
                 </Typography>
               </Box>
             </Box>
@@ -180,7 +181,7 @@ const Login = props => {
               <form ref={formRef}>
                 <Box>
                   <Typography className={classes.labelText}>
-                    Email
+                    {t('Email')}
                   </Typography>
                   <Input
                     style={{ marginTop: -1 }}
@@ -193,7 +194,7 @@ const Login = props => {
                     onBlur={event => {
                       onBlur(event, 'email')
                     }}
-                    placeholder="Email"
+                    placeholder={t('Email')}
                     type="email"
                     disableUnderline
                     className={[
@@ -208,13 +209,13 @@ const Login = props => {
                 </Box>
                 <Box>
                   <Typography className={classes.labelText}>
-                    Password
+                    {t('Password')}
                   </Typography>
                   <Input
                     style={{ marginTop: -1 }}
                     id="input-password"
                     name="input-password"
-                    placeholder="Password"
+                    placeholder={t('Password')}
                     value={stateData.password}
                     onChange={event => {
                       setStateData({
@@ -249,7 +250,7 @@ const Login = props => {
                   <FormGroup>
                     <FormControlLabel
                       control={<Checkbox defaultChecked />}
-                      label="Remember me"
+                      label={t('RememberMe')}
                     />
                   </FormGroup>
                   <Link
@@ -259,14 +260,14 @@ const Login = props => {
                       color: 'primary.main',
                       fontWeight: 'bold'
                     }}>
-                    Forgot your password?
+                    {t('ForgotYourPassword')}
                   </Link>
                 </Box>
                 <Box>
                   <Button
                     className={globalClasses.button100}
                     onClick={loginFunc}>
-                    Login
+                    {t('Login')}
                   </Button>
                 </Box>
               </form>

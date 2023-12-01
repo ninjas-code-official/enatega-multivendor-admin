@@ -1,8 +1,11 @@
 import * as React from 'react'
 import { Box, Link, BottomNavigation, Typography } from '@mui/material'
 import useStyles from './styles'
+import { withTranslation } from 'react-i18next'
 
-export default function AdminFooter(props) {
+
+function AdminFooter(props) {
+  const { t } = props;
   const [value, setValue] = React.useState(0)
   const classes = useStyles()
 
@@ -28,24 +31,29 @@ export default function AdminFooter(props) {
           className={classes.link}
           href="https://multivendor.enatega.com/"
           target="_blank"
-          underline="none">
-          Enatega Multivendor
+          underline="none"
+        >
+          {t('EnategaMultivendor')}
         </Link>
         <Link
           className={classes.link}
           href="https://ninjascode.com/pages/ourteam.html"
           target="_blank"
-          underline="none">
-          About Us
+          underline="none"
+        >
+          {t('About Us')}
         </Link>
         <Link
           className={classes.link}
           href="https://enatega.com/blog/"
           target="_blank"
-          underline="none">
-          Blog
+          underline="none"
+        >
+          {t('Blog')}
         </Link>
       </BottomNavigation>
     </Box>
   )
 }
+
+export default withTranslation()(AdminFooter)

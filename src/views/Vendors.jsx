@@ -37,6 +37,7 @@ const DELETE_VENDOR = gql`
   ${deleteVendor}
 `
 const Vendors = props => {
+  const { t } = props;
   const [editModal, setEditModal] = useState(false)
   const [vendors, setVendor] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -89,17 +90,17 @@ const Vendors = props => {
 
   const columns = [
     {
-      name: 'Email',
+      name: t('Email'),
       sortable: true,
       selector: 'email'
     },
     {
-      name: 'Total Restaurants',
+      name: t('TotalRestaurants'),
       sortable: true,
       cell: row => <>{row.restaurants.length}</>
     },
     {
-      name: 'Action',
+      name: t('Action'),
       cell: row => <>{actionButtons(row)}</>
     }
   ]
@@ -137,7 +138,7 @@ const Vendors = props => {
               state: { id: row._id }
             })
           }}>
-          Restaurants
+          {t('Restaurants')}
         </Button>
         <div>
           <IconButton
@@ -170,7 +171,7 @@ const Vendors = props => {
                 <ListItemIcon>
                   <EditIcon fontSize="small" style={{ color: 'green' }} />
                 </ListItemIcon>
-                <Typography color="green">Edit</Typography>
+                <Typography color="green">{t('Edit')}</Typography>
               </MenuItem>
               <MenuItem
                 onClick={e => {
@@ -186,7 +187,7 @@ const Vendors = props => {
                 <ListItemIcon>
                   <DeleteIcon fontSize="small" style={{ color: 'red' }} />
                 </ListItemIcon>
-                <Typography color="red">Delete</Typography>
+                <Typography color="red">{t('Delete')}</Typography>
               </MenuItem>
             </Menu>
           </Paper>
@@ -200,7 +201,7 @@ const Vendors = props => {
       <Header />
       {isOpen && (
         <Alert
-          message="This feature will available after purchasing product"
+          message={t('AvailableAfterPurchasing')}
           severity="warning"
         />
       )}
@@ -234,7 +235,7 @@ const Vendors = props => {
                 onClick={() => refetch()}
               />
             }
-            title={<TableHeader title="Vendors" />}
+              title={<TableHeader title={t('Vendors')} />}
             columns={columns}
             data={filtered}
             pagination

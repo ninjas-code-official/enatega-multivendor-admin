@@ -40,8 +40,8 @@
     const onCompleted = (data) => {
       if (!props.zone) clearFields();
       const message = props.zone
-        ? 'Zone updated successfully'
-        : 'Zone added successfully';
+        ? t('ZoneUpdatedSuccessfully')
+        : t('ZoneAddedSuccessfully');
       setErrors('');
       setSuccess(message);
       setTimeout(hideAlert, 3000);
@@ -116,7 +116,7 @@
       let zoneErrors = true;
       if (path.length < 3) {
         zoneErrors = false;
-        setErrors('Set Zone on Map');
+        setErrors(t('SetZoneOnMap'));
         return false;
       }
 
@@ -154,7 +154,7 @@
             variant="h6"
             className={props.zone ? classes.textWhite : classes.text}
           >
-            {props.zone ? t('Edit Zone') : t('Add Zone')}
+            {props.zone ? t('EditZone') : t('AddZone')}
           </Typography>
         </Box>
       </Box>
@@ -164,11 +164,11 @@
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <Box>
-                <Typography className={classes.labelText}>Title</Typography>
+                <Typography className={classes.labelText}>{t('Title')}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   id="input-title"
-                  placeholder="Title"
+                  placeholder={t('Title')}
                   type="text"
                   value={title}
                   onChange={(event) => {
@@ -188,11 +188,11 @@
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box>
-                <Typography className={classes.labelText}>Description</Typography>
+                <Typography className={classes.labelText}>{t('Description')}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   id="input-description"
-                  placeholder="Description"
+                  placeholder={t('Description')}
                   type="text"
                   value={description}
                   onChange={(event) => {
@@ -261,7 +261,7 @@
                 }
               }}
             >
-              {props.zone ? 'Update' : t('Save')}
+              {props.zone ? t('Update') : t('Save')}
             </Button>
           </Box>
         </form>

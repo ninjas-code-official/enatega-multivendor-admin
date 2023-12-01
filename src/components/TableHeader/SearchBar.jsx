@@ -3,8 +3,10 @@ import { Input, InputAdornment, IconButton, Box } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import useStyles from './styles'
+import { withTranslation, useTranslation } from 'react-i18next'
 
-export default function SearchBar(props) {
+ function SearchBar(props) {
+  const { t } = useTranslation();
   const classes = useStyles()
 
   return (
@@ -17,7 +19,7 @@ export default function SearchBar(props) {
         />
       </IconButton>
       <Input
-        placeholder="Search"
+        placeholder={t('Search')}
         onChange={props.onChange}
         value={props.value}
         sx={{
@@ -44,3 +46,5 @@ export default function SearchBar(props) {
     </Box>
   )
 }
+
+export default withTranslation()(SearchBar)

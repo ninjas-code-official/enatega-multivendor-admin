@@ -12,6 +12,7 @@ const SAVE_STRIPE_CONFIGURATION = gql`
 `
 
 function Stripe(props) {
+  const { t } = props;
   const formRef = useRef()
   const publishableKey = props.publishableKey || ''
   const secretKey = props.secretKey || ''
@@ -41,7 +42,7 @@ function Stripe(props) {
       <Box className={classes.flexRow}>
         <Box item className={classes.heading}>
           <Typography variant="h6" className={classes.text}>
-            Stripe
+            {t('Stripe')}
           </Typography>
         </Box>
       </Box>
@@ -49,7 +50,7 @@ function Stripe(props) {
       <Box className={classes.form}>
         <form ref={formRef}>
           <Box>
-            <Typography className={classes.labelText}>Publish Key</Typography>
+            <Typography className={classes.labelText}>{t('PublishKey')}</Typography>
             <Input
               style={{ marginTop: -1 }}
               id="input-publishablekey"
@@ -76,7 +77,7 @@ function Stripe(props) {
             />
           </Box>
           <Box>
-            <Typography className={classes.labelText}>Secret Key</Typography>
+            <Typography className={classes.labelText}>{t('Secret Key')}</Typography>
             <Input
               style={{ marginTop: -1 }}
               id="input-secretkey"
@@ -119,7 +120,7 @@ function Stripe(props) {
                   })
                 }
               }}>
-              SAVE
+              {t('Save')}
             </Button>
           </Box>
         </form>
