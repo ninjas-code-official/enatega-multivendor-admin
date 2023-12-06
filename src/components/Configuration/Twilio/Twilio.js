@@ -82,51 +82,71 @@ function TwilioConfiguration(props) {
       <Box className={classes.form}>
         <form ref={formRef}>
           <Box className={globalClasses.flexRow}>
-            <Input
-              id="input-accountSid"
-              name="input-accountSid"
-              placeholder="Twilio Account SID"
-              defaultValue={twilioAccountSid}
-              type="password"
-              onBlur={event =>
-                onBlur(
-                  setAccountSidError,
-                  'twilioAccountSid',
-                  event.target.value
-                )
-              }
-              disableUnderline
-              className={[
-                globalClasses.input,
-                accountSidError === false
-                  ? globalClasses.inputError
-                  : accountSidError === true
-                  ? globalClasses.inputSuccess
-                  : ''
-              ]}
-            />
-            <Input
-              id="input-authToken"
-              name="input-authToken"
-              placeholder="Twilio Auth Token"
-              defaultValue={twilioAuthToken}
-              type="password"
-              onBlur={event =>
-                onBlur(setAuthTokenError, 'twilioAuthToken', event.target.value)
-              }
-              disableUnderline
-              className={[
-                globalClasses.input,
-                authTokenError === false
-                  ? globalClasses.inputError
-                  : authTokenError === true
-                  ? globalClasses.inputSuccess
-                  : ''
-              ]}
-            />
+            <Box>
+              <Typography className={classes.labelText}>
+                Twilio Account SID
+              </Typography>
+              <Input
+                style={{ marginTop: -1 }}
+                id="input-accountSid"
+                name="input-accountSid"
+                placeholder="Twilio Account SID"
+                defaultValue={twilioAccountSid}
+                type="password"
+                onBlur={event =>
+                  onBlur(
+                    setAccountSidError,
+                    'twilioAccountSid',
+                    event.target.value
+                  )
+                }
+                disableUnderline
+                className={[
+                  globalClasses.input,
+                  accountSidError === false
+                    ? globalClasses.inputError
+                    : accountSidError === true
+                    ? globalClasses.inputSuccess
+                    : ''
+                ]}
+              />
+            </Box>
+            <Box>
+              <Typography className={classes.labelText}>
+                Twilio Auth Token
+              </Typography>
+              <Input
+                style={{ marginTop: -1 }}
+                id="input-authToken"
+                name="input-authToken"
+                placeholder="Twilio Auth Token"
+                defaultValue={twilioAuthToken}
+                type="password"
+                onBlur={event =>
+                  onBlur(
+                    setAuthTokenError,
+                    'twilioAuthToken',
+                    event.target.value
+                  )
+                }
+                disableUnderline
+                className={[
+                  globalClasses.input,
+                  authTokenError === false
+                    ? globalClasses.inputError
+                    : authTokenError === true
+                    ? globalClasses.inputSuccess
+                    : ''
+                ]}
+              />
+            </Box>
           </Box>
-          <Box className={globalClasses.flexRow}>
+          <Box>
+            <Typography className={classes.labelText}>
+              Twilio Phone Number
+            </Typography>
             <Input
+              style={{ marginTop: -1 }}
               id="input-phoneNumber"
               name="input-phoneNumber"
               placeholder="Twilio Phone Number"

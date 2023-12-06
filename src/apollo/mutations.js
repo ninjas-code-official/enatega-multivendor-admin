@@ -179,7 +179,123 @@ export const saveEmailConfiguration = `mutation SaveEmailConfiguration($configur
     enableEmail
   }
 }`
+export const saveFormEmailConfiguration = `mutation  SaveFormEmailConfiguration($configurationInput:FormEmailConfigurationInput!){
+  saveFormEmailConfiguration(configurationInput: $configurationInput) {
+    _id
+    formEmail
 
+  }
+}`
+export const saveSendGridApiKey = `mutation SaveSendGridApiKey($configurationInput: SendGridConfigurationInput!) {
+  saveSendGridConfiguration(configurationInput: $configurationInput) {
+    _id
+    sendGridApiKey
+  }
+}`
+
+export const saveDatabaseConfiguration = `
+  mutation SaveDatabaseConfiguration(
+    $configurationInput: DatabaseConfigurationInput!
+  ) {
+    saveDatabaseConfiguration(configurationInput: $configurationInput) {
+      _id
+      connectionString
+    }
+  }
+`
+export const saveDashboardConfiguration = `
+  mutation SaveDashboardConfiguration(
+    $configurationInput: DashboardConfigurationInput!
+  ) {
+    saveDashboardConfiguration(configurationInput: $configurationInput) {
+      _id
+      dashboardUrl
+      webUrl
+      port
+      dashboardEnabled
+      orderDetailWebUrl
+      resetPasswordLink
+    }
+  }
+`
+export const saveSentryConfiguration = `
+  mutation SaveSentryConfiguration($configurationInput: SentryConfigurationInput!) {
+    saveSentryConfiguration(configurationInput: $configurationInput) {
+      _id
+      dashboardSentryUrl
+      webSentryUrl
+      apiSentryUrl
+      customerAppSentryUrl
+      restaurantAppSentryUrl
+      riderAppSentryUrl
+    }
+  }
+`
+export const saveGoogleApiKeyConfiguration = `
+  mutation SaveGoogleApiKeyConfiguration(
+    $configurationInput: GoogleApiKeyConfigurationInput!
+  ) {
+    saveGoogleApiKeyConfiguration(configurationInput: $configurationInput) {
+      _id
+      googleApiKey
+    }
+  }
+`
+export const saveCloudinaryConfiguration = `mutation SaveCloudinaryConfiguration($configurationInput: CloudinaryConfigurationInput!) {
+  saveCloudinaryConfiguration(configurationInput: $configurationInput) {
+    _id
+    cloudinaryUploadUrl
+    cloudinaryApiKey
+ 
+  }
+}
+`
+export const saveAmplitudeApiKeyConfiguration = `
+  mutation SaveAmplitudeApiKeyConfiguration(
+    $configurationInput: AmplitudeApiKeyConfigurationInput!
+  ) {
+    saveAmplitudeApiKeyConfiguration(configurationInput: $configurationInput) {
+      _id
+      webAmplitudeApiKey
+      appAmplitudeApiKey
+    }
+  }
+`
+export const saveGoogleClientIDConfiguration = `mutation SaveGoogleClientIDConfiguration($configurationInput: GoogleClientIDConfigurationInput!) {
+  saveGoogleClientIDConfiguration(configurationInput: $configurationInput) {
+    _id
+    webClientID
+    androidClientID
+    iOSClientID
+    expoClientID
+  }
+}
+`
+export const saveWebConfiguration = `
+  mutation SaveWebConfiguration($configurationInput: WebConfigurationInput!) {
+    saveWebConfiguration(configurationInput: $configurationInput) {
+      _id
+      serverUrlWeb
+      wsServerUrlWeb
+      googleMapLibraries
+      googleColor
+    }
+  }
+`
+
+export const saveAppConfiguration = `
+  mutation SaveAppConfiguration($configurationInput: AppConfigurationsInput!) {
+    saveAppConfigurations(configurationInput: $configurationInput) {
+      _id
+      graphqlUrlApp
+      wsGraphqlUrlApp
+      serverUrlApp
+      termsAndConditions
+      privacyPolicy
+      testOtp
+    }
+  }
+`
 export const saveDeliveryRateConfiguration = `mutation SaveDeliveryRateConfiguration($deliveryRate: Float!){
   saveDeliveryRateConfiguration(deliveryRate:$deliveryRate){
     _id

@@ -214,6 +214,40 @@ export const getConfiguration = `query GetConfiguration{
       twilioAuthToken
       twilioPhoneNumber
       twilioEnabled
+      formEmail
+      sendGridApiKey
+      connectionString
+      dashboardEnabled
+      dashboardUrl
+      webUrl
+      port
+      orderDetailWebUrl
+      resetPasswordLink
+      dashboardSentryUrl
+      webSentryUrl
+      apiSentryUrl
+      customerAppSentryUrl
+      restaurantAppSentryUrl
+      riderAppSentryUrl
+      googleApiKey
+      cloudinaryUploadUrl
+      cloudinaryApiKey
+      webAmplitudeApiKey
+      appAmplitudeApiKey
+      webClientID
+      androidClientID
+      iOSClientID
+      expoClientID
+      serverUrlWeb
+      wsServerUrlWeb
+      googleMapLibraries
+      googleColor
+      graphqlUrlApp
+      wsGraphqlUrlApp
+      serverUrlApp
+      termsAndConditions
+      privacyPolicy
+      testOtp
     }
   }`
 

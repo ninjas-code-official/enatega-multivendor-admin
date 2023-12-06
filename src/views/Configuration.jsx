@@ -4,6 +4,7 @@ import { useQuery, gql } from '@apollo/client'
 import Header from '../components/Headers/Header'
 import { getConfiguration } from '../apollo'
 import EmailConfiguration from '../components/Configuration/Email/Email'
+import Email from '../components/Configuration/FormEmail/FormEmail'
 import DeliveryRateConfiguration from '../components/Configuration/DeliveryRate/DeliveryRate'
 import PaypalConfiguration from '../components/Configuration/Paypal/Paypal'
 import StripeConfiguration from '../components/Configuration/Stripe/Stripe'
@@ -11,6 +12,18 @@ import CurrencyConfiguration from '../components/Configuration/Currency/Currency
 import { Grid } from '@mui/material'
 import { ReactComponent as ConfigIcon } from '../assets/svg/svg/Configuration.svg'
 import TwilioConfiguration from '../components/Configuration/Twilio/Twilio'
+import SendGridConfiguration from '../components/Configuration/SendGrid/SendGrid';
+import DatabaseConfiguration from '../components/Configuration/Database/Database'; 
+import ApiConfiguration from '../components/Configuration/Api/Api';
+import SentryConfiguration from '../components/Configuration/Sentry/Sentry';  
+import GoogleApiKeyConfiguration from '../components/Configuration/GoogleApi/GoogleApi'; 
+import CloudinaryConfiguration from '../components/Configuration/ Cloudinary/ Cloudinary'
+import AmplitudeApiKeyConfiguration from '../components/Configuration/Amplitude/Amplitude';
+import GoogleClientIDConfiguration from '../components/Configuration/GoogleClient/GoogleClient';
+import WebConfiguration from '../components/Configuration/Web/Web';
+import AppConfigurations from '../components/Configuration/App/App';
+
+
 
 const GET_CONFIGURATION = gql`
   ${getConfiguration}
@@ -75,6 +88,84 @@ const Configuration = props => {
               twilioEnabled={data && data.configuration.twilioEnabled}
             />
           </Grid>
+          <Grid item sx={12} md={12} lg={5}>
+            <Email
+              formEmail={data && data.configuration.formEmail}
+            />
+          </Grid>
+          <Grid item sx={12} md={12} lg={5}>
+            <SendGridConfiguration
+              sendGridApiKey={data && data.configuration.sendGridApiKey}
+            />
+          </Grid>
+          <Grid item sx={12} md={12} lg={5}>
+          <DatabaseConfiguration
+            connectionString={data && data.configuration.connectionString}
+          />
+          </Grid>
+          <Grid item sx={12} md={12} lg={5}>
+            <ApiConfiguration
+              dashboardEnabled={data && data.configuration.dashboardEnabled}
+              dashboardUrl={data && data.configuration.dashboardUrl}
+              webUrl={data && data.configuration.webUrl}
+              port={data && data.configuration.port}
+              orderDetailWebUrl={data && data.configuration.orderDetailWebUrl}
+              resetPasswordLink={data && data.configuration.resetPasswordLink}
+            />
+          </Grid>
+          <Grid item sx={12} md={12} lg={5}>
+            <WebConfiguration
+              serverUrlWeb={data && data.configuration.serverUrlWeb}
+              wsServerUrlWeb={data && data.configuration.wsServerUrlWeb}
+              googleMapLibraries={data && data.configuration.googleMapLibraries}
+              googleColor={data && data.configuration.googleColor}
+            />
+          </Grid>
+          <Grid item sx={12} md={12} lg={5}>
+            <SentryConfiguration
+              dashboardSentryUrl={data && data.configuration.dashboardSentryUrl}
+              webSentryUrl={data && data.configuration.webSentryUrl}
+              apiSentryUrl={data && data.configuration.apiSentryUrl}
+              customerAppSentryUrl={data && data.configuration.customerAppSentryUrl}
+              restaurantAppSentryUrl={data && data.configuration.restaurantAppSentryUrl}
+              riderAppSentryUrl={data && data.configuration.riderAppSentryUrl}
+            />
+          </Grid>
+          <Grid item sx={12} md={12} lg={5}>
+            <GoogleApiKeyConfiguration
+              googleApiKey={data && data.configuration.googleApiKey}
+            />
+          </Grid>
+          <Grid item sx={12} md={12} lg={5}>
+            <CloudinaryConfiguration
+              cloudinaryUploadUrl={data && data.configuration.cloudinaryUploadUrl}
+              cloudinaryApiKey={data && data.configuration.cloudinaryApiKey}
+            />
+          </Grid>
+          <Grid item sx={12} md={12} lg={5}>
+            <AmplitudeApiKeyConfiguration
+              webAmplitudeApiKey={data && data.configuration.webAmplitudeApiKey}
+              appAmplitudeApiKey={data && data.configuration.appAmplitudeApiKey}
+            />
+          </Grid>
+          <Grid item sx={12} md={12} lg={5}>
+            <GoogleClientIDConfiguration
+              webClientID={data && data.configuration.webClientID}
+              androidClientID={data && data.configuration.androidClientID}
+              iOSClientID={data && data.configuration.iOSClientID}
+              expoClientID={data && data.configuration.expoClientID}
+            />
+          </Grid>
+          <Grid item sx={12} md={12} lg={5}>
+          <AppConfigurations
+        graphqlUrlApp={data && data.configuration.graphqlUrlApp}
+        wsGraphqlUrlApp={data && data.configuration.wsGraphqlUrlApp}
+        serverUrlApp={data && data.configuration.serverUrlApp}
+        termsAndConditions={data && data.configuration.termsAndConditions}
+        privacyPolicy={data && data.configuration.privacyPolicy}
+        testOtp={data && data.configuration.testOtp}
+      />
+       </Grid>
         </Grid>
       )}
     </>
