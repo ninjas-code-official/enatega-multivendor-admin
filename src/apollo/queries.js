@@ -248,6 +248,13 @@ export const getConfiguration = `query GetConfiguration{
       termsAndConditions
       privacyPolicy
       testOtp
+      firebaseKey
+      authDomain
+      projectId
+      storageBucket
+      msgSenderId
+      appId
+      measurementId
     }
   }`
 

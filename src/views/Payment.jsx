@@ -3,7 +3,7 @@ import { useQuery, gql } from '@apollo/client'
 import { withTranslation } from 'react-i18next'
 import { Container, Box, Typography, Button } from '@mui/material'
 import Header from '../components/Headers/Header'
-import { SERVER_URL } from '../config/constants'
+import ConfigurableValues from '../config/constants'
 import { getRestaurantProfile } from '../apollo'
 import useGlobalStyles from '../utils/globalStyles'
 import useStyles from '../components/styles'
@@ -11,6 +11,7 @@ const RESTAURANT = gql`
   ${getRestaurantProfile}
 `
 const Payment = () => {
+  const { SERVER_URL } = ConfigurableValues()
   const restaurantId = localStorage.getItem('restaurantId')
 
   const { data, error: errorQuery, loading: loadingQuery } = useQuery(

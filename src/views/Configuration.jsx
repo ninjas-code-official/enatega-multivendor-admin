@@ -22,7 +22,7 @@ import AmplitudeApiKeyConfiguration from '../components/Configuration/Amplitude/
 import GoogleClientIDConfiguration from '../components/Configuration/GoogleClient/GoogleClient';
 import WebConfiguration from '../components/Configuration/Web/Web';
 import AppConfigurations from '../components/Configuration/App/App';
-
+import FirebaseConfiguration from '../components/Configuration/FireBase/FireBase'
 
 
 const GET_CONFIGURATION = gql`
@@ -154,6 +154,18 @@ const Configuration = props => {
               androidClientID={data && data.configuration.androidClientID}
               iOSClientID={data && data.configuration.iOSClientID}
               expoClientID={data && data.configuration.expoClientID}
+            />
+          </Grid>
+          <Grid item sx={12} md={12} lg={5}>
+            
+            <FirebaseConfiguration
+              firebaseKey={data && data.configuration.firebaseKey}
+              authDomain={data && data.configuration.authDomain}
+              projectId={data && data.configuration.projectId}
+              storageBucket={data && data.configuration.storageBucket}
+              msgSenderId={data && data.configuration.msgSenderId}
+              appId={data && data.configuration.appId}
+              measurementId={data && data.configuration.measurementId}
             />
           </Grid>
           <Grid item sx={12} md={12} lg={5}>

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { useQuery, useMutation, gql } from '@apollo/client'
 import { validateFunc } from '../../constraints/constraints'
 import { withTranslation } from 'react-i18next'
-import { CLOUDINARY_UPLOAD_URL, CLOUDINARY_FOOD } from '../../config/constants'
+import ConfigurableValues from '../../config/constants'
 import { getRestaurantDetail, createFood, editFood } from '../../apollo'
 import AddonComponent from '../Addon/Addon'
 import useStyles from './styles'
@@ -36,6 +36,7 @@ const GET_ADDONS = gql`
 `
 
 function Food(props) {
+  const { CLOUDINARY_UPLOAD_URL, CLOUDINARY_FOOD } = ConfigurableValues()
   const formRef = useRef()
   const mutation = props.food ? EDIT_FOOD : CREATE_FOOD
   const [title, setTitle] = useState(props.food ? props.food.title : '')

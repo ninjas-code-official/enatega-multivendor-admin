@@ -203,6 +203,23 @@ export const saveDatabaseConfiguration = `
     }
   }
 `
+
+export const saveFirebaseConfiguration = `
+  mutation SaveFirebaseConfiguration(
+    $configurationInput:FirebaseConfigurationInput!
+  ) {
+    saveFirebaseConfiguration(configurationInput: $configurationInput) {
+      _id
+      firebaseKey
+      authDomain
+      projectId
+      storageBucket
+      msgSenderId
+      appId
+      measurementId
+    }
+  }
+`
 export const saveDashboardConfiguration = `
   mutation SaveDashboardConfiguration(
     $configurationInput: DashboardConfigurationInput!
