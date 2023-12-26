@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Headers/Header';
 import useGlobalStyles from '../utils/globalStyles';
-import { Box, Typography, Container, Grid, ButtonBase } from '@mui/material';
+import { Box, Typography, Container, Grid, ButtonBase, useTheme } from '@mui/material';
 import RiderStat from '../assets/img/RiderStat.png';
 import RestStat from '../assets/img/RestStat.png';
 import VendorStat from '../assets/img/VendorStat.png';
@@ -50,6 +50,7 @@ const GET_VENDORS = gql`
 
 const SuperAdminDashboard = (props) => {
   const { t } = props;
+  const theme = useTheme();
   console.log('superadmin props: ', props);
   const globalClasses = useGlobalStyles();
   const { loading: loadingVendors, data: vendors } = useQuery(GET_VENDORS);
@@ -79,14 +80,14 @@ const SuperAdminDashboard = (props) => {
       {
         label: t('Restaurants'),
         data: [1, 2, 3, 4, 5, 6, 7],
-        borderColor: '#90EA93',
-        backgroundColor: '#90EA93',
+        borderColor: theme.palette.warning.dark,
+        backgroundColor: theme.palette.warning.dark,
       },
       {
         label: t('Vendors'),
         data: [8, 7, 6, 5, 4, 3, 2],
-        borderColor: '#3C8F7C',
-        backgroundColor: '#3C8F7C',
+        borderColor: theme.palette.secondary.lightest,
+        backgroundColor: theme.palette.secondary.lightest,
       },
       {
         label: t('Riders'),
@@ -102,6 +103,12 @@ const SuperAdminDashboard = (props) => {
       },
     ],
   };
+  const sty = {
+    fontSize: 35,
+    fontWeight: 'bold',
+    color: theme.palette.secondary.lightest,
+    textAlign: 'center'
+  };
   return (
     <>
       <Header />
@@ -112,10 +119,10 @@ const SuperAdminDashboard = (props) => {
               <Grid container p={3}>
                 <Grid item md={9}>
                   <Typography
-                    sx={{ fontSize: 24, fontWeight: 'bold', color: '#fff' }}>
+                    sx={{ fontSize: 24, fontWeight: 'bold', color: theme.palette.common.white }}>
                     {t('MainPageText')}
                   </Typography>
-                  <Typography sx={{ fontSize: 15, color: '#CDCDCD' }}>
+                  <Typography sx={{ fontSize: 15, color: theme.palette.success.light }}>
                     {t('MainPageText1')}
                   </Typography>
                   <ButtonBase
@@ -144,14 +151,14 @@ const SuperAdminDashboard = (props) => {
               }}></Box>
             <Box
               sx={{
-                bgcolor: 'rgba(238, 244, 250, 0.66)',
-                boxShadow: '0px 0px 11px rgba(0, 0, 0, 0.08)',
+                bgcolor: theme.palette.info.lightest,
+                boxShadow: `0px 0px 11px ${theme.palette.info.dark}`,
                 borderRadius: 3,
                 mt: -10,
                 p: 2,
                 position: 'relative',
                 zIndex: 999,
-                color: '#000'
+                color: theme.palette.common.black
               }}>
               <Line data={data} />
             </Box>
@@ -239,12 +246,7 @@ const BoxCard = ({ children }) => (
 )
 
 const imgStyle = { marginLeft: '40%' }
-const sty = {
-  fontSize: 35,
-  fontWeight: 'bold',
-  color: '#3C8F7C',
-  textAlign: 'center'
-}
+
 const headSty = { fontSize: 15, fontWeight: 'bold' }
 
 export default withTranslation()(SuperAdminDashboard)

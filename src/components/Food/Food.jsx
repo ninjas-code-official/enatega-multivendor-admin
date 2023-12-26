@@ -18,7 +18,8 @@ import {
   MenuItem,
   Grid,
   Checkbox,
-  FormControlLabel
+  FormControlLabel,
+  useTheme
 } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
@@ -36,6 +37,7 @@ const GET_ADDONS = gql`
 `
 
 function Food(props) {
+  const theme = useTheme();
   const formRef = useRef()
   const mutation = props.food ? EDIT_FOOD : CREATE_FOOD
   const [title, setTitle] = useState(props.food ? props.food.title : '')
@@ -517,8 +519,8 @@ function Food(props) {
                     <Box>
                       <RemoveIcon
                         style={{
-                          backgroundColor: '#000',
-                          color: '#90EA93',
+                          backgroundColor: theme.palette.common.black,
+                          color: theme.palette.warning.dark,
                           borderRadius: '50%',
                           marginTop: 12,
                           marginRight: 10
@@ -529,8 +531,8 @@ function Food(props) {
                       />
                       <AddIcon
                         style={{
-                          backgroundColor: '#90EA93',
-                          color: '#000',
+                          backgroundColor: theme.palette.warning.dark,
+                          color: theme.palette.common.black,
                           borderRadius: '50%',
                           marginTop: 12
                         }}

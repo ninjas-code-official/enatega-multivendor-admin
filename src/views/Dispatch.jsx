@@ -16,7 +16,7 @@ import { transformToNewline } from '../utils/stringManipulations'
 import SearchBar from '../components/TableHeader/SearchBar'
 import useGlobalStyles from '../utils/globalStyles'
 import { customStyles } from '../utils/tableCustomStyles'
-import { Container, MenuItem, Select, Box } from '@mui/material'
+import { Container, MenuItem, Select, Box, useTheme } from '@mui/material'
 import { ReactComponent as DispatchIcon } from '../assets/svg/svg/Dispatch.svg'
 import TableHeader from '../components/TableHeader'
 
@@ -37,6 +37,7 @@ const GET_ACTIVE_ORDERS = gql`
 `
 
 const Orders = props => {
+  const theme = useTheme();
   const { t } = props;
   const [searchQuery, setSearchQuery] = useState('')
   const onChangeSearch = e => setSearchQuery(e.target.value)
@@ -207,7 +208,7 @@ const Orders = props => {
     {
       when: row => ['DELIVERED', 'CANCELLED'].includes(row.orderStatus),
       style: {
-        backgroundColor: '#FDEFDD'
+        backgroundColor: theme.palette.success.dark
       }
     }
   ]

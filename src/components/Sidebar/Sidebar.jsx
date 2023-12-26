@@ -11,7 +11,8 @@ import {
   Toolbar,
   Typography,
   Link,
-  SvgIcon
+  SvgIcon,
+  useTheme
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import routes from '../../routes'
@@ -21,6 +22,7 @@ import { useLocation } from 'react-router-dom'
 
 const drawerWidth = 240
 function Sidebar(props) {
+  const theme = useTheme();
   const location = useLocation()
   const classes = useStyles()
   const restaurantId = localStorage.getItem('restaurantId')
@@ -189,7 +191,7 @@ function Sidebar(props) {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
-              background: `linear-gradient(180deg, #90EA93 50%, transparent 50%);`,
+              background: `linear-gradient(180deg, ${theme.palette.warning.dark} 50%, transparent 50%);`,
               borderRight: 'none'
             }
           }}

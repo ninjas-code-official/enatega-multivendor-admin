@@ -13,7 +13,8 @@ import {
   Button,
   Grid,
   Checkbox,
-  FormControlLabel
+  FormControlLabel,
+  useTheme
 } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
@@ -31,6 +32,7 @@ const EDIT_ADDON = gql`
 `
 
 function Addon(props) {
+  const theme = useTheme();
   const { t } = props;
   const restaurantId = localStorage.getItem('restaurantId')
   const onCompleted = ({ createAddons, editAddon }) => {
@@ -232,8 +234,8 @@ function Addon(props) {
               <label>{t('AddRemoveAddon')}</label>
               <RemoveIcon
                 style={{
-                  backgroundColor: '#000',
-                  color: '#90EA93',
+                  backgroundColor: theme.palette.common.black,
+                  color: theme.palette.warning.dark,
                   borderRadius: '50%',
                   marginLeft: 12,
                   marginRight: 10
@@ -244,8 +246,8 @@ function Addon(props) {
               />
               <AddIcon
                 style={{
-                  backgroundColor: '#90EA93',
-                  color: '#000',
+                  backgroundColor: theme.palette.warning.dark,
+                  color: theme.palette.common.black,
                   borderRadius: '50%'
                 }}
                 onClick={() => {

@@ -14,9 +14,11 @@ import {
   Divider,
   FormControl,
   Select,
+  useTheme
 } from '@mui/material';
 
 function AdminNavbar(props) {
+  const theme = useTheme();
   const client = useApolloClient();
   const [modal, setModal] = useState(false);
   const [language, setLanguage] = useState(
@@ -124,24 +126,24 @@ function AdminNavbar(props) {
                   <Select
                     value={language}
                     onChange={handleChangeLanguage}
-                    style={{ color: '#000'}}
+                    style={{ color: theme.palette.common.black}}
                   >
-                    <MenuItem sx={{ color: '#000' }} value="en">English</MenuItem>
-                    <MenuItem sx={{ color: '#000' }} value="ar">Arabic</MenuItem>
-                    <MenuItem sx={{ color: '#000' }} value="de">Deutsche</MenuItem>
-                    <MenuItem sx={{ color: '#000' }} value="zh">中文</MenuItem>
-                    <MenuItem sx={{ color: '#000' }} value="km">ភាសាខ្មែរ</MenuItem>
-                    <MenuItem sx={{ color: '#000' }} value="fr">français</MenuItem>
+                    <MenuItem sx={{ color: theme.palette.common.black }} value="en">English</MenuItem>
+                    <MenuItem sx={{ color: theme.palette.common.black }} value="ar">Arabic</MenuItem>
+                    <MenuItem sx={{ color: theme.palette.common.black }} value="de">Deutsche</MenuItem>
+                    <MenuItem sx={{ color: theme.palette.common.black }} value="zh">中文</MenuItem>
+                    <MenuItem sx={{ color: theme.palette.common.black }} value="km">ភាសាខ្មែរ</MenuItem>
+                    <MenuItem sx={{ color: theme.palette.common.black }} value="fr">français</MenuItem>
                   </Select>
                 </FormControl>
               </MenuItem>
-              <MenuItem sx={{ color: '#000' }} onClick={handleClose}>
+              <MenuItem sx={{ color: theme.palette.common.black }} onClick={handleClose}>
                 {t("Welcome")}
               </MenuItem>
               <Divider />
               {vendor ? (
                 <MenuItem
-                  sx={{ color: '#000' }}
+                  sx={{ color: theme.palette.common.black }}
                   onClick={(e) => {
                     e.preventDefault();
                     toggleModal();
@@ -151,7 +153,7 @@ function AdminNavbar(props) {
                 </MenuItem>
               ) : null}
               <MenuItem
-                sx={{ color: '#000' }}
+                sx={{ color: theme.palette.common.black }}
                 onClick={(e) => {
                   e.preventDefault();
                   localStorage.removeItem('user-enatega');

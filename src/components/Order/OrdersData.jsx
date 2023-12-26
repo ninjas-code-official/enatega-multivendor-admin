@@ -10,6 +10,7 @@ import { useQuery, gql } from '@apollo/client'
 import SearchBar from '../TableHeader/SearchBar'
 import { customStyles } from '../../utils/tableCustomStyles'
 import TableHeader from '../TableHeader'
+import { useTheme } from '@mui/material'
 
 const ORDERCOUNT = gql`
   ${orderCount}
@@ -19,6 +20,7 @@ const ORDER_PLACED = gql`
 `
 
 const OrdersData = props => {
+  const theme = useTheme();
   const { t } = props;
   const { selected, updateSelected } = props
   const [searchQuery, setSearchQuery] = useState('')
@@ -105,7 +107,7 @@ const OrdersData = props => {
       when: row =>
         row.orderStatus !== 'DELIVERED' && row.orderStatus !== 'CANCELLED',
       style: {
-        backgroundColor: 'rgba(240, 173, 78,0.2)'
+        backgroundColor: theme.palette.warning.lightest
       }
     }
   ]

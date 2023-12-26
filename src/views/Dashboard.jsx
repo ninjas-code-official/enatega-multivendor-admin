@@ -15,7 +15,7 @@ import {
   Legend
 } from 'chart.js'
 
-import { Box, Typography, Input, Button, Container, Grid } from '@mui/material'
+import { Box, Typography, Input, Button, Container, Grid, useTheme } from '@mui/material'
 import Header from '../components/Headers/Header'
 import { useQuery, gql } from '@apollo/client'
 import {
@@ -50,22 +50,23 @@ const GET_DASHBOARD_ORDERS = gql`
 
 const Dashboard = props => {
   const { t } = props;
+  const theme = useTheme();
   const restaurantId = localStorage.getItem('restaurantId')
 
   const dataLine = {
     datasets: {
       label: t('SalesAmount'),
       // label: 'Sales Amount',
-      backgroundColor: '#3EC6DD',
-      borderColor: '#3EC6DD'
+      backgroundColor: theme.palette.secondary.darkest,
+      borderColor: theme.palette.secondary.darkest
     }
   }
   const dataBar = {
     datasets: {
       label: t('OrderCount'),
       // label: 'Order count',
-      backgroundColor: '#90EA93',
-      borderColor: '#90EA93'
+      backgroundColor: theme.palette.warning.dark,
+      borderColor: theme.palette.warning.dark
     }
   }
 
@@ -185,8 +186,8 @@ const Dashboard = props => {
           />
           <Box
             sx={{
-              bgcolor: 'rgba(63, 64, 65, 0.66)',
-              boxShadow: '0px 0px 11px rgba(0, 0, 0, 0.08)',
+              bgcolor: theme.palette.info.light,
+              boxShadow: `0px 0px 11px ${theme.palette.info.dark}`,
               borderRadius: 3,
               p: 2,
               position: 'relative',
@@ -224,26 +225,26 @@ const Dashboard = props => {
                 legend: {
                   labels: {
                     display: false,
-                    fontColor: '#fff',
+                    fontColor: theme.palette.common.white,
                     fontSize: 10
                   }
                 },
                 scales: {
                   yAxes: {
                     grid: {
-                      color: '#FFFFFF'
+                      color: theme.palette.common.white
                     },
                     ticks: {
-                      color: '#fafafa',
+                      color: theme.palette.secondary.main,
                       fontSize: 12
                     }
                   },
                   xAxes: {
                     grid: {
-                      color: '#FFFFFF'
+                      color: theme.palette.common.white
                     },
                     ticks: {
-                      color: '#fafafa',
+                      color: theme.palette.secondary.main,
                       fontSize: 12
                     }
                   }
@@ -278,7 +279,7 @@ const Dashboard = props => {
               sx={{
                 fontSize: 35,
                 fontWeight: 'bold',
-                color: '#3C8F7C',
+                color: theme.palette.secondary.lightest,
                 textAlign: 'center'
               }}>
               {loadingTotal
@@ -307,7 +308,7 @@ const Dashboard = props => {
               sx={{
                 fontSize: 35,
                 fontWeight: 'bold',
-                color: '#3C8F7C',
+                color: theme.palette.secondary.lightest,
                 textAlign: 'center'
               }}>
               {loadingTotal

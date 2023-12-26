@@ -10,7 +10,7 @@ import {
 import useGlobalStyles from '../utils/globalStyles'
 import useStyles from '../components/styles'
 import CustomLoader from '../components/Loader/CustomLoader'
-import { Container, Box, Button, Typography, Alert } from '@mui/material'
+import { Container, Box, Button, Typography, Alert, useTheme } from '@mui/material'
 import { useTranslation, withTranslation } from 'react-i18next'
 
 
@@ -23,6 +23,7 @@ const GET_RESTAURANT_PROFILE = gql`
 
 function DeliveryBoundsAndLocation() {
   const { t } = useTranslation();
+  const theme = useTheme();
   const restaurantId = localStorage.getItem('restaurantId')
 
   const [drawBoundsOrMarker, setDrawBoundsOrMarker] = useState('marker') // polygon
@@ -242,13 +243,13 @@ function DeliveryBoundsAndLocation() {
               padding: '0 30px'
             }}>
             <Button
-              style={{ color: '#90EA93', backgroundColor: '#000' }}
+              style={{ color: theme.palette.warning.dark, backgroundColor: theme.palette.common.black }}
               className={globalClasses.button}
               onClick={() => toggleDrawingMode('polygon')}>
               {t('DrawDeliveryBounds')}
             </Button>
             <Button
-              style={{ color: '#90EA93', backgroundColor: '#000' }}
+              style={{ color: theme.palette.warning.dark, backgroundColor: theme.palette.common.black }}
               className={globalClasses.button}
               onClick={() => toggleDrawingMode('marker')}>
               {t('SetRestaurantLocation')}
@@ -262,8 +263,8 @@ function DeliveryBoundsAndLocation() {
             }}>
             <Button
               style={{
-                color: '#000',
-                backgroundColor: '#e0e0e0',
+                color: theme.palette.common.black,
+                backgroundColor: theme.palette.grey[300],
                 marginRight: 20
               }}
               className={globalClasses.button}
@@ -271,7 +272,7 @@ function DeliveryBoundsAndLocation() {
               {t('RemoveDeliveryBounds')}
             </Button>
             <Button
-              style={{ color: '#000', backgroundColor: '#e0e0e0' }}
+              style={{ color: theme.palette.common.black, backgroundColor: theme.palette.grey[300] }}
               className={globalClasses.button}
               onClick={removeMarker}>
               {t('RemoveRestaurantLocation')}
