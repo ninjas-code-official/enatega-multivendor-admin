@@ -14,13 +14,11 @@ const SAVE_WEB_CONFIGURATION = gql`
 
 function WebConfiguration(props) {
   const formRef = useRef();
-  const [serverUrlWeb] = useState(props.serverUrlWeb || '');
-  const [wsServerUrlWeb] = useState(props.wsServerUrlWeb || '');
+
   const [googleMapLibraries] = useState(props.googleMapLibraries || '');
   const [googleColor] = useState(props.googleColor || '');
 
-  const [serverUrlError, setServerUrlError] = useState(null);
-  const [wsServerUrlError, setWsServerUrlError] = useState(null);
+ 
   const [googleMapLibrariesError, setGoogleMapLibrariesError] = useState(null);
   const [googleColorError, setGoogleColorError] = useState(null);
 
@@ -31,19 +29,11 @@ function WebConfiguration(props) {
   };
 
   const validateInput = () => {
-    let serverUrlResult = true;
-    let wsServerUrlResult = true;
+   
     let googleMapLibrariesResult = true;
     let googleColorResult = true;
 
-    serverUrlResult = !validateFunc(
-      { serverUrlWeb: formRef.current['input-serverUrl'].value },
-      'serverUrlWeb'
-    );
-    wsServerUrlResult = !validateFunc(
-      { wsServerUrlWeb: formRef.current['input-wsServerUrl'].value },
-      'wsServerUrlWeb'
-    );
+    
     googleMapLibrariesResult = !validateFunc(
       { googleMapLibraries: formRef.current['input-googleMapLibraries'].value },
       'googleMapLibraries'
@@ -53,14 +43,12 @@ function WebConfiguration(props) {
       'googleColor'
     );
 
-    setServerUrlError(serverUrlResult);
-    setWsServerUrlError(wsServerUrlResult);
+  
     setGoogleMapLibrariesError(googleMapLibrariesResult);
     setGoogleColorError(googleColorResult);
 
     return (
-      serverUrlResult &&
-      wsServerUrlResult &&
+   
       googleMapLibrariesResult &&
       googleColorResult
     );
@@ -81,51 +69,8 @@ function WebConfiguration(props) {
 
       <Box className={classes.form}>
         <form ref={formRef}>
-          <Box>
-            <Typography className={classes.labelText}>Server URL</Typography>
-            <Input
-              style={{ marginTop: -1 }}
-              id="input-serverUrl"
-              name="input-serverUrl"
-              placeholder="Server URL"
-              defaultValue={serverUrlWeb}
-              onBlur={(event) =>
-                onBlur(setServerUrlError, 'serverUrl', event.target.value)
-              }
-              disableUnderline
-              className={[
-                globalClasses.input,
-                serverUrlError === false
-                  ? globalClasses.inputError
-                  : serverUrlError === true
-                  ? globalClasses.inputSuccess
-                  : '',
-              ]}
-            />
-          </Box>
-          <Box className={globalClasses.flexRow}>
-            <Box>
-              <Typography className={classes.labelText}>WebSocket Server URL</Typography>
-              <Input
-                style={{ marginTop: -1 }}
-                id="input-wsServerUrl"
-                name="input-wsServerUrl"
-                placeholder="WebSocket Server URL"
-                defaultValue={wsServerUrlWeb}
-                onBlur={(event) =>
-                  onBlur(setWsServerUrlError, 'wsServerUrl', event.target.value)
-                }
-                disableUnderline
-                className={[
-                  globalClasses.input,
-                  wsServerUrlError === false
-                    ? globalClasses.inputError
-                    : wsServerUrlError === true
-                    ? globalClasses.inputSuccess
-                    : '',
-                ]}
-              />
-            </Box>
+        
+       
             <Box>
               <Typography className={classes.labelText}>Google Map Libraries</Typography>
               <Input
@@ -148,7 +93,7 @@ function WebConfiguration(props) {
                 ]}
               />
             </Box>
-          </Box>
+        
           <Box>
             <Typography className={classes.labelText}>Google Color</Typography>
             <Input

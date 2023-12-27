@@ -13,8 +13,8 @@ import { Grid } from '@mui/material'
 import { ReactComponent as ConfigIcon } from '../assets/svg/svg/Configuration.svg'
 import TwilioConfiguration from '../components/Configuration/Twilio/Twilio'
 import SendGridConfiguration from '../components/Configuration/SendGrid/SendGrid';
-import DatabaseConfiguration from '../components/Configuration/Database/Database'; 
-import ApiConfiguration from '../components/Configuration/Api/Api';
+
+
 import SentryConfiguration from '../components/Configuration/Sentry/Sentry';  
 import GoogleApiKeyConfiguration from '../components/Configuration/GoogleApi/GoogleApi'; 
 import CloudinaryConfiguration from '../components/Configuration/ Cloudinary/ Cloudinary'
@@ -98,25 +98,11 @@ const Configuration = props => {
               sendGridApiKey={data && data.configuration.sendGridApiKey}
             />
           </Grid>
-          <Grid item sx={12} md={12} lg={5}>
-          <DatabaseConfiguration
-            connectionString={data && data.configuration.connectionString}
-          />
-          </Grid>
-          <Grid item sx={12} md={12} lg={5}>
-            <ApiConfiguration
-              dashboardEnabled={data && data.configuration.dashboardEnabled}
-              dashboardUrl={data && data.configuration.dashboardUrl}
-              webUrl={data && data.configuration.webUrl}
-              port={data && data.configuration.port}
-              orderDetailWebUrl={data && data.configuration.orderDetailWebUrl}
-              resetPasswordLink={data && data.configuration.resetPasswordLink}
-            />
-          </Grid>
+        
+       
           <Grid item sx={12} md={12} lg={5}>
             <WebConfiguration
-              serverUrlWeb={data && data.configuration.serverUrlWeb}
-              wsServerUrlWeb={data && data.configuration.wsServerUrlWeb}
+      
               googleMapLibraries={data && data.configuration.googleMapLibraries}
               googleColor={data && data.configuration.googleColor}
             />
@@ -170,9 +156,7 @@ const Configuration = props => {
           </Grid>
           <Grid item sx={12} md={12} lg={5}>
           <AppConfigurations
-        graphqlUrlApp={data && data.configuration.graphqlUrlApp}
-        wsGraphqlUrlApp={data && data.configuration.wsGraphqlUrlApp}
-        serverUrlApp={data && data.configuration.serverUrlApp}
+       
         termsAndConditions={data && data.configuration.termsAndConditions}
         privacyPolicy={data && data.configuration.privacyPolicy}
         testOtp={data && data.configuration.testOtp}

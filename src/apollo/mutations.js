@@ -193,17 +193,6 @@ export const saveSendGridApiKey = `mutation SaveSendGridApiKey($configurationInp
   }
 }`
 
-export const saveDatabaseConfiguration = `
-  mutation SaveDatabaseConfiguration(
-    $configurationInput: DatabaseConfigurationInput!
-  ) {
-    saveDatabaseConfiguration(configurationInput: $configurationInput) {
-      _id
-      connectionString
-    }
-  }
-`
-
 export const saveFirebaseConfiguration = `
   mutation SaveFirebaseConfiguration(
     $configurationInput:FirebaseConfigurationInput!
@@ -220,21 +209,7 @@ export const saveFirebaseConfiguration = `
     }
   }
 `
-export const saveDashboardConfiguration = `
-  mutation SaveDashboardConfiguration(
-    $configurationInput: DashboardConfigurationInput!
-  ) {
-    saveDashboardConfiguration(configurationInput: $configurationInput) {
-      _id
-      dashboardUrl
-      webUrl
-      port
-      dashboardEnabled
-      orderDetailWebUrl
-      resetPasswordLink
-    }
-  }
-`
+
 export const saveSentryConfiguration = `
   mutation SaveSentryConfiguration($configurationInput: SentryConfigurationInput!) {
     saveSentryConfiguration(configurationInput: $configurationInput) {
@@ -292,8 +267,7 @@ export const saveWebConfiguration = `
   mutation SaveWebConfiguration($configurationInput: WebConfigurationInput!) {
     saveWebConfiguration(configurationInput: $configurationInput) {
       _id
-      serverUrlWeb
-      wsServerUrlWeb
+    
       googleMapLibraries
       googleColor
     }
@@ -304,9 +278,7 @@ export const saveAppConfiguration = `
   mutation SaveAppConfiguration($configurationInput: AppConfigurationsInput!) {
     saveAppConfigurations(configurationInput: $configurationInput) {
       _id
-      graphqlUrlApp
-      wsGraphqlUrlApp
-      serverUrlApp
+    
       termsAndConditions
       privacyPolicy
       testOtp

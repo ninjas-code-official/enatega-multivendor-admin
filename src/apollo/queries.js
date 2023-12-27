@@ -216,13 +216,6 @@ export const getConfiguration = `query GetConfiguration{
       twilioEnabled
       formEmail
       sendGridApiKey
-      connectionString
-      dashboardEnabled
-      dashboardUrl
-      webUrl
-      port
-      orderDetailWebUrl
-      resetPasswordLink
       dashboardSentryUrl
       webSentryUrl
       apiSentryUrl
@@ -238,13 +231,9 @@ export const getConfiguration = `query GetConfiguration{
       androidClientID
       iOSClientID
       expoClientID
-      serverUrlWeb
-      wsServerUrlWeb
+     
       googleMapLibraries
-      googleColor
-      graphqlUrlApp
-      wsGraphqlUrlApp
-      serverUrlApp
+      googleColor    
       termsAndConditions
       privacyPolicy
       testOtp

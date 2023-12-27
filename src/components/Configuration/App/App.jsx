@@ -15,16 +15,12 @@ const SAVE_APP_CONFIGURATION = gql`
 
 function AppConfigurations(props) {
   const formRef = useRef();
-  const [graphqlUrlApp] = useState(props.graphqlUrlApp || '');
-  const [wsGraphqlUrlApp] = useState(props.wsGraphqlUrlApp || '');
-  const [serverUrlApp] = useState(props.serverUrlApp || '');
+
   const [termsAndConditions] = useState(props.termsAndConditions || '');
   const [privacyPolicy] = useState(props.privacyPolicy || '');
   const [testOtp] = useState(props.testOtp || '');
 
-  const [graphqlUrlError, setGraphqlUrlError] = useState(null);
-  const [wsGraphqlUrlError, setWsGraphqlUrlError] = useState(null);
-  const [serverUrlError, setServerUrlError] = useState(null);
+
   const [termsAndConditionsError, setTermsAndConditionsError] = useState(null);
   const [privacyPolicyError, setPrivacyPolicyError] = useState(null);
   const [testOtpError, setTestOtpError] = useState(null);
@@ -36,25 +32,12 @@ function AppConfigurations(props) {
   };
 
   const validateInput = () => {
-    let graphqlUrlResult = true;
-    let wsGraphqlUrlResult = true;
-    let serverUrlResult = true;
+  
     let termsAndConditionsResult = true;
     let privacyPolicyResult = true;
     let testOtpResult = true;
 
-    graphqlUrlResult = !validateFunc(
-      { graphqlUrlApp: formRef.current['input-graphqlUrlApp'].value },
-      'graphqlUrlApp'
-    );
-    wsGraphqlUrlResult = !validateFunc(
-      { wsGraphqlUrlApp: formRef.current['input-wsGraphqlUrlApp'].value },
-      'wsGraphqlUrlApp'
-    );
-    serverUrlResult = !validateFunc(
-      { serverUrlApp: formRef.current['input-serverUrlApp'].value },
-      'serverUrlApp'
-    );
+    
     termsAndConditionsResult = !validateFunc(
       { termsAndConditions: formRef.current['input-termsAndConditions'].value },
       'termsAndConditions'
@@ -68,17 +51,13 @@ function AppConfigurations(props) {
       'testOtp'
     );
 
-    setGraphqlUrlError(graphqlUrlResult);
-    setWsGraphqlUrlError(wsGraphqlUrlResult);
-    setServerUrlError(serverUrlResult);
+ 
     setTermsAndConditionsError(termsAndConditionsResult);
     setPrivacyPolicyError(privacyPolicyResult);
     setTestOtpError(testOtpResult);
 
     return (
-      graphqlUrlResult &&
-      wsGraphqlUrlResult &&
-      serverUrlResult &&
+    
       termsAndConditionsResult &&
       privacyPolicyResult &&
       testOtpResult
@@ -100,80 +79,8 @@ function AppConfigurations(props) {
         </Box>
       <Box className={classes.form}>
         <form ref={formRef}>
-          <Box>
-            <Typography className={classes.labelText}>
-              GraphQL URL
-            </Typography>
-            <Input
-              style={{ marginTop: -1 }}
-              id="input-graphqlUrlApp"
-              name="input-graphqlUrlApp"
-              placeholder="GraphQL URL"
-              defaultValue={graphqlUrlApp}
-              onBlur={(event) =>
-                onBlur(setGraphqlUrlError, 'graphqlUrlApp', event.target.value)
-              }
-              disableUnderline
-              className={[
-                globalClasses.input,
-                graphqlUrlError === false
-                  ? globalClasses.inputError
-                  : graphqlUrlError === true
-                  ? globalClasses.inputSuccess
-                  : '',
-              ]}
-            />
-          </Box>
-          <Box className={globalClasses.flexRow}>
-            <Box>
-              <Typography className={classes.labelText}>
-                WS GraphQL URL
-              </Typography>
-              <Input
-                style={{ marginTop: -1 }}
-                id="input-wsGraphqlUrlApp"
-                name="input-wsGraphqlUrlApp"
-                placeholder="WS GraphQL URL"
-                defaultValue={wsGraphqlUrlApp}
-                onBlur={(event) =>
-                  onBlur(setWsGraphqlUrlError, 'wsGraphqlUrlApp', event.target.value)
-                }
-                disableUnderline
-                className={[
-                  globalClasses.input,
-                  wsGraphqlUrlError === false
-                    ? globalClasses.inputError
-                    : wsGraphqlUrlError === true
-                    ? globalClasses.inputSuccess
-                    : '',
-                ]}
-              />
-            </Box>
-            <Box>
-              <Typography className={classes.labelText}>
-                Server URL
-              </Typography>
-              <Input
-                style={{ marginTop: -1 }}
-                id="input-serverUrlApp"
-                name="input-serverUrlApp"
-                placeholder="Server URL"
-                defaultValue={serverUrlApp}
-                onBlur={(event) =>
-                  onBlur(setServerUrlError, 'serverUrlApp', event.target.value)
-                }
-                disableUnderline
-                className={[
-                  globalClasses.input,
-                  serverUrlError === false
-                    ? globalClasses.inputError
-                    : serverUrlError === true
-                    ? globalClasses.inputSuccess
-                    : '',
-                ]}
-              />
-            </Box>
-          </Box>
+     
+    
           <Box>
             <Typography className={classes.labelText}>
               Terms and Conditions
