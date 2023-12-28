@@ -1,11 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { withTranslation } from 'react-i18next'
 import { useMutation, gql } from '@apollo/client'
 import { validateFunc } from '../../../constraints/constraints'
 import { saveEmailConfiguration } from '../../../apollo'
 import useStyles from '../styles'
 import useGlobalStyles from '../../../utils/globalStyles'
-import { Box, Switch, Typography, Input, Button, Grid } from '@mui/material'
+import { Box, Switch, Typography, Input, Button, Grid, Alert } from '@mui/material'
 const SAVE_EMAIL_CONFIGURATION = gql`
   ${saveEmailConfiguration}
 `
@@ -48,6 +48,29 @@ function Email(props) {
   }
   const classes = useStyles()
   const globalClasses = useGlobalStyles()
+  const [successMessage, setSuccessMessage] = useState('');
+  const handleSuccess = (message) => {
+    setSuccessMessage(message);
+  };
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setSuccessMessage('');
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [successMessage, setSuccessMessage]);
+  const [errorMessage, setErrorMessage] = useState('');
+  const handleError = (error) => {
+    setErrorMessage('An error occurred while saving configuration.');
+    console.error('Mutation error:', error);
+  };
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setErrorMessage('');
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [errorMessage, setErrorMessage]);
 
   return (
     <Box container className={classes.container}>
@@ -165,12 +188,38 @@ function Email(props) {
                         password: formRef.current['input-password'].value,
                         enableEmail: enableEmail
                       }
-                    }
+                    },
+                    onCompleted: (data) => {
+                      handleSuccess('Configuration saved successfully!');
+                    },
+                    onError: (error) => {
+                      handleError(error);
+                    },
                   })
                 }
               }}>
               {t('Save')}
             </Button>
+          </Box>
+          <Box mt={2}>
+            {successMessage && (
+              <Alert
+                  className={globalClasses.alertSuccess}
+                  variant="filled"
+                  severity="success"
+                >
+                  {successMessage}
+                </Alert>
+            )}
+            {errorMessage && (
+              <Alert
+                className={globalClasses.alertError}
+                variant="filled"
+                severity="error"
+              >
+                {errorMessage}
+              </Alert>
+            )}
           </Box>
         </form>
       </Box>

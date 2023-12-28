@@ -59,7 +59,7 @@ const Restaurants = props => {
               className="img-responsive"
               src={row.image}
               alt={t('ImageMenu')}
-              style={{ width: 30, height: 30, borderRadius: 15 }}
+              style={{ width: 30, height: 30, borderRadius: 15, cursor: 'pointer' }}
               onClick={() => {
                 localStorage.setItem('restaurant_id', row._id)
                 props.history.push('/admin/dashboard')
@@ -74,19 +74,31 @@ const Restaurants = props => {
     {
       name: t('Name'),
       // sortable: true,
-      selector: 'name'
+      selector: 'name',
+      style: {
+        cursor: 'pointer',
+      },
     },
     {
       name: t('Address'),
-      selector: 'address'
+      selector: 'address',
+      style: {
+        cursor: 'pointer',
+      },
     },
     {
       name: t('OrderPrefix'),
-      selector: 'orderPrefix'
+      selector: 'orderPrefix',
+      style: {
+        cursor: 'pointer',
+      },
     },
     {
       name: t('Vendor'),
       selector: 'owner',
+      style: {
+        cursor: 'pointer',
+      },
       cell: row => <>{row.owner ? row.owner.email : null}</>
     },
     {

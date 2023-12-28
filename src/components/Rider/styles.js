@@ -45,6 +45,10 @@ const useStyles = makeStyles(theme => ({
     fontSize: '15px',
     fontWeight: '500',
     marginTop: '10px'
+  },
+  customNotification: {
+    borderRadius: '8px', // Use camelCase
+    boxShadow: 'none' // Use camelCase
   }
 }))
 
