@@ -4,7 +4,7 @@ import Header from '../components/Headers/Header'
 import { restaurants, updateCommission } from '../apollo'
 import CustomLoader from '../components/Loader/CustomLoader'
 import useGlobalStyles from '../utils/globalStyles'
-import { Container, Box, Typography, Grid, Input, Button , Alert } from '@mui/material'
+import { Container, Box, Typography, Grid, Input, Button } from '@mui/material'
 import useStyles from '../components/Rider/styles'
 import {
   NotificationContainer,
@@ -34,11 +34,16 @@ const Commission = () => {
   const globalClasses = useGlobalStyles()
   const classes = useStyles()
   const { t } = useTranslation();
-  const handleButtonClick = () => {
+  const handleSuccessButtonClick = () => {
   NotificationManager.success('Successful', 'Commission Rates', 3000, {
     className: 'customNotification',
   });
-};
+  };
+  const handleErrorButtonClick = () => {
+  NotificationManager.error('Error message', 'Click me!', 3000, {
+    className: 'customNotification',
+  });
+  };
 
   return (
     <>
@@ -86,7 +91,7 @@ const Commission = () => {
                                 mutate({
                                   variables: result,
                                   onCompleted: (data) => {
-                                    handleButtonClick();
+                                    handleSuccessButtonClick();
                                   },
                                 });
                               }}
@@ -99,13 +104,7 @@ const Commission = () => {
                       ))}
                       <Box mt={2}>
                         {error && (
-                          <Alert
-                            className={globalClasses.alertError}
-                            variant="filled"
-                            severity="error"
-                          >
-                            {error.message}
-                          </Alert>
+                          handleErrorButtonClick()
                         )}
                       </Box>
                     </>
