@@ -1,4 +1,4 @@
-import React , { useState, useEffect } from 'react';
+import React from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client'
 import Header from '../components/Headers/Header'
 import { restaurants, updateCommission } from '../apollo'
@@ -34,18 +34,6 @@ const Commission = () => {
   const globalClasses = useGlobalStyles()
   const classes = useStyles()
   const { t } = useTranslation();
-  const [successMessage, setSuccessMessage] = useState('');
-  const handleSuccess = (message) => {
-    setSuccessMessage(message);
-  };
-  //const [buttonText, setButtonText] = useState(t('Save'));
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setSuccessMessage('');
-    }, 3000);
-
-    return () => clearTimeout(timeoutId);
-  }, [successMessage, setSuccessMessage]);
   const handleButtonClick = () => {
   NotificationManager.success('Successful', 'Commission Rates', 3000, {
     className: 'customNotification',
@@ -98,12 +86,7 @@ const Commission = () => {
                                 mutate({
                                   variables: result,
                                   onCompleted: (data) => {
-                                    handleSuccess('Commission Rates Updated');
                                     handleButtonClick();
-                                    // setButtonText(t('Saved'));
-                                    //   setTimeout(() => {
-                                    //     setButtonText(t('Save'));
-                                    //   }, 5000);
                                   },
                                 });
                               }}
@@ -115,18 +98,6 @@ const Commission = () => {
                         </Grid>
                       ))}
                       <Box mt={2}>
-                        {successMessage && (
-                          <Alert
-                            className={globalClasses.alertSuccess}
-                            variant="filled"
-                            severity="success"
-                            // onClose={() => {
-                            //   setSuccessMessage(''); 
-                            // }}
-                          >
-                            {successMessage}
-                          </Alert>
-                        )}
                         {error && (
                           <Alert
                             className={globalClasses.alertError}
