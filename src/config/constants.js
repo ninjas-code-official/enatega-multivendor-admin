@@ -4,8 +4,8 @@ import ConfigurationContext from '../context/Configuration'
 const ConfigurableValues = () => {
   const configuration = useContext(ConfigurationContext)
   console.log('configuration', configuration)
-  const SERVER_URL = 'http://10.97.37.250:8001'
-  const WS_SERVER_URL = 'ws://10.97.37.250:8001'
+  const SERVER_URL = 'http://10.97.38.143:8001'
+  const WS_SERVER_URL = 'ws://10.97.38.143:8001'
   const GOOGLE_MAPS_KEY = configuration.googleApiKey
   const FIREBASE_KEY = configuration.firebaseKey
   const APP_ID = configuration.appId

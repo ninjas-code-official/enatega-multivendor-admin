@@ -96,6 +96,10 @@ const Configuration = props => {
           <Grid item sx={12} md={12} lg={5}>
             <SendGridConfiguration
               sendGridApiKey={data && data.configuration.sendGridApiKey}
+              sendGridEnabled={data && data.configuration.sendGridEnabled}
+              sendGridEmail={data && data.configuration.sendGridEmail}
+              sendGridEmailName={data && data.configuration.sendGridEmailName}
+              sendGridPassword={data && data.configuration.sendGridPassword}
             />
           </Grid>
         

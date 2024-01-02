@@ -83,7 +83,17 @@ export const reviews = `query Reviews($restaurant:String!){
       description
       createdAt
     }
-  }`
+  }
+`
+
+export const getOrdersByDateRange = `query GetOrdersByDateRange($startingDate: String!, $endingDate: String!, $restaurant: String!) {
+    getOrdersByDateRange(startingDate: $startingDate, endingDate: $endingDate, restaurant: $restaurant) {
+      totalAmountCashOnDelivery
+      countCashOnDeliveryOrders
+    }
+    
+  }
+`
 
 export const getOrdersByRestaurant = `query ordersByRestId($restaurant:String!,$page:Int,$rows:Int,$search:String){
     ordersByRestId(restaurant:$restaurant,page:$page,rows:$rows,search:$search){
@@ -216,6 +226,10 @@ export const getConfiguration = `query GetConfiguration{
       twilioEnabled
       formEmail
       sendGridApiKey
+      sendGridEnabled   
+      sendGridEmail
+      sendGridEmailName
+      sendGridPassword
       dashboardSentryUrl
       webSentryUrl
       apiSentryUrl
