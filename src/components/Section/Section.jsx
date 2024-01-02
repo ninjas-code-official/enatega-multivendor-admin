@@ -51,14 +51,14 @@ function Section(props) {
 
   const onCompleted = (data) => {
     const message = props.section
-      ? 'Section updated successfully'
-      : 'Section added successfully';
+      ? t('SectionUpdatedSuccessfully')
+      : t('SectionAddeduccessfully');
     successSetter(message);
     errorSetter('');
     if (!props.section) clearFields();
   };
   function onError(error) {
-    const message = `Action failed. Please Try again ${error}`;
+    const message = `${t('ActionFailedTryAgain')} ${error}`;
     successSetter('');
     errorSetter(message);
   }
@@ -119,11 +119,11 @@ function Section(props) {
             className={
               props.section ? classes.textWhite : classes.text
             }>
-            {props.section ? 'Edit Section' : 'Add Section'}
+            {props.section ? t('EditSection') : t('AddSection')}
           </Typography>
         </Box>
         <Box ml={12} mt={1}>
-          <label>{sectionEnable ? 'Disable' : 'Enable'}</label>
+          <label>{sectionEnable ? t('Disable') : t('Enable')}</label>
           <Switch
             defaultChecked={sectionEnable}
             value={sectionEnable}
@@ -141,7 +141,7 @@ function Section(props) {
             <Input
               id="input-name"
               name="input-name"
-              placeholder="Section Name"
+              placeholder={t('SectionName')}
               type="text"
               defaultValue={name}
               onBlur={(event) => {
@@ -159,9 +159,9 @@ function Section(props) {
             />
           </Box>
           <Grid container spacing={1} mt={1} className={classes.section}>
-            {loadingQuery ? <div>Loading ...</div> : null}
+            {loadingQuery ? <div>{t('LoadingDots')}</div> : null}
             {errorQuery ? (
-              <div>Error ... {JSON.stringify(error)}</div>
+              <div>{t('ErrorDots')} {JSON.stringify(error)}</div>
             ) : null}
             {data &&
               data.restaurantList.map((restaurantItem) => (
@@ -206,7 +206,7 @@ function Section(props) {
                   }, 4000);
                 }
               }}>
-              {props.section ? 'Update' : t('Save')}
+              {props.section ? t('Update') : t('Save')}
             </Button>
           </Box>
         </form>

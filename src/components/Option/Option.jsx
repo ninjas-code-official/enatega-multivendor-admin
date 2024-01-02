@@ -18,6 +18,7 @@ const EDIT_OPTION = gql`
 `
 
 function Option(props) {
+  const { t } = props;
   const [option, optionSetter] = useState(
     props.option
       ? [{ ...props.option, titleError: false, priceError: false }]
@@ -45,17 +46,17 @@ function Option(props) {
           priceError: false
         }
       ])
-      successSetter('Saved')
+      successSetter(t('Saved'))
       mainErrorSetter('')
       setTimeout(hideAlert, 3000)
     }
     if (editOption) {
-      successSetter('Saved')
+      successSetter(t('Saved'))
       mainErrorSetter('')
     }
   }
   const onError = error => {
-    mainErrorSetter(`An error occured while saving. Try again ${error}`)
+    mainErrorSetter(`${t('errorWhileSaving')} ${error}`)
     successSetter('')
     setTimeout(hideAlert, 3000)
   }
@@ -129,7 +130,7 @@ function Option(props) {
           item
           className={props.option ? classes.headingBlack : classes.heading}>
           <Typography variant="h6" className={classes.textWhite}>
-            {props.option ? 'Update Option' : 'Add Option'}
+            {props.option ? t('UpdateOption') : t('AddOption')}
           </Typography>
         </Box>
       </Box>
@@ -140,11 +141,11 @@ function Option(props) {
             <Grid container key={optionItem._id}>
               <Grid item xs={12} sm={3}>
                 <div>
-                  <Typography className={classes.labelText}>Title</Typography>
+                  <Typography className={classes.labelText}>{t('Title')}</Typography>
                   <Input
                     style={{ marginTop: -1 }}
                     id={`input-title-${index}`}
-                    placeholder="Title"
+                    placeholder={t('Title')}
                     type="text"
                     value={optionItem.title}
                     onChange={event => {
@@ -160,11 +161,11 @@ function Option(props) {
               </Grid>
               <Grid item xs={12} sm={3}>
                 <div>
-                  <Typography className={classes.labelText}>Description</Typography>
+                  <Typography className={classes.labelText}>{t("Description")}</Typography>
                   <Input
                     style={{ marginTop: -1 }}
                     id={`input-description-${index}`}
-                    placeholder="Description"
+                    placeholder={t("Description")}
                     type="text"
                     value={optionItem.description}
                     onChange={event => {
@@ -182,11 +183,11 @@ function Option(props) {
               </Grid>
               <Grid item xs={12} sm={3}>
                 <div>
-                  <Typography className={classes.labelText}>Price</Typography>
+                  <Typography className={classes.labelText}>{t('Price')}</Typography>
                   <Input
                     style={{ marginTop: -1 }}
                     id={`input-price-${index}`}
-                    placeholder="Price"
+                    placeholder={t('Price')}
                     type="number"
                     value={optionItem.price}
                     onChange={event => {
@@ -272,7 +273,7 @@ function Option(props) {
                   }, 4000);
                 }
               }}>
-              SAVE
+              {t('Save')}
             </Button>
           </Box>
         </form>

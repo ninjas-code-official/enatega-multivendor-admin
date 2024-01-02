@@ -23,6 +23,7 @@ const NOTIFICATION_USER = gql`
 `;
 
 const Notifications = (props) => {
+  const { t } = props;
   const [notificationTitle, setNotificationTitle] = useState('');
   const [notificationBody, setNotificationBody] = useState('');
   const [bodyError, setBodyError] = useState(null);
@@ -43,12 +44,12 @@ const Notifications = (props) => {
 
   const [mutate, { loading }] = useMutation(NOTIFICATION_USER, {
     onCompleted: () => {
-      setSuccess('Notification sent successfully'); // Set success message
+      setSuccess(t('NotificationSentAuccessfully')); // Set success message
       setNotificationTitle(''); // Clear the title field
       setNotificationBody(''); // Clear the body field
     },
     onError: (error) => {
-      setError('Failed. Please try again'); // Set error message
+      setError(t('ActionFailedTryAgain')); // Set error message
     },
   });
 
@@ -77,7 +78,7 @@ const Notifications = (props) => {
               <Box className={classes.flexRow}>
                 <Box item className={classes.heading}>
                   <Typography variant="h6" className={classes.text}>
-                    Notifications
+                    {t('Notifications')}
                   </Typography>
                 </Box>
               </Box>
@@ -91,12 +92,12 @@ const Notifications = (props) => {
                       <Grid item xs={12} sm={6}>
                         <Box>
                           <Typography className={classes.labelText}>
-                            Title
+                              {t('Title')}
                           </Typography>
                           <Input
                             style={{ marginTop: -1 }}
                             id="input-title"
-                            placeholder="Title"
+                              placeholder={t('Title')}
                             type="text"
                             value={notificationTitle}
                             onChange={(event) => {
@@ -116,11 +117,11 @@ const Notifications = (props) => {
                       </Grid>
                       <Grid item xs={12} sm={6}>
                         <Box>
-                          <Typography className={classes.labelText}>Body</Typography>
+                            <Typography className={classes.labelText}>{t('Body')}</Typography>
                           <Input
                             style={{ marginTop: -1 }}
                             id="input-body"
-                            placeholder="Body"
+                              placeholder={t('Body')}
                             type="text"
                             value={notificationBody}
                             onChange={(event) => {
@@ -157,7 +158,7 @@ const Notifications = (props) => {
                           setError('');
                         }}
                       >
-                        SAVE
+                        {t('Save')}
                       </Button>
                     </Box>
                   </form>

@@ -16,7 +16,11 @@ const RESTAURANT_BY_OWNER = gql`
 `
 
 const CreateRestaurant = props => {
+
   const { CLOUDINARY_UPLOAD_URL, CLOUDINARY_FOOD } = ConfigurableValues()
+
+  const { t } = props;
+
   const owner = props.owner
 
   const [imgUrl, setImgUrl] = useState('')
@@ -39,7 +43,7 @@ const CreateRestaurant = props => {
     setMinimumOrderError(null)
     setErrors('')
     setSalesTaxError(null)
-    setSuccess('Restaurant added')
+    setSuccess(t('RestaurantAdded'))
     clearFormValues()
     setTimeout(hideAlert, 5000)
   }
@@ -58,7 +62,7 @@ const CreateRestaurant = props => {
       setErrors(graphQLErrors[0].message)
     }
     if (networkError) {
-      setErrors('Network error')
+      setErrors(t('NetworkError'))
     }
     setTimeout(hideAlert, 5000)
   }
@@ -160,7 +164,7 @@ const CreateRestaurant = props => {
         salesTaxError
       )
     ) {
-      setErrors('Fields Required')
+      setErrors(t('FieldsRequired'))
     }
     return (
       nameError &&
@@ -205,11 +209,11 @@ const CreateRestaurant = props => {
       <Box style={{ alignItems: 'start' }} className={classes.flexRow}>
         <Box item className={classes.heading}>
           <Typography variant="h6" className={classes.text}>
-            Add Restaurant
+            {t('AddRestaurant')}
           </Typography>
         </Box>
         <Box ml={30} mt={1}>
-          <label>Available</label>
+          <label>{t('Available')}</label>
           <Switch defaultChecked style={{ color: 'black' }} />
         </Box>
       </Box>
@@ -220,12 +224,12 @@ const CreateRestaurant = props => {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <Box>
-                <Typography className={classes.labelText}>Username</Typography>
+                <Typography className={classes.labelText}>{t('Username')}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   name="username"
                   id="input-type-username"
-                  placeholder="Restaurant's username"
+                  placeholder={t('RestaurantUsername')}
                   type="text"
                   defaultValue={''}
                   disableUnderline
@@ -242,12 +246,12 @@ const CreateRestaurant = props => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box>
-                <Typography className={classes.labelText}>Password</Typography>
+                <Typography className={classes.labelText}>{t('Password')}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   name="password"
                   id="input-type-password"
-                  placeholder="Restaurant's password"
+                  placeholder={t('RestaurantPassword')}
                   type="text"
                   defaultValue={''}
                   disableUnderline
@@ -264,12 +268,12 @@ const CreateRestaurant = props => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box>
-                <Typography className={classes.labelText}>Name</Typography>
+                <Typography className={classes.labelText}>{t('Name')}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   name="name"
                   id="input-type-name"
-                  placeholder="Restaurant's name"
+                  placeholder={t('RestaurantName')}
                   type="text"
                   defaultValue={''}
                   disableUnderline
@@ -286,12 +290,12 @@ const CreateRestaurant = props => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box>
-                <Typography className={classes.labelText}>Address</Typography>
+                <Typography className={classes.labelText}>{t('Address')}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   name="address"
                   id="input-type-address"
-                  placeholder="Restaurant's address"
+                  placeholder={t('RestaurantAddress')}
                   type="text"
                   defaultValue={''}
                   disableUnderline
@@ -308,12 +312,12 @@ const CreateRestaurant = props => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box>
-                <Typography className={classes.labelText}>Delivery Time</Typography>
+                <Typography className={classes.labelText}>{t("DeliveryTime")}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   name="deliveryTime"
                   id="input-type-delivery-time"
-                  placeholder="Delivery Time"
+                  placeholder={t("DeliveryTime")}
                   type="number"
                   disableUnderline
                   className={[
@@ -329,12 +333,12 @@ const CreateRestaurant = props => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <Box>
-                <Typography className={classes.labelText}>Min Order</Typography>
+                <Typography className={classes.labelText}>{t("MinOrder")}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   name="minimumOrder"
                   id="input-type-minimum-order"
-                  placeholder="Minimum order"
+                  placeholder={t("MinOrder")}
                   type="number"
                   disableUnderline
                   className={[
@@ -350,12 +354,12 @@ const CreateRestaurant = props => {
             </Grid>
             <Grid item xs={12}>
               <Box>
-                <Typography className={classes.labelText}>Sales Tax</Typography>
+                <Typography className={classes.labelText}>{t("SalesTax")}</Typography>
                 <Input
                   style={{ marginTop: -1 }}
                   name="salesTax"
                   id="input-type-sales-tax"
-                  placeholder="Sales tax"
+                  placeholder={t("SalesTax")}
                   type="number"
                   disableUnderline
                   className={[
@@ -380,11 +384,11 @@ const CreateRestaurant = props => {
               alt="..."
               src={
                 imgUrl ||
-                'https://enatega.com/wp-content/uploads/2023/09/default-img.jpg'
+                'https://enatega.com/wp-content/uploads/2023/11/man-suit-having-breakfast-kitchen-side-view.webp'
               }
             />
             <label htmlFor="file-upload" className={classes.fileUpload}>
-              Upload an image
+              {t('UploadAnImage')}
             </label>
             <input
               className={classes.file}
@@ -420,7 +424,7 @@ const CreateRestaurant = props => {
                         address,
                         image:
                           imgUpload ||
-                          'https://enatega.com/wp-content/uploads/2023/09/default-img.jpg',
+                          'https://enatega.com/wp-content/uploads/2023/11/man-suit-having-breakfast-kitchen-side-view.webp',
                         deliveryTime: Number(deliveryTime),
                         minimumOrder: Number(minimumOrder),
                         username,
@@ -430,7 +434,7 @@ const CreateRestaurant = props => {
                   })
                 }
               }}>
-              SAVE
+              {t('Save')}
             </Button>
           </Box>
         </form>

@@ -26,11 +26,12 @@ function Vendor(props) {
   const [emailError, emailErrorSetter] = useState(null)
   const [passError, passErrorSetter] = useState(null)
   const { t } = props
+  console.log('vendor props: ', props)
   const onCompleted = data => {
     if (!props.vendor) clearFields()
     const message = props.vendor
-      ? 'Vendor updated successfully'
-      : 'Vendor added successfully'
+      ? t('RiderUpdatedSuccessfully')
+      : t('RiderAddedSuccessfully')
     errorSetter('')
     successSetter(message)
     setTimeout(hideAlert, 3000)
@@ -86,7 +87,7 @@ function Vendor(props) {
     <Box className={classes.container}>
       <Box className={props.vendor ? classes.headingBlack : classes.heading}>
         <Typography className={props.vendor ? classes.textWhite : classes.text}>
-          {props.vendor ? t('Edit Vendor') : t('Add Vendor')}
+          {props.vendor ? t('EditVendor') : t('AddVendor')}
         </Typography>
       </Box>
       {/* <Box item lg={12} className={[globalClasses.flex, classes.form]}> */}
@@ -94,13 +95,13 @@ function Vendor(props) {
         <form ref={formRef}>
           {/* <Box > */}
           <Typography className={classes.labelText}>
-            Email
+            {t('Email')}
           </Typography>
           <Input
             style={{ marginTop: -1 }}
             id="input-email"
             name="input-email"
-            placeholder="Email"
+            placeholder={t('Email')}
             margin="0px"
             type="email"
             disableUnderline
@@ -121,11 +122,11 @@ function Vendor(props) {
           {!props.vendor ? (
             <>
               <Typography className={classes.labelText}>
-                Password
+                {t('Password')}
               </Typography>
               <Input
                 style={{ marginTop: -1 }}
-                placeholder="Password"
+                placeholder={t('Password')}
                 disableUnderline
                 className={[
                   globalClasses.input,
@@ -167,7 +168,7 @@ function Vendor(props) {
                 }, 4000);
               }
             }}>
-            {props.vendor ? 'Update' : 'Save'}
+            {props.vendor ? t('Update') : t('Save')}
           </Button>
         </form>
         <Box mt={2}>
@@ -176,7 +177,7 @@ function Vendor(props) {
               className={globalClasses.alertSuccess}
               variant="filled"
               severity="success">
-              Success
+              {success}
             </Alert>
           )}
           {error && (
@@ -184,7 +185,7 @@ function Vendor(props) {
               className={globalClasses.alertError}
               variant="filled"
               severity="error">
-              Error
+              {error}
             </Alert>
           )}
         </Box>

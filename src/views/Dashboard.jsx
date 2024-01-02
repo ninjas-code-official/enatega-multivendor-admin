@@ -27,6 +27,7 @@ import {
 
 import useStyles from '../components/Option/styles'
 import useGlobalStyles from '../utils/globalStyles'
+import { withTranslation } from 'react-i18next'
 
 ChartJS.register(
   CategoryScale,
@@ -51,24 +52,30 @@ const GET_ORDERS = gql`
   ${getOrdersByDateRange}
 `
 
-const dataLine = {
-  datasets: {
-    label: 'Sales Amount',
-    backgroundColor: '#3EC6DD',
-    borderColor: '#3EC6DD'
-  }
-}
-const dataBar = {
-  datasets: {
-    label: 'Order count',
-    backgroundColor: '#90EA93',
-    borderColor: '#90EA93'
-  }
-}
 
 const Dashboard = props => {
+  const { t } = props;
   const restaurantId = localStorage.getItem('restaurantId')
- 
+
+
+  const dataLine = {
+    datasets: {
+      label: t('SalesAmount'),
+      // label: 'Sales Amount',
+      backgroundColor: '#3EC6DD',
+      borderColor: '#3EC6DD'
+    }
+  }
+  const dataBar = {
+    datasets: {
+      label: t('OrderCount'),
+      // label: 'Order count',
+      backgroundColor: '#90EA93',
+      borderColor: '#90EA93'
+    }
+  }
+
+
   const intializeStartDate = () => {
     var d = new Date()
     d.setDate(d.getDate() - 7)
@@ -127,12 +134,12 @@ const globalClasses = useGlobalStyles();
     <>
       <Header />
       <Container className={globalClasses.flex} fluid>
-        {errorTotal ? <span>{`Error! + ${errorTotal.message}`}</span> : null}
+        {errorTotal ? <span>{`${Error} + ${errorTotal.message}`}</span> : null}
         <Box container className={classes.container}>
           <Box className={classes.flexRow}>
             <Box item className={classes.heading}>
               <Typography variant="h6" className={classes.textWhite}>
-                Graph Filter
+                {t('GraphFilter')}
               </Typography>
             </Box>
           </Box>
@@ -142,7 +149,7 @@ const globalClasses = useGlobalStyles();
               <Grid container sx={{ textAlign: 'left' }}>
                 <Grid item md={6} xs={12}>
                   <Typography sx={{ fontWeight: 'bold' }}>
-                    Start Date
+                    {t('StartDate')}
                   </Typography>
                   <Input
                     style={{ marginTop: -1 }}
@@ -160,7 +167,7 @@ const globalClasses = useGlobalStyles();
                   />
                 </Grid>
                 <Grid item md={6} xs={12}>
-                  <Typography sx={{ fontWeight: 'bold' }}>End Date</Typography>
+                  <Typography sx={{ fontWeight: 'bold' }}>{t('EndDate')}</Typography>
                   <Input
                     style={{ marginTop: -1 }}
                     type="date"
@@ -177,7 +184,7 @@ const globalClasses = useGlobalStyles();
                   />
                 </Grid>
               </Grid>
-              <Button className={globalClasses.button}>Apply</Button>
+              <Button className={globalClasses.button}>{t('Apply')}</Button>
             </form>
           </Box>
         </Box>
@@ -210,14 +217,14 @@ const globalClasses = useGlobalStyles();
                 labels: loadingSales
                   ? []
                   : dataSales &&
-                    dataSales.getDashboardSales.orders.map(d => d.day),
+                  dataSales.getDashboardSales.orders.map(d => d.day),
                 datasets: [
                   {
                     ...dataLine.datasets,
                     data: loadingSales
                       ? []
                       : dataSales &&
-                        dataSales.getDashboardSales.orders.map(d => d.amount),
+                      dataSales.getDashboardSales.orders.map(d => d.amount),
                     lineTension: 0.8
                   },
                   {
@@ -225,7 +232,7 @@ const globalClasses = useGlobalStyles();
                     data: loadingOrders
                       ? []
                       : dataOrders &&
-                        dataOrders.getDashboardOrders.orders.map(d => d.count)
+                      dataOrders.getDashboardOrders.orders.map(d => d.count)
                   }
                 ]
               }}
@@ -282,7 +289,7 @@ const globalClasses = useGlobalStyles();
               mb: 3
             }}>
             <Typography sx={{ fontSize: 15, fontWeight: 'bold' }}>
-              Total Orders
+              {t('TotalOrders')}
             </Typography>
             <Typography
               sx={{
@@ -343,7 +350,7 @@ const globalClasses = useGlobalStyles();
               mb: 3
             }}>
             <Typography sx={{ fontSize: 15, fontWeight: 'bold' }}>
-              Total Sales
+              {t('TotalSales')}
             </Typography>
             <Typography
               sx={{
@@ -398,4 +405,4 @@ const globalClasses = useGlobalStyles();
   )
 }
 
-export default Dashboard
+export default withTranslation()(Dashboard)

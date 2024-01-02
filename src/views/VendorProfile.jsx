@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { validateFunc } from '../constraints/constraints'
-import { withTranslation } from 'react-i18next'
+import { withTranslation, useTranslation } from 'react-i18next'
 import Header from '../components/Headers/Header'
 import { useQuery, useMutation, gql } from '@apollo/client'
 import { getRestaurantProfile, editRestaurant } from '../apollo'
@@ -19,7 +19,11 @@ const EDIT_RESTAURANT = gql`
 `
 
 const VendorProfile = () => {
+
  const { CLOUDINARY_UPLOAD_URL, CLOUDINARY_FOOD } = ConfigurableValues()
+
+  const { t } = useTranslation();
+
   const restaurantId = localStorage.getItem('restaurantId')
 
   const [imgUrl, setImgUrl] = useState('')
@@ -43,7 +47,7 @@ const VendorProfile = () => {
     setMinimumOrderError(null)
     setSalesTaxError(null)
     setErrors('')
-    setSuccess('Restaurant updated successfully')
+    setSuccess(t('RestaurantUpdatedSuccessfully'))
     setTimeout(hideAlert, 5000)
   }
 
@@ -172,7 +176,7 @@ const VendorProfile = () => {
         salesTaxError
       )
     ) {
-      setErrors('Fields Required')
+      setErrors(t('FieldsRequired'))
     }
     return (
       nameErrors &&
@@ -196,7 +200,7 @@ const VendorProfile = () => {
           <Box style={{ alignItems: 'start' }} className={classes.flexRow}>
             <Box item className={classes.heading2}>
               <Typography variant="h6" className={classes.textWhite}>
-                Update Profile
+                {t('UpdateProfile')}
               </Typography>
             </Box>
           </Box>
@@ -209,12 +213,12 @@ const VendorProfile = () => {
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <Box>
-                      <Typography className={classes.labelText}>Restaurant's user name</Typography>
+                      <Typography className={classes.labelText}>{t('RestaurantUsername')}</Typography>
                       <Input
                         style={{ marginTop: -1 }}
                         name="username"
                         id="input-type-username"
-                        placeholder="Restaurant's username"
+                        placeholder={t('RestaurantUsername')}
                         type="text"
                         defaultValue={(data && data.restaurant.username) || ''}
                         disableUnderline
@@ -238,12 +242,12 @@ const VendorProfile = () => {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <Box>
-                      <Typography className={classes.labelText}>Password</Typography>
+                      <Typography className={classes.labelText}>{t('Password')}</Typography>
                       <Input
                         style={{ marginTop: -1 }}
                         name="password"
                         id="input-type-password"
-                        placeholder="Restaurant's password"
+                        placeholder={t('PHRestaurantPassword')}
                         type="text"
                         defaultValue={(data && data.restaurant.password) || ''}
                         disableUnderline
@@ -263,12 +267,12 @@ const VendorProfile = () => {
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <Box>
-                      <Typography className={classes.labelText}>Name</Typography>
+                      <Typography className={classes.labelText}>{t('Name')}</Typography>
                       <Input
                         style={{ marginTop: -1 }}
                         name="name"
                         id="input-type-name"
-                        placeholder="Restaurant's name"
+                        placeholder={t('PHRestaurantName')}
                         type="text"
                         defaultValue={(data && data.restaurant.name) || ''}
                         disableUnderline
@@ -285,12 +289,12 @@ const VendorProfile = () => {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <Box>
-                      <Typography className={classes.labelText}>Address</Typography>
+                      <Typography className={classes.labelText}>{t('Address')}</Typography>
                       <Input
                         style={{ marginTop: -1 }}
                         name="address"
                         id="input-type-address"
-                        placeholder="Restaurant's address"
+                        placeholder={t('PHRestaurantAddress')}
                         type="text"
                         defaultValue={(data && data.restaurant.address) || ''}
                         disableUnderline
@@ -310,12 +314,12 @@ const VendorProfile = () => {
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <Box>
-                      <Typography className={classes.labelText}>Delivery Time</Typography>
+                      <Typography className={classes.labelText}>{t('DeliveryTime')}</Typography>
                       <Input
                         style={{ marginTop: -1 }}
                         name="deliveryTime"
                         id="input-type-delivery-time"
-                        placeholder="Delivery Time"
+                        placeholder={t('DeliveryTime')}
                         type="number"
                         defaultValue={data && data.restaurant.deliveryTime}
                         disableUnderline
@@ -332,12 +336,12 @@ const VendorProfile = () => {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <Box>
-                      <Typography className={classes.labelText}>Minimum Order</Typography>
+                      <Typography className={classes.labelText}>{t('MinOrder')}</Typography>
                       <Input
                         style={{ marginTop: -1 }}
                         name="minimumOrder"
                         id="input-type-minimum-order"
-                        placeholder="Minimum order"
+                        placeholder={t('MinOrder')}
                         type="number"
                         disableUnderline
                         defaultValue={data && data.restaurant.minimumOrder}
@@ -356,12 +360,12 @@ const VendorProfile = () => {
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <Box>
-                      <Typography className={classes.labelText}>Sales tax</Typography>
+                      <Typography className={classes.labelText}>{t('SalesTax')}</Typography>
                       <Input
                         style={{ marginTop: -1 }}
                         name="salesTax"
                         id="input-type-sales-tax"
-                        placeholder="Sales tax"
+                        placeholder={t('SalesTax')}
                         type="number"
                         defaultValue={data && data.restaurant.tax}
                         disableUnderline
@@ -378,12 +382,12 @@ const VendorProfile = () => {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <Box>
-                      <Typography className={classes.labelText}>Order Prefix</Typography>
+                      <Typography className={classes.labelText}>{t('OrderPrefix')}</Typography>
                       <Input
                         style={{ marginTop: -1 }}
                         name="prefix"
                         id="input-type-order_id_prefix"
-                        placeholder="Order Prefix"
+                        placeholder={t('OrderPrefix')}
                         type="text"
                         defaultValue={data && data.restaurant.orderPrefix}
                         disableUnderline
@@ -409,11 +413,11 @@ const VendorProfile = () => {
                     src={
                       imgUrl ||
                       (data && data.restaurant.image) ||
-                      'https://enatega.com/wp-content/uploads/2023/09/default-img.jpg'
+                      'https://enatega.com/wp-content/uploads/2023/11/man-suit-having-breakfast-kitchen-side-view.webp'
                     }
                   />
                   <label htmlFor="file-upload" className={classes.fileUpload}>
-                    Upload an image
+                    {t('UploadAnImage')}
                   </label>
                   <input
                     className={classes.file}
@@ -451,7 +455,7 @@ const VendorProfile = () => {
                               image:
                                 imgUpload ||
                                 data.restaurant.image ||
-                                'https://enatega.com/wp-content/uploads/2023/09/default-img.jpg',
+                                'https://enatega.com/wp-content/uploads/2023/11/man-suit-having-breakfast-kitchen-side-view.webp',
                               orderPrefix: prefix,
                               deliveryTime: Number(deliveryTime),
                               minimumOrder: Number(minimumOrder),
@@ -463,7 +467,7 @@ const VendorProfile = () => {
                         })
                       }
                     }}>
-                    SAVE
+                    {t('Save')}
                   </Button>
                 </Box>
               </form>

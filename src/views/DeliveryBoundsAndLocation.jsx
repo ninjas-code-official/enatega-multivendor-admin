@@ -11,6 +11,9 @@ import useGlobalStyles from '../utils/globalStyles'
 import useStyles from '../components/styles'
 import CustomLoader from '../components/Loader/CustomLoader'
 import { Container, Box, Button, Typography, Alert } from '@mui/material'
+import { useTranslation, withTranslation } from 'react-i18next'
+
+
 const UPDATE_DELIVERY_BOUNDS_AND_LOCATION = gql`
   ${updateDeliveryBoundsAndLocation}
 `
@@ -18,7 +21,8 @@ const GET_RESTAURANT_PROFILE = gql`
   ${getRestaurantProfile}
 `
 
-export default function DeliveryBoundsAndLocation() {
+function DeliveryBoundsAndLocation() {
+  const { t } = useTranslation();
   const restaurantId = localStorage.getItem('restaurantId')
 
   const [drawBoundsOrMarker, setDrawBoundsOrMarker] = useState('marker') // polygon
@@ -150,7 +154,7 @@ export default function DeliveryBoundsAndLocation() {
   }
 
   function onError({ networkError, graphqlErrors }) {
-    setErrorMessage('An error occurred while updating location and bounds');
+    setErrorMessage(t('UpdatingLocationError'));
     setTimeout(() => setErrorMessage(''), 5000); // Clear error message after 5 seconds
   }
 
@@ -158,16 +162,16 @@ export default function DeliveryBoundsAndLocation() {
 
   const validate = () => {
     if (!marker) {
-      setErrorMessage('Location marker is required');
+      setErrorMessage(t('LocationMarkerRequired'));
       setTimeout(() => setErrorMessage(''), 5000); // Clear success message after 5 seconds
       return false;
     }
     if (path.length < 3) {
-      setErrorMessage('Delivery area is required');
+      setErrorMessage(t('DeliveryAreaRequired'));
       setTimeout(() => setErrorMessage(''), 5000); // Clear success message after 5 seconds
       return false;
     }
-    setSuccessMessage('Location and bounds updated successfully');
+    setSuccessMessage(t('LocationUpdatedSuccessfully'));
     setTimeout(() => setSuccessMessage(''), 5000); // Clear success message after 5 seconds
     setErrorMessage('');
     return true;
@@ -192,7 +196,7 @@ export default function DeliveryBoundsAndLocation() {
           <Box className={classes.flexRow}>
             <Box item className={classes.heading2}>
               <Typography variant="h6" className={classes.textWhite}>
-                Set Location
+                {t('SetLocation')}
               </Typography>
             </Box>
           </Box>
@@ -241,13 +245,13 @@ export default function DeliveryBoundsAndLocation() {
               style={{ color: '#90EA93', backgroundColor: '#000' }}
               className={globalClasses.button}
               onClick={() => toggleDrawingMode('polygon')}>
-              Draw Delivery Bounds
+              {t('DrawDeliveryBounds')}
             </Button>
             <Button
               style={{ color: '#90EA93', backgroundColor: '#000' }}
               className={globalClasses.button}
               onClick={() => toggleDrawingMode('marker')}>
-              Set Restaurant Location
+              {t('SetRestaurantLocation')}
             </Button>
           </Box>
           <Box
@@ -264,13 +268,13 @@ export default function DeliveryBoundsAndLocation() {
               }}
               className={globalClasses.button}
               onClick={removePolygon}>
-              Remove Delivery Bounds
+              {t('RemoveDeliveryBounds')}
             </Button>
             <Button
               style={{ color: '#000', backgroundColor: '#e0e0e0' }}
               className={globalClasses.button}
               onClick={removeMarker}>
-              Remove Restaurant Location
+              {t('RemoveRestaurantLocation')}
             </Button>
           </Box>
           <Box mt={5} mb={3}>
@@ -288,7 +292,7 @@ export default function DeliveryBoundsAndLocation() {
                   mutate({ variables: { id: restaurantId, location, bounds } })
                 }
               }}>
-              Save
+              {t('Save')}
             </Button>
           </Box>
           {successMessage && (
@@ -316,3 +320,5 @@ export default function DeliveryBoundsAndLocation() {
     </>
   )
 }
+
+export default  withTranslation()(DeliveryBoundsAndLocation)

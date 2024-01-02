@@ -11,6 +11,7 @@ const CHANGE_PASSWORD = gql`
 `
 
 function ResetPassword(props) {
+  const { t } = props;
   const formRef = useRef()
   const [passError, passErrorSetter] = useState(null)
   const [confirmPassError, confirmPassErrorSetter] = useState(null)
@@ -36,7 +37,7 @@ function ResetPassword(props) {
     return oldPassword && newPassword
   }
   const onCompleted = data => {
-    const message = 'Password Changed successfully'
+    const message = t('PasswordChangedSuccessfully')
     mainErrorSetter('')
     successSetter(message)
     setTimeout(hideAlert, 5000)
@@ -68,7 +69,7 @@ function ResetPassword(props) {
       <Box className={classes.flexRow}>
         <Box item className={classes.heading}>
           <Typography variant="h6" className={classes.text}>
-            Reset Password
+            {t('ResetPassword')}
           </Typography>
         </Box>
       </Box>
@@ -79,7 +80,7 @@ function ResetPassword(props) {
             <Input
               id="input-oldPassword"
               name="input-oldPassword"
-              placeholder="Password"
+              placeholder={t('Password')}
               maxLength="30"
               type="password"
               defaultValue=""
@@ -101,7 +102,7 @@ function ResetPassword(props) {
             <Input
               id="input-newPassword"
               name="input-newPassword"
-              placeholder="Confirm Password"
+              placeholder={t('ConfirmPassword')}
               maxLength="30"
               type="password"
               defaultValue=""
@@ -133,7 +134,7 @@ function ResetPassword(props) {
                   })
                 }
               }}>
-              Reset
+              {t('Reset')}
             </Button>
           </Box>
         </form>

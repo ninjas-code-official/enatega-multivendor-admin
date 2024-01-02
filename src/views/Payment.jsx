@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery, gql } from '@apollo/client'
-import { withTranslation } from 'react-i18next'
+import { withTranslation, useTranslation } from 'react-i18next'
 import { Container, Box, Typography, Button } from '@mui/material'
 import Header from '../components/Headers/Header'
 import ConfigurableValues from '../config/constants'
@@ -11,7 +11,11 @@ const RESTAURANT = gql`
   ${getRestaurantProfile}
 `
 const Payment = () => {
+
   const { SERVER_URL } = ConfigurableValues()
+
+  const { t } = useTranslation();
+
   const restaurantId = localStorage.getItem('restaurantId')
 
   const { data, error: errorQuery, loading: loadingQuery } = useQuery(
@@ -46,16 +50,16 @@ const Payment = () => {
           <Box className={classes.flexRow}>
             <Box item className={classes.heading2}>
               <Typography variant="h6" className={classes.textWhite}>
-                Delivery Rate
+                {t('Delivery Rate')}
               </Typography>
             </Box>
           </Box>
 
           <Box className={classes.form}>
-            {loadingQuery && <span>Loading...</span>}
+            {loadingQuery && <span>{t('LoadingDots')}</span>}
             {errorQuery && <span>{errorQuery.message}</span>}
             {data && data.restaurant.stripeDetailsSubmitted && (
-              <Typography>Stripe Details Attached</Typography>
+              <Typography>{t('StripeDetailsAttached')}</Typography>
             )}
             <Box mt={3} mb={3}>
               <Button
@@ -63,8 +67,8 @@ const Payment = () => {
                 disabled={loadingQuery}
                 onClick={submitStripeDetails}>
                 {data && data.restaurant.stripeDetailsSubmitted
-                  ? 'Edit Stripe details'
-                  : 'Submit Stripe Details'}
+                  ? t('EditStripeDetails')
+                  : t('SubmitStripeDetails')}
               </Button>
             </Box>
           </Box>

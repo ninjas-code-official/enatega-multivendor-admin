@@ -15,12 +15,13 @@ const Configuration1 = props => {
   const {  error: errorQuery, loading: loadingQuery } = useQuery(
     GET_CONFIGURATION
   )
+  const { t } = props;
   return (
     <>
       <Header />
-      {errorQuery && 'Error'}
+      {errorQuery && t('Error')}
       {loadingQuery ? (
-        'Loading'
+        t('LoadingDots')
       ) : (
         <Grid container ml={2} spacing={2}>
           <Grid item sx={12} md={7} lg={7}>
@@ -32,7 +33,7 @@ const Configuration1 = props => {
                 alignItems:"center",
                 justifyContent:"center",
                 padding: 1}}>
-               <h4>This feature will available after purchasing product</h4>
+                <h4>{t('AvailableAfterPurchasing')}</h4>
             </Box >
           </Grid>
           <Grid

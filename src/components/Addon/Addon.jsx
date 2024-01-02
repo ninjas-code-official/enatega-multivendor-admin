@@ -31,6 +31,7 @@ const EDIT_ADDON = gql`
 `
 
 function Addon(props) {
+  const { t } = props;
   const restaurantId = localStorage.getItem('restaurantId')
   const onCompleted = ({ createAddons, editAddon }) => {
     if (createAddons) {
@@ -47,17 +48,17 @@ function Addon(props) {
           quantityMaximumError: false
         }
       ])
-      successSetter('Saved')
+      successSetter(t('Saved'))
       mainErrorSetter('')
     }
     if (editAddon) {
-      successSetter('Saved')
+      successSetter(t('Saved'))
       mainErrorSetter('')
     }
     setTimeout(onDismiss, 3000)
   }
   const onError = error => {
-    mainErrorSetter(`An error occured while saving,Try again ${error}`)
+    mainErrorSetter(` ${t('errorWhileSaving')} ${error}`)
     successSetter('')
     setTimeout(onDismiss, 3000)
   }
@@ -219,7 +220,7 @@ function Addon(props) {
           item
           className={props.addon ? classes.headingBlack : classes.heading}>
           <Typography variant="h6" className={classes.text}>
-            Addons
+            {t('Addons')}
           </Typography>
         </Box>
       </Box>
@@ -228,7 +229,7 @@ function Addon(props) {
         {addon.map((addonItem, index) => (
           <Box key={index}>
             <Box>
-              <label>Add/Remove Addon</label>
+              <label>{t('AddRemoveAddon')}</label>
               <RemoveIcon
                 style={{
                   backgroundColor: '#000',
@@ -252,11 +253,11 @@ function Addon(props) {
                 }}
               />
             </Box>
-            <Typography className={classes.labelText}>Title</Typography>
+            <Typography className={classes.labelText}>{t('Title')}</Typography>
             <Input
               style={{ marginTop: -1 }}
               id="input-title"
-              placeholder="Title"
+              placeholder={t('Title')}
               type="text"
               value={addonItem.title}
               onChange={event => {
@@ -268,11 +269,11 @@ function Addon(props) {
                 addonItem.titleError === true ? globalClasses.inputError : ''
               ]}
             />
-            <Typography className={classes.labelText}>Description</Typography>
+            <Typography className={classes.labelText}>{t('Description')}</Typography>
             <Input
               style={{ marginTop: -1 }}
               id="input-description"
-              placeholder="Description"
+              placeholder={t('Description')}
               type="text"
               value={addonItem.description || ''}
               onChange={event => {
@@ -286,11 +287,11 @@ function Addon(props) {
                   : ''
               ]}
             />
-            <Typography className={classes.labelText}>Min quantity</Typography>
+            <Typography className={classes.labelText}>{t('MinQuantity')}</Typography>
             <Input
               style={{ marginTop: -1 }}
               id="input-minimum"
-              placeholder="Minimum Quantity"
+              placeholder={t('MinimumQuantity')}
               type="number"
               value={addonItem.quantityMinimum}
               onChange={event => {
@@ -304,11 +305,11 @@ function Addon(props) {
                   : ''
               ]}
             />
-            <Typography className={classes.labelText}>Max quantity</Typography>
+            <Typography className={classes.labelText}>{t('MaxQuantity')}</Typography>
             <Input
               style={{ marginTop: -1 }}
               id="input-maximum"
-              placeholder="Maximum quantity"
+              placeholder={t('MaximumQuantity')}
               type="number"
               value={addonItem.quantityMaximum}
               onChange={event => {
@@ -326,7 +327,7 @@ function Addon(props) {
               <Box className={classes.flexRow}>
                 <Box item className={classes.heading}>
                   <Typography variant="p" className={classes.text}>
-                    Options
+                    {t('Options')}
                   </Typography>
                 </Box>
               </Box>
@@ -362,7 +363,7 @@ function Addon(props) {
               <Button
                 className={classes.button}
                 onClick={() => toggleModal(index)}>
-                New Option
+                {t('NewOption')}
               </Button>
             </Box>
           </Box>
@@ -417,7 +418,7 @@ function Addon(props) {
                 }, 4000);
               }
             }}>
-            SAVE
+            {t('Save')}
           </Button>
         </Box>
         <Box mt={2}>

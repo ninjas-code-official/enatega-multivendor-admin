@@ -32,12 +32,14 @@ const Configuration = props => {
   const { data, error: errorQuery, loading: loadingQuery } = useQuery(
     GET_CONFIGURATION
   )
+const { t } = props;
+
   return (
     <>
       <Header />
-      {errorQuery && 'Error'}
+      {errorQuery && t('Error')}
       {loadingQuery ? (
-        'Loading'
+        t('LoadingDots')
       ) : (
         <Grid container ml={2} spacing={2}>
           <Grid item sx={12} md={7} lg={7}>

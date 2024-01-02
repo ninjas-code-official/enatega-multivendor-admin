@@ -26,7 +26,7 @@ const GET_CONFIGURATION = gql`
 `
 
 function Order(props) {
-  const { order } = props
+  const { order, t } = props
   const [reason, reasonSetter] = useState('')
   const [reasonError, reasonErrorSetter] = useState(null)
   const [error, errorSetter] = useState('')
@@ -34,7 +34,7 @@ function Order(props) {
 
   const onCompleted = ({ updateOrderStatus }) => {
     if (updateOrderStatus) {
-      successSetter('Order status updated')
+      successSetter(t('OrderStatusUpdated'))
     }
     setTimeout(onDismiss, 5000)
   }
@@ -67,13 +67,13 @@ function Order(props) {
       <Box className={classes.flexRow}>
         <Box item className={classes.heading}>
           <Typography variant="h6" className={classes.text}>
-            Order # {order.orderId}
+            {t('Order')} # {order.orderId}
           </Typography>
         </Box>
       </Box>
       <Box className={[classes.container, classes.bgPrimary]}>
         <Typography className={classes.itemHeader} variant="h6">
-          Items
+          {t('Items')}
         </Typography>
         <Box container className={classes.innerContainer}>
           {order &&
@@ -102,7 +102,7 @@ function Order(props) {
                 </Grid>
                 {item.specialInstructions.length > 0 && (
                   <Typography variant="text" className={classes.textBlack}>
-                    Special Instructions
+                    {t('SpecialInstructions')}
                   </Typography>
                 )}
                 <Divider />
@@ -112,12 +112,12 @@ function Order(props) {
       </Box>
       <Box mt={3} className={[classes.container, classes.bgPrimary]}>
         <Typography className={classes.itemHeader} variant="h6">
-          Charges
+          {t('Charges')}
         </Typography>
         <Box container className={classes.innerContainer}>
           <Grid container mb={1} mt={1}>
             <Grid className={classes.textBlack} item lg={10}>
-              Subtotal
+              {t('Subtotal')}
             </Grid>
             <Grid className={[classes.textBlack]} item lg={2}>
               {data && data.configuration.currencySymbol}{' '}
@@ -132,7 +132,7 @@ function Order(props) {
           <Divider />
           <Grid container mb={1} mt={1}>
             <Grid className={classes.textBlack} item lg={10}>
-              Delivery Fee
+              {t('DeliveryFee')}
             </Grid>
             <Grid className={[classes.textBlack]} item lg={2}>
               {data && data.configuration.currencySymbol}{' '}
@@ -142,7 +142,7 @@ function Order(props) {
           <Divider />
           <Grid container mb={1} mt={1}>
             <Grid className={classes.textBlack} item lg={10}>
-              Tax Charges
+              {t('TaxCharges')}
             </Grid>
             <Grid className={[classes.textBlack]} item lg={2}>
               {data && data.configuration.currencySymbol}{' '}
@@ -152,7 +152,7 @@ function Order(props) {
           <Divider />
           <Grid container mb={1} mt={1}>
             <Grid className={classes.textBlack} item lg={10}>
-              Tip
+              {t('Tip')}
             </Grid>
             <Grid className={[classes.textBlack]} item lg={2}>
               {data && data.configuration.currencySymbol}{' '}
@@ -162,7 +162,7 @@ function Order(props) {
           <Divider />
           <Grid container mb={1} mt={5}>
             <Grid className={classes.textBlack} item lg={10}>
-              Total
+              {t('Total')}
             </Grid>
             <Grid className={[classes.textBlack]} item lg={2}>
               {data && data.configuration.currencySymbol}{' '}
@@ -174,7 +174,7 @@ function Order(props) {
       </Box>
       <Box mb={3} className={[classes.container, classes.bgPrimary]}>
         <Typography className={classes.itemHeader} variant="h6">
-          Payment Method
+          {t('PaymentMethod')}
         </Typography>
         <Box container className={classes.innerContainer}>
           <Grid container mb={1} mt={1}>
@@ -191,7 +191,7 @@ function Order(props) {
           <Grid container mb={1} mt={2}>
             <Grid item lg={10}>
               <Typography className={[classes.textBlack]} variant="p">
-                Paid Amount
+                {t('PaidAmount')}
               </Typography>
             </Grid>
             <Grid className={[classes.price, classes.textPrimary]} item lg={2}>
@@ -229,7 +229,7 @@ function Order(props) {
                   }
                 })
               }}>
-              {order && order.status === true ? 'Accepted' : 'Accept'}
+              {order && order.status === true ? t('Accepted') : t('Accept')}
             </Button>
             <Button
               variant="outlined"
@@ -247,12 +247,12 @@ function Order(props) {
                   })
                 }
               }}>
-              {order.status === false ? 'Cancelled' : 'Cancel'}
+              {order.status === false ? t('Cancelled') : t('Cancel')}
             </Button>
             <Input
               name="reason"
               id="input-reason"
-              placeholder="Reason if Rejected"
+              placeholder={t('PHReasonIfRejected')}
               type="text"
               disableUnderline
               value={(order && order.reason) || reason}

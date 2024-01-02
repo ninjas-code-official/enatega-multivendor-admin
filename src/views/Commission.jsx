@@ -7,6 +7,7 @@ import useGlobalStyles from '../utils/globalStyles'
 import { Container, Box, Typography, Grid, Input, Button } from '@mui/material'
 import useStyles from '../components/Rider/styles'
 import { ReactComponent as CommissionIcon } from '../assets/svg/svg/CommisionRate.svg'
+import { useTranslation, withTranslation } from 'react-i18next'
 
 const GET_RESTAURANTS = gql`
   ${restaurants}
@@ -26,6 +27,7 @@ const Commission = () => {
   )
   const globalClasses = useGlobalStyles()
   const classes = useStyles()
+  const { t } = useTranslation();
   return (
     <>
       <Header />
@@ -35,7 +37,7 @@ const Commission = () => {
             <Box container className={classes.container}>
               <Box item className={classes.heading}>
                 <Typography variant="h6" className={classes.text}>
-                  Commission Rates
+                  {t('CommissionRates')}
                 </Typography>
               </Box>
               <Box className={classes.form}>
@@ -54,7 +56,7 @@ const Commission = () => {
                           disableUnderline
                           className={globalClasses.input}
                           id={restaurant._id}
-                          placeholder="Commission percent"
+                          placeholder={t('PHCommission')}
                           min={0}
                           max={100}
                           type="number"
@@ -69,7 +71,7 @@ const Commission = () => {
                             const result = getValues(restaurant._id)
                             mutate({ variables: result })
                           }}>
-                          Save
+                          {t('Save')}
                         </Button>
                         {error && <span>{error.message}</span>}
                       </Grid>
@@ -93,4 +95,4 @@ const Commission = () => {
     </>
   )
 }
-export default Commission
+export default withTranslation()(Commission)

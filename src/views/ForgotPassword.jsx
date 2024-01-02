@@ -5,11 +5,13 @@ import { validateFunc } from '../constraints/constraints'
 import useStyles from '../components/Configuration/styles'
 import useGlobalStyles from '../utils/globalStyles'
 import { Box, Typography, Input, Alert, Button } from '@mui/material'
+import { withTranslation } from 'react-i18next'
 
 const RESET_PASSWORD = gql`
   ${resetPassword}
 `
 const ResetPassword = props => {
+  const { t } = props;
   const formRef = useRef()
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -49,7 +51,7 @@ const ResetPassword = props => {
   const onCompleted = data => {
     setConfirmPasswordError(null)
     setPasswordError(null)
-    setSuccess('Password has been updated')
+    setSuccess(t('PasswordUpdated'))
     setTimeout(hideAlert, 5000)
   }
   const onError = error => {
@@ -80,7 +82,7 @@ const ResetPassword = props => {
         <Box className={classes.flexRow}>
           <Box item className={classes.heading}>
             <Typography variant="h6" className={classes.text}>
-              Forgot Password
+              {t('ForgotPassword')}
             </Typography>
           </Box>
         </Box>
@@ -98,7 +100,7 @@ const ResetPassword = props => {
                 onBlur={event => {
                   onBlur(event, 'password')
                 }}
-                placeholder="Password"
+                placeholder={t('Password')}
                 type="password"
                 disableUnderline
                 className={[
@@ -122,7 +124,7 @@ const ResetPassword = props => {
                 onBlur={event => {
                   onBlur(event, 'confirmPassword')
                 }}
-                placeholder="Confirm Password"
+                placeholder={t('ConfirmPassword')}
                 disableUnderline
                 className={[
                   globalClasses.input,
@@ -152,7 +154,7 @@ const ResetPassword = props => {
                     })
                   }
                 }}>
-                Reset
+                {t('Reset')}
               </Button>
             </Box>
           </form>
@@ -180,4 +182,4 @@ const ResetPassword = props => {
   )
 }
 
-export default ResetPassword
+export default withTranslation()(ResetPassword)
