@@ -21,8 +21,10 @@ import { useQuery, gql } from '@apollo/client'
 import {
   getDashboardTotal,
   getDashboardSales,
-  getDashboardOrders
+  getDashboardOrders,
+  getOrdersByDateRange
 } from '../apollo'
+
 import useStyles from '../components/Option/styles'
 import useGlobalStyles from '../utils/globalStyles'
 import { withTranslation } from 'react-i18next'
@@ -46,11 +48,15 @@ const GET_DASHBOARD_SALES = gql`
 const GET_DASHBOARD_ORDERS = gql`
   ${getDashboardOrders}
 `
+const GET_ORDERS = gql`
+  ${getOrdersByDateRange}
+`
 
 
 const Dashboard = props => {
   const { t } = props;
   const restaurantId = localStorage.getItem('restaurantId')
+
 
   const dataLine = {
     datasets: {
@@ -68,6 +74,7 @@ const Dashboard = props => {
       borderColor: '#90EA93'
     }
   }
+
 
   const intializeStartDate = () => {
     var d = new Date()
@@ -111,8 +118,18 @@ const Dashboard = props => {
       }
     }
   )
-  const classes = useStyles()
-  const globalClasses = useGlobalStyles()
+
+const { data, loading: loadingQuery } = useQuery(GET_ORDERS, {
+  variables: {
+    startingDate: stateData.startingDate.toString(),
+    endingDate: stateData.endingDate.toString(),
+    restaurant: restaurantId,
+  },
+});
+console.log("getOrdersByDateRange",data)
+const classes = useStyles();
+const globalClasses = useGlobalStyles();
+
   return (
     <>
       <Header />
@@ -263,7 +280,7 @@ const Dashboard = props => {
           />
         </Grid>
         <Grid item md={3} ml={2} xs={12}>
-          <Box
+        <Box
             sx={{
               p: 2,
               borderRadius: 5,
@@ -285,6 +302,37 @@ const Dashboard = props => {
                 ? '...'
                 : dataTotal && dataTotal.getDashboardTotal.totalOrders}
             </Typography>
+
+            <img
+              src={stats}
+              style={{ marginLeft: '40%' }}
+              width={30}
+              height={40}
+              alt="stat"
+            />
+               </Box>
+          <Box
+            sx={{
+              p: 2,
+              borderRadius: 5,
+              bgcolor: 'common.white',
+              width: '70%',
+              mb: 3
+            }}>
+            
+            <Typography sx={{ fontSize: 15, fontWeight: 'bold' }}>
+              COD Orders
+            </Typography>
+          
+            <Typography
+              sx={{
+                fontSize: 35,
+                fontWeight: 'bold',
+                color: '#3C8F7C',
+                textAlign: 'center'
+              }}>
+             {loadingQuery ? '...' : data && data.getOrdersByDateRange.countCashOnDeliveryOrders}
+            </Typography>
             <img
               src={stats}
               style={{ marginLeft: '40%' }}
@@ -298,7 +346,8 @@ const Dashboard = props => {
               p: 2,
               borderRadius: 5,
               bgcolor: 'common.white',
-              width: '70%'
+              width: '70%',
+              mb: 3
             }}>
             <Typography sx={{ fontSize: 15, fontWeight: 'bold' }}>
               {t('TotalSales')}
@@ -316,6 +365,34 @@ const Dashboard = props => {
             </Typography>
             <img
               src={RiderStat}
+              style={{ marginLeft: '40%' }}
+              width={30}
+              height={40}
+              alt="stat"
+            />
+          </Box>
+          <Box
+            sx={{
+              p: 2,
+              borderRadius: 5,
+              bgcolor: 'common.white',
+              width: '70%',
+              mb: 3
+            }}>
+            <Typography sx={{ fontSize: 15, fontWeight: 'bold' }}>
+              COD Sales
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: 35,
+                fontWeight: 'bold',
+                color: '#3C8F7C',
+                textAlign: 'center'
+              }}>
+              {loadingQuery ? '...' : data && data.getOrdersByDateRange.totalAmountCashOnDelivery}
+            </Typography>
+            <img
+              src={stats}
               style={{ marginLeft: '40%' }}
               width={30}
               height={40}

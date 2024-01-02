@@ -54,7 +54,9 @@ function Email(props) {
       <Box className={classes.flexRow}>
         <Box item className={classes.heading}>
           <Typography variant="h6" className={classes.text}>
-            {t('Email')}
+
+            NodeMailer Email
+
           </Typography>
         </Box>
         <Box ml={20} mt={1}>

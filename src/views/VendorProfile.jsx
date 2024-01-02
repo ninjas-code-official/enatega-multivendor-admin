@@ -4,7 +4,7 @@ import { withTranslation, useTranslation } from 'react-i18next'
 import Header from '../components/Headers/Header'
 import { useQuery, useMutation, gql } from '@apollo/client'
 import { getRestaurantProfile, editRestaurant } from '../apollo'
-import { CLOUDINARY_UPLOAD_URL, CLOUDINARY_FOOD } from '../config/constants'
+import ConfigurableValues from '../config/constants'
 import useStyles from '../components/Restaurant/styles'
 import useGlobalStyles from '../utils/globalStyles'
 import { Box, Alert, Typography, Button, Input, Grid } from '@mui/material'
@@ -19,7 +19,11 @@ const EDIT_RESTAURANT = gql`
 `
 
 const VendorProfile = () => {
+
+ const { CLOUDINARY_UPLOAD_URL, CLOUDINARY_FOOD } = ConfigurableValues()
+
   const { t } = useTranslation();
+
   const restaurantId = localStorage.getItem('restaurantId')
 
   const [imgUrl, setImgUrl] = useState('')
