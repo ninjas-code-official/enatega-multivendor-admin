@@ -153,6 +153,7 @@ function Category(props) {
                         ? globalClasses.inputSuccess
                         : '',
                   ]}
+                  inputProps={{ min: '0', step: 'any' }} 
                 />
               </Grid>
             </Grid>

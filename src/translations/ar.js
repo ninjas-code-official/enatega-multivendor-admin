@@ -290,7 +290,9 @@ const ar = {
         FRI: "الجمعة",
         SAT: "السبت",
         SUN: "الأحد",
-        Open: "مفتوح"
+        Open: "مفتوح",
+        showPassword: 'عرض كلمة المرور',
+        hidePassword: 'إخفاء كلمة المرور'
     }
 }
 

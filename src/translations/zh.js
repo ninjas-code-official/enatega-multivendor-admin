@@ -290,7 +290,9 @@ const zh = {
     FRI: "星期五",
     SAT: "星期六",
     SUN: "星期日",
-    Open: "打开"
+    Open: "打开",
+    showPassword: '显示密码',
+    hidePassword: '隐藏密码'
   }
 }
 export default zh

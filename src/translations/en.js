@@ -290,7 +290,9 @@ const en = {
     FRI: 'FRI',
     SAT: 'SAT',
     SUN: 'SUN',
-    Open: 'Open'
+    Open: 'Open',
+    showPassword: 'Show Password',
+    hidePassword: 'Hide Password'
   }
 }
 

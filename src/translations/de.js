@@ -290,7 +290,9 @@ const de = {
     FRI: "Fr",
     SAT: "Sa",
     SUN: "So",
-    Open: "Geöffnet"
+    Open: "Geöffnet",
+    showPassword: 'Passwort anzeigen',
+    hidePassword:  'Passwort ausblenden'
   }
 }
 

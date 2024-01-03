@@ -10,7 +10,7 @@ import {
   Link,
   Checkbox,
   FormGroup,
-  FormControlLabel
+  FormControlLabel,
 } from '@mui/material'
 
 import { useMutation, gql } from '@apollo/client'
@@ -25,6 +25,11 @@ const LOGIN = gql`
   ${ownerLogin}
 `
 const Login = props => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword(prevState => !prevState);
+  };
   const [stateData, setStateData] = useState({
     email: 'admin@gmail.com',
     password: '123123',
@@ -213,6 +218,7 @@ const Login = props => {
                   </Typography>
                   <Input
                     style={{ marginTop: -1 }}
+                    type={showPassword ? 'text' : 'password'}
                     id="input-password"
                     name="input-password"
                     placeholder={t('Password')}
@@ -236,6 +242,9 @@ const Login = props => {
                         : ''
                     ]}
                   />
+                   <Button onClick={handleTogglePassword}>
+        {showPassword ? t('hidePassword') : t('showPassword')}
+      </Button>
                 </Box>
                 <Box
                   pl={3}

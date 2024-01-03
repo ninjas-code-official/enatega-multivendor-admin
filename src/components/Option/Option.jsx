@@ -100,8 +100,16 @@ function Option(props) {
   }
   const onChange = (event, index, state) => {
     const options = option
-    options[index][state] = event.target.value
-    optionSetter([...options])
+    if (state === 'price') {
+      if (!isNaN(event.target.value) && event.target.value >= 0) {
+        options[index][state] = event.target.value
+        optionSetter([...options])
+      }}
+      else {
+        options[index][state] = event.target.value
+        optionSetter([...options])
+      }
+   
   }
   const validate = () => {
     const options = option

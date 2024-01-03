@@ -121,6 +121,7 @@ function Tipping(props) {
                         ? globalClasses.inputSuccess
                         : '',
                   ]}
+                  inputProps={{ min: '0', step: 'any' }} 
                 />
               </Box>
             </Grid>
@@ -147,6 +148,7 @@ function Tipping(props) {
                         ? globalClasses.inputSuccess
                         : '',
                   ]}
+                  inputProps={{ min: '0', step: 'any' }} 
                 />
               </Box>
             </Grid>
@@ -176,6 +178,7 @@ function Tipping(props) {
                         ? globalClasses.inputSuccess
                         : '',
                   ]}
+                  inputProps={{ min: '0', step: 'any' }} 
                 />
               </Box>
             </Grid>

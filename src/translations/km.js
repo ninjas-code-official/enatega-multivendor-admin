@@ -290,7 +290,9 @@ const km = {
     FRI: "សុក្រ",
     SAT: "សៅរ៍",
     SUN: "អាទិត្យ",
-    Open: "បើក"
+    Open: "បើក",
+    showPassword: 'បង្ហាញ​ពាក្យ​សម្ងាត់',
+    hidePassword: 'លាក់​ពាក្យ​សម្ងាត់'
   }
 }
 

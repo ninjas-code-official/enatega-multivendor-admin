@@ -173,8 +173,10 @@ function Food(props) {
           : event.target.value
       variationSetter([...variations])
     } else {
+      if (!isNaN(event.target.value) && event.target.value >= 0) {
       variations[index][type] = event.target.value
       variationSetter([...variations])
+      }
     }
   }
   const onSubmitValidaiton = () => {
@@ -507,6 +509,7 @@ function Food(props) {
                               }}
                               disableUnderline
                               className={[globalClasses.input]}
+                              
                             />
                           </Box>
                         </Grid>

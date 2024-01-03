@@ -95,8 +95,22 @@ function Addon(props) {
 
   const onChange = (event, index, state) => {
     const addons = addon
+    if (state === 'quantityMinimum') {
+      if (!isNaN(event.target.value) && event.target.value >= 0) {
     addons[index][state] = event.target.value
     addonSetter([...addons])
+      }
+    }
+    else if (state === 'quantityMaximum'){
+      if (!isNaN(event.target.value) && event.target.value >= 0) {
+        addons[index][state] = event.target.value
+        addonSetter([...addons])
+          }
+    }
+    else {
+      addons[index][state] = event.target.value
+    addonSetter([...addons])
+    }
   }
   const mutation = props.addon ? EDIT_ADDON : CREATE_ADDONS
 
