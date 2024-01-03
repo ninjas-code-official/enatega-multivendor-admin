@@ -21,8 +21,12 @@ import {
   Select,
   MenuItem,
   Button,
-  Grid
+  Grid,
+  Checkbox
 } from '@mui/material'
+import InputAdornment from '@mui/material/InputAdornment';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const CREATE_RIDER = gql`
   ${createRider}
@@ -55,6 +59,7 @@ function Rider(props) {
   const [passwordError, passwordErrorSetter] = useState(null)
   const [phoneError, phoneErrorSetter] = useState(null)
   const [zoneError, zoneErrorSetter] = useState(null)
+  const [showPassword, setShowPassword] = useState(false);
   const [riderAvailable, setRiderAvailable] = useState(
     props.rider ? props.rider.available : true
   )
@@ -232,7 +237,7 @@ function Rider(props) {
                 id="input-password"
                 name="input-password"
                 placeholder={t('Password')}
-                type="text"
+                type={showPassword ? 'text' : 'password'}
                 defaultValue={password}
                 onBlur={event =>
                   onBlur(passwordErrorSetter, 'password', event.target.value)
@@ -246,6 +251,17 @@ function Rider(props) {
                       ? globalClasses.inputSuccess
                       : '',
                 ]}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <Checkbox
+                      checked={showPassword}
+                      onChange={() => setShowPassword(!showPassword)}
+                      color="primary"
+                      icon={<VisibilityOffIcon />}
+                      checkedIcon={<VisibilityIcon />}
+                    />
+                  </InputAdornment>
+                }
               />
               {/* </Box> */}
             </Grid>

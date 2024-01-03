@@ -5,7 +5,10 @@ import { validateFunc } from '../../../constraints/constraints'
 import { saveEmailConfiguration } from '../../../apollo'
 import useStyles from '../styles'
 import useGlobalStyles from '../../../utils/globalStyles'
-import { Box, Switch, Typography, Input, Button, Grid, Alert } from '@mui/material'
+import { Box, Switch, Typography, Input, Button, Grid, Alert, Checkbox } from '@mui/material'
+import InputAdornment from '@mui/material/InputAdornment';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 const SAVE_EMAIL_CONFIGURATION = gql`
   ${saveEmailConfiguration}
 `
@@ -20,6 +23,8 @@ function Email(props) {
   const [passwordError, passwordErrorSetter] = useState(null)
   const [emailNameError, emailNameErrorSetter] = useState(null)
   const [enableEmail, setEnabaleEmail] = useState(!!props.enabled)
+  const [showPassword, setShowPassword] = useState(false);
+  //const [isEndAdornmentEnabled, setIsEndAdornmentEnabled] = useState(false);
   const [mutate, { loading }] = useMutation(SAVE_EMAIL_CONFIGURATION)
 
   const onBlur = (setter, field, state) => {
@@ -155,7 +160,7 @@ function Email(props) {
                   id="input-password"
                   name="input-password"
                   placeholder={t('PHFood')}
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   defaultValue={password}
                   onBlur={event =>
                     onBlur(passwordErrorSetter, 'password', event.target.value)
@@ -169,6 +174,19 @@ function Email(props) {
                         ? globalClasses.inputSuccess
                         : ''
                   ]}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      {false && (
+                        <Checkbox
+                          checked={showPassword}
+                          onChange={() => setShowPassword(!showPassword)}
+                          color="primary"
+                          icon={<VisibilityOffIcon />}
+                          checkedIcon={<VisibilityIcon />}
+                        />
+                      )}
+                    </InputAdornment>
+                  }
                 />
               </Box>
             </Grid>

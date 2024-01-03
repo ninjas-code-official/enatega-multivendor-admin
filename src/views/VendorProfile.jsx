@@ -7,9 +7,12 @@ import { getRestaurantProfile, editRestaurant } from '../apollo'
 import { CLOUDINARY_UPLOAD_URL, CLOUDINARY_FOOD } from '../config/constants'
 import useStyles from '../components/Restaurant/styles'
 import useGlobalStyles from '../utils/globalStyles'
-import { Box, Alert, Typography, Button, Input, Grid } from '@mui/material'
+import { Box, Alert, Typography, Button, Input, Grid, Checkbox } from '@mui/material'
 import { Container } from '@mui/system'
 import CustomLoader from '../components/Loader/CustomLoader'
+import InputAdornment from '@mui/material/InputAdornment';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const GET_PROFILE = gql`
   ${getRestaurantProfile}
@@ -21,7 +24,7 @@ const EDIT_RESTAURANT = gql`
 const VendorProfile = () => {
   const { t } = useTranslation();
   const restaurantId = localStorage.getItem('restaurantId')
-
+  const [showPassword, setShowPassword] = useState(false);
   const [imgUrl, setImgUrl] = useState('')
   const [nameError, setNameError] = useState(null)
   const [usernameError, setUsernameError] = useState(null)
@@ -244,7 +247,7 @@ const VendorProfile = () => {
                         name="password"
                         id="input-type-password"
                         placeholder={t('PHRestaurantPassword')}
-                        type="text"
+                        type={showPassword ? 'text' : 'password'}
                         defaultValue={(data && data.restaurant.password) || ''}
                         disableUnderline
                         className={[
@@ -254,7 +257,18 @@ const VendorProfile = () => {
                             : passwordError === true
                               ? globalClasses.inputSuccess
                               : ''
-                        ]}
+                          ]}
+                          endAdornment={
+                            <InputAdornment position="end">
+                              <Checkbox
+                                checked={showPassword}
+                                onChange={() => setShowPassword(!showPassword)}
+                                color="primary"
+                                icon={<VisibilityOffIcon />}
+                                checkedIcon={<VisibilityIcon />}
+                              />
+                            </InputAdornment>
+                          }
                       />
                     </Box>
                   </Grid>

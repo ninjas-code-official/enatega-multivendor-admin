@@ -4,9 +4,12 @@ import { withTranslation } from 'react-i18next'
 import { useMutation, gql } from '@apollo/client'
 import { createRestaurant, restaurantByOwner } from '../../apollo'
 import { CLOUDINARY_UPLOAD_URL, CLOUDINARY_FOOD } from '../../config/constants'
-import { Box, Alert, Typography, Button, Input, Switch, Grid } from '@mui/material'
+import { Box, Alert, Typography, Button, Input, Switch, Grid, Checkbox } from '@mui/material'
 import useStyles from './styles'
 import useGlobalStyles from '../../utils/globalStyles'
+import InputAdornment from '@mui/material/InputAdornment';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const CREATE_RESTAURANT = gql`
   ${createRestaurant}
@@ -18,7 +21,7 @@ const RESTAURANT_BY_OWNER = gql`
 const CreateRestaurant = props => {
   const { t } = props;
   const owner = props.owner
-
+  const [showPassword, setShowPassword] = useState(false);
   const [imgUrl, setImgUrl] = useState('')
   const [nameError, setNameError] = useState(null)
   const [usernameError, setUsernameError] = useState(null)
@@ -248,7 +251,7 @@ const CreateRestaurant = props => {
                   name="password"
                   id="input-type-password"
                   placeholder={t('RestaurantPassword')}
-                  type="text"
+                  type={showPassword ? 'text' : 'password'}
                   defaultValue={''}
                   disableUnderline
                   className={[
@@ -259,6 +262,17 @@ const CreateRestaurant = props => {
                         ? globalClasses.inputSuccess
                         : ''
                   ]}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <Checkbox
+                        checked={showPassword}
+                        onChange={() => setShowPassword(!showPassword)}
+                        color="primary"
+                        icon={<VisibilityOffIcon />}
+                        checkedIcon={<VisibilityIcon />}
+                      />
+                    </InputAdornment>
+                  }
                 />
               </Box>
             </Grid>
