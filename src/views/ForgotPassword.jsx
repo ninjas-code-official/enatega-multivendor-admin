@@ -132,8 +132,8 @@ const ResetPassword = props => {
             </Box>
             <Box className={globalClasses.flexRow}>
               <Input
-                id="input-password"
-                name="input-password"
+                id="input-confirm-password"
+                name="input-confirm-password"
                 value={confirmPassword}
                 type={showConfirmPassword ? 'text' : 'password'}
                 onChange={event => {

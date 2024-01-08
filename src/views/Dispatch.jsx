@@ -19,6 +19,11 @@ import { customStyles } from '../utils/tableCustomStyles'
 import { Container, MenuItem, Select, Box, useTheme } from '@mui/material'
 import { ReactComponent as DispatchIcon } from '../assets/svg/svg/Dispatch.svg'
 import TableHeader from '../components/TableHeader'
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+import "react-notifications/lib/notifications.css";
 
 const SUBSCRIPTION_ORDER = gql`
   ${subscriptionOrder}
@@ -53,6 +58,7 @@ const Orders = props => {
       <Select
         id="input-rider"
         name="input-rider"
+        value=''
         displayEmpty
         inputProps={{ 'aria-label': 'Without label' }}
         style={{ width: '50px' }}
@@ -66,7 +72,15 @@ const Orders = props => {
                   variables: {
                     id: row._id,
                     riderId: rider._id
-                  }
+                  },
+                  onCompleted: (data) => {
+                    console.error('Mutation success data:', data);
+                    NotificationManager.success('Successful', 'Rider updated!', 3000);
+                  },
+                   onError: (error) => {
+                    console.error('Mutation error:', error);
+                    NotificationManager.error('Error', 'Failed to update rider!', 3000);
+                  },
                 })
               }}
               key={rider._id}>
@@ -84,6 +98,10 @@ const Orders = props => {
   } = useQuery(GET_ACTIVE_ORDERS, { pollInterval: 3000 })
 
   const statusFunc = row => {
+    const handleStatusSuccessNotification = (status) => {
+      NotificationManager.success(status, 'Status Updated!', 3000);
+    };
+    
     return (
       <>
         <Select
@@ -101,7 +119,15 @@ const Orders = props => {
                   variables: {
                     id: row._id,
                     orderStatus: 'ACCEPTED'
-                  }
+                  },
+                  onCompleted: (data) => {
+                    handleStatusSuccessNotification('ACCEPTED');
+                    refetchOrders();
+                  },
+                  onError: (error) => {
+                    console.error('Mutation error:', error);
+                    NotificationManager.error('Error', 'Failed to update status!', 3000);
+                  },
                 })
               }}>
               {t('Accept')}
@@ -117,7 +143,15 @@ const Orders = props => {
                     variables: {
                       id: row._id,
                       orderStatus: 'CANCELLED'
-                    }
+                    },
+                    onCompleted: (data)=>{
+                      handleStatusSuccessNotification('Rejected');
+                      refetchOrders();
+                    },
+                    onError: (error) => {
+                      console.error('Mutation error:', error);
+                      NotificationManager.error('Error', 'Failed to update status!', 3000);
+                    },
                   })
                 }}>
                 {t('Reject')}
@@ -133,7 +167,15 @@ const Orders = props => {
                     variables: {
                       id: row._id,
                       orderStatus: 'DELIVERED'
-                    }
+                    },
+                    onCompleted: (data)=>{
+                      handleStatusSuccessNotification('DELIVERED');
+                      refetchOrders();
+                    },
+                    onError: (error) => {
+                      console.error('Mutation error:', error);
+                      NotificationManager.error('Error', 'Failed to update status!', 3000);
+                    },
                   })
                 }}>
                 {t('Delivered')}
@@ -236,6 +278,7 @@ const Orders = props => {
 
   return (
     <>
+      <NotificationContainer />
       <Header />
       <Box className={globalClasses.flexRow} mb={3}>
         <DispatchIcon />
