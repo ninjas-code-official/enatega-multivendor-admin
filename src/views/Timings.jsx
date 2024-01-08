@@ -8,7 +8,7 @@ import { getRestaurantProfile, updateTimings } from '../apollo'
 import TimeRangePicker from '@wojtekmaj/react-timerange-picker'
 import CustomLoader from '../components/Loader/CustomLoader'
 import useGlobalStyles from '../utils/globalStyles'
-import { Container, Grid, Box, Button, Alert } from '@mui/material'
+import { Container, Grid, Box, Button, Alert, useTheme } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 const GET_RESTAURANT_PROFILE = gql`
@@ -167,6 +167,7 @@ const Timings = props => {
 export default withTranslation()(Timings)
 const DayComponent = ({ day, value, onChangeTime }) => {
   const { t } = useTranslation();
+  const theme = useTheme();
   useEffect(() => {
     onChangeTime(day, values)
   })
@@ -197,8 +198,8 @@ const DayComponent = ({ day, value, onChangeTime }) => {
             {index === values.length - 1 && (
               <AddIcon
                 style={{
-                  backgroundColor: '#90EA93',
-                  color: '#000',
+                  backgroundColor: theme.palette.warning.dark,
+                  color: theme.palette.common.black,
                   borderRadius: '50%',
                   marginBottom: -5,
                   marginLeft: 10
@@ -212,8 +213,8 @@ const DayComponent = ({ day, value, onChangeTime }) => {
             {values.length > 1 && (
               <RemoveIcon
                 style={{
-                  backgroundColor: '#000',
-                  color: '#90EA93',
+                  backgroundColor: theme.palette.common.black,
+                  color: theme.palette.warning.dark,
                   borderRadius: '50%',
                   marginLeft: 10,
                   marginRight: 10,

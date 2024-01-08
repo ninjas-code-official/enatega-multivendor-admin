@@ -3,9 +3,13 @@ import { useMutation, gql } from '@apollo/client'
 import { validateFunc } from '../../constraints/constraints'
 import { withTranslation } from 'react-i18next'
 import { createVendor, editVendor, getVendors } from '../../apollo'
-import { Input, Button, Alert, Box, Typography } from '@mui/material'
+import { Input, Button, Alert, Box, Typography, Checkbox } from '@mui/material'
 import useStyles from './styles'
 import useGlobalStyles from '../../utils/globalStyles'
+import InputAdornment from '@mui/material/InputAdornment';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 
 const CREATE_VENDOR = gql`
   ${createVendor}
@@ -19,6 +23,7 @@ const GET_VENDORS = gql`
 
 function Vendor(props) {
   const formRef = useRef()
+  const [showPassword, setShowPassword] = useState(false);
   const mutation = props.vendor ? EDIT_VENDOR : CREATE_VENDOR
   const email = props.vendor ? props.vendor.email : ''
   const [error, errorSetter] = useState('')
@@ -30,8 +35,8 @@ function Vendor(props) {
   const onCompleted = data => {
     if (!props.vendor) clearFields()
     const message = props.vendor
-      ? t('RiderUpdatedSuccessfully')
-      : t('RiderAddedSuccessfully')
+      ? t('VendorUpdatedSuccessfully')
+      : t('VendorAddedSuccessfully')
     errorSetter('')
     successSetter(message)
     setTimeout(hideAlert, 3000)
@@ -138,10 +143,21 @@ function Vendor(props) {
                 ]}
                 id="input-password"
                 name="input-password"
-                type="text"
+                type={showPassword ? 'text' : 'password'}
                 onBlur={event => {
                   onBlur(passErrorSetter, 'password', event.target.value)
                 }}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <Checkbox
+                      checked={showPassword}
+                      onChange={() => setShowPassword(!showPassword)}
+                      color="primary"
+                      icon={<VisibilityOffIcon />}
+                      checkedIcon={<VisibilityIcon />}
+                    />
+                  </InputAdornment>
+                }
               />
             </>
           ) : null}
@@ -164,9 +180,11 @@ function Vendor(props) {
                 });
                 // Close the modal after 3 seconds by calling the parent's onClose callback
                 setTimeout(() => {
-                  props.onClose(); // Close the modal
+                  if (typeof props.onClose === 'function') {
+                    props.onClose(); // Close the modal
+                  }
                 }, 4000);
-              }
+              }   
             }}>
             {props.vendor ? t('Update') : t('Save')}
           </Button>

@@ -7,7 +7,8 @@ import {
   Toolbar,
   Typography,
   Link,
-  SvgIcon
+  SvgIcon,
+  useTheme
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import routes from '../../routes'
@@ -18,6 +19,7 @@ import { useTranslation, withTranslation } from 'react-i18next'
 
 const drawerWidth = 240
 function AdminSidebar(props) {
+  const theme = useTheme();
   const { t } = useTranslation();
   const location = useLocation()
   const classes = useStyles()
@@ -143,7 +145,7 @@ function AdminSidebar(props) {
               boxSizing: 'border-box',
               width: drawerWidth,
               background:
-                'linear-gradient(180deg, #90EA93 50%, transparent 50%)',
+                `linear-gradient(180deg, ${theme.palette.warning.dark} 50%, transparent 50%)`,
               borderRight: 'none'
             }
           }}

@@ -20,7 +20,8 @@ import {
   Menu,
   ListItemIcon,
   Typography,
-  Paper
+  Paper,
+  useTheme
 } from '@mui/material'
 import { ReactComponent as VendorIcon } from '../assets/svg/svg/Vendors.svg'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
@@ -37,6 +38,7 @@ const DELETE_VENDOR = gql`
   ${deleteVendor}
 `
 const Vendors = props => {
+  const theme = useTheme();
   const { t } = props;
   const [editModal, setEditModal] = useState(false)
   const [vendors, setVendor] = useState(null)
@@ -122,12 +124,12 @@ const Vendors = props => {
           sx={{
             color: 'black',
             fontWeight: 'bold',
-            backgroundColor: '#90EA93',
+            backgroundColor: theme.palette.warning.dark,
             padding: 0,
             height: '15px',
             fontSize: '7px',
             '&:hover': {
-              color: '#fff'
+              color: theme.palette.common.white
             }
           }}
           onClick={e => {

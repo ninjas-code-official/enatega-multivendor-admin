@@ -10,7 +10,7 @@ import DataTable from 'react-data-table-component'
 import orderBy from 'lodash/orderBy'
 import Loader from 'react-loader-spinner'
 import SearchBar from '../components/TableHeader/SearchBar'
-import { Container, Button, Box } from '@mui/material'
+import { Container, Button, Box, useTheme } from '@mui/material'
 import { customStyles } from '../utils/tableCustomStyles'
 import useGlobalStyles from '../utils/globalStyles'
 import { ReactComponent as RestIcon } from '../assets/svg/svg/Restaurant.svg'
@@ -59,7 +59,7 @@ const Restaurants = props => {
               className="img-responsive"
               src={row.image}
               alt={t('ImageMenu')}
-              style={{ width: 30, height: 30, borderRadius: 15 }}
+              style={{ width: 30, height: 30, borderRadius: 15, cursor: 'pointer' }}
               onClick={() => {
                 localStorage.setItem('restaurant_id', row._id)
                 props.history.push('/admin/dashboard')
@@ -74,19 +74,31 @@ const Restaurants = props => {
     {
       name: t('Name'),
       // sortable: true,
-      selector: 'name'
+      selector: 'name',
+      style: {
+        cursor: 'pointer',
+      },
     },
     {
       name: t('Address'),
-      selector: 'address'
+      selector: 'address',
+      style: {
+        cursor: 'pointer',
+      },
     },
     {
       name: t('OrderPrefix'),
-      selector: 'orderPrefix'
+      selector: 'orderPrefix',
+      style: {
+        cursor: 'pointer',
+      },
     },
     {
       name: t('Vendor'),
       selector: 'owner',
+      style: {
+        cursor: 'pointer',
+      },
       cell: row => <>{row.owner ? row.owner.email : null}</>
     },
     {
@@ -94,13 +106,14 @@ const Restaurants = props => {
       cell: row => <>{actionButtons(row)}</>
     }
   ]
+  const theme = useTheme();
   const actionButtons = row => {
     return (
       <>
         {loading ? (
           <Loader
             type="ThreeDots"
-            color="#BB2124"
+            color={theme.palette.error.light}
             height={20}
             width={40}
             visible={loading}
@@ -125,7 +138,7 @@ const Restaurants = props => {
     {
       when: row => !row.isActive,
       style: {
-        backgroundColor: '#f9fafc'
+        backgroundColor: theme.palette.background.primary
       }
     }
   ]

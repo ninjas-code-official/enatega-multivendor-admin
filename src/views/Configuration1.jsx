@@ -4,7 +4,7 @@ import { useQuery, gql } from '@apollo/client'
 import Header from '../components/Headers/Header'
 import { getConfiguration } from '../apollo'
 
-import { Grid } from '@mui/material'
+import { Grid , useTheme } from '@mui/material'
 import { ReactComponent as ConfigIcon } from '../assets/svg/svg/Configuration.svg'
 import { Box } from '@mui/material'
 
@@ -16,6 +16,7 @@ const Configuration1 = props => {
     GET_CONFIGURATION
   )
   const { t } = props;
+  const theme = useTheme();
   return (
     <>
       <Header />
@@ -28,7 +29,7 @@ const Configuration1 = props => {
           <Box container style={{backgroundColor: 'white',
                 margin: '60px 0',
                 borderRadius: 20,
-                boxShadow: '0px 0px 38px rgba(0, 0, 0, 0.06)',
+                boxShadow: `0px 0px 38px ${theme.palette.common.blackShade}`,
                 textAlign: 'center',
                 alignItems:"center",
                 justifyContent:"center",

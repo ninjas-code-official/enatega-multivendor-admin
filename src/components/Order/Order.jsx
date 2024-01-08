@@ -11,7 +11,8 @@ import {
   Typography,
   Alert,
   Input,
-  Button
+  Button,
+  useTheme
 } from '@mui/material'
 import useStyles from './styles'
 import useGlobalStyles from '../../utils/globalStyles'
@@ -26,6 +27,7 @@ const GET_CONFIGURATION = gql`
 `
 
 function Order(props) {
+  const theme = useTheme();
   const { order, t } = props
   const [reason, reasonSetter] = useState('')
   const [reasonError, reasonErrorSetter] = useState(null)
@@ -207,7 +209,7 @@ function Order(props) {
             <Loader
               className="text-center"
               type="TailSpin"
-              color="#fb6340"
+              color={theme.palette.error.lightest}
               height={40}
               width={40}
               visible={loading}

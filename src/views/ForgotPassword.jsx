@@ -4,8 +4,11 @@ import { resetPassword } from '../apollo'
 import { validateFunc } from '../constraints/constraints'
 import useStyles from '../components/Configuration/styles'
 import useGlobalStyles from '../utils/globalStyles'
-import { Box, Typography, Input, Alert, Button } from '@mui/material'
+import { Box, Typography, Input, Alert, Button, Checkbox } from '@mui/material'
 import { withTranslation } from 'react-i18next'
+import InputAdornment from '@mui/material/InputAdornment';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const RESET_PASSWORD = gql`
   ${resetPassword}
@@ -19,6 +22,9 @@ const ResetPassword = props => {
   const [passwordError, setPasswordError] = useState(null)
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(null)
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const onBlur = (event, field) => {
     if (field === 'password') {
       setPasswordError(!validateFunc({ password: password }, 'password'))
@@ -101,7 +107,7 @@ const ResetPassword = props => {
                   onBlur(event, 'password')
                 }}
                 placeholder={t('Password')}
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 disableUnderline
                 className={[
                   globalClasses.input,
@@ -111,13 +117,25 @@ const ResetPassword = props => {
                     ? globalClasses.inputSuccess
                     : ''
                 ]}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <Checkbox
+                      checked={showPassword}
+                      onChange={() => setShowPassword(!showPassword)}
+                      color="primary"
+                      icon={<VisibilityOffIcon />}
+                      checkedIcon={<VisibilityIcon />}
+                    />
+                  </InputAdornment>
+                }
               />
             </Box>
             <Box className={globalClasses.flexRow}>
               <Input
-                id="input-password"
-                name="input-password"
+                id="input-confirm-password"
+                name="input-confirm-password"
                 value={confirmPassword}
+                type={showConfirmPassword ? 'text' : 'password'}
                 onChange={event => {
                   setConfirmPassword(event.target.value)
                 }}
@@ -134,6 +152,17 @@ const ResetPassword = props => {
                     ? globalClasses.inputSuccess
                     : ''
                 ]}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <Checkbox
+                      checked={showConfirmPassword}
+                      onChange={() => setShowConfirmPassword(!showConfirmPassword)}
+                      color="primary"
+                      icon={<VisibilityOffIcon />}
+                      checkedIcon={<VisibilityIcon />}
+                    />
+                  </InputAdornment>
+                }
               />
             </Box>
             <Box>
@@ -152,6 +181,12 @@ const ResetPassword = props => {
                         token: params.get('reset')
                       }
                     })
+                    .then(response => {
+                      console.log('Mutation successful:', response);
+                    })
+                    .catch(error => {
+                      console.error('Mutation error:', error.message);
+                    });
                   }
                 }}>
                 {t('Reset')}

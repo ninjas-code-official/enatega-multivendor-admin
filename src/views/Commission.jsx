@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useQuery, useMutation, gql } from '@apollo/client'
 import Header from '../components/Headers/Header'
 import { restaurants, updateCommission } from '../apollo'
@@ -6,6 +6,11 @@ import CustomLoader from '../components/Loader/CustomLoader'
 import useGlobalStyles from '../utils/globalStyles'
 import { Container, Box, Typography, Grid, Input, Button } from '@mui/material'
 import useStyles from '../components/Rider/styles'
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+import "react-notifications/lib/notifications.css";
 import { ReactComponent as CommissionIcon } from '../assets/svg/svg/CommisionRate.svg'
 import { useTranslation, withTranslation } from 'react-i18next'
 
@@ -25,13 +30,26 @@ const Commission = () => {
   const { data, error: errorQuery, loading: loadingQuery } = useQuery(
     GET_RESTAURANTS
   )
+  console.log(data)
   const globalClasses = useGlobalStyles()
   const classes = useStyles()
   const { t } = useTranslation();
+  const handleSuccessButtonClick = () => {
+  NotificationManager.success('Update Successful', 'Commission Rates', 3000, {
+    className: 'customNotification',
+  });
+  };
+  const handleErrorButtonClick = () => {
+  NotificationManager.error('Update Error', 'Commission Rates', 3000, {
+    className: 'customNotification',
+  });
+  };
+
   return (
     <>
       <Header />
       <Grid container>
+        <NotificationContainer />
         <Grid item lg={8}>
           <Container className={globalClasses.flex} fluid>
             <Box container className={classes.container}>
@@ -45,38 +63,52 @@ const Commission = () => {
                 {loadingQuery ? (
                   <CustomLoader />
                 ) : (
-                  data &&
-                  data.restaurants.map(restaurant => (
-                    <Grid key={restaurant._id} container spacing={1}>
-                      <Grid item sm={5} mt={3}>
-                        {restaurant.name}
-                      </Grid>
-                      <Grid item sm={4}>
-                        <Input
-                          disableUnderline
-                          className={globalClasses.input}
-                          id={restaurant._id}
-                          placeholder={t('PHCommission')}
-                          min={0}
-                          max={100}
-                          type="number"
-                          step="1"
-                          defaultValue={restaurant.commissionRate}
-                        />
-                      </Grid>
-                      <Grid item sm={3}>
-                        <Button
-                          className={globalClasses.button}
-                          onClick={() => {
-                            const result = getValues(restaurant._id)
-                            mutate({ variables: result })
-                          }}>
-                          {t('Save')}
-                        </Button>
-                        {error && <span>{error.message}</span>}
-                      </Grid>
-                    </Grid>
-                  ))
+                  data && (
+                    <>
+                      {data.restaurants.map((restaurant) => (
+                        <Grid key={restaurant._id} container spacing={1}>
+                          <Grid item sm={5} mt={3}>
+                            {restaurant.name}
+                          </Grid>
+                          <Grid item sm={4}>
+                            <Input
+                              disableUnderline
+                              className={globalClasses.input}
+                              id={restaurant._id}
+                              placeholder={t('PHCommission')}
+                              min={0}
+                              max={100}
+                              type="number"
+                              step="1"
+                              defaultValue={restaurant.commissionRate}
+                            />
+                          </Grid>
+                          <Grid item sm={3}>
+                            <Button
+                              className={globalClasses.button}
+                              onClick={() => {
+                                const result = getValues(restaurant._id);
+                                mutate({
+                                  variables: result,
+                                  onCompleted: (data) => {
+                                    handleSuccessButtonClick();
+                                  },
+                                });
+                              }}
+                            >
+                              {t('Save')}
+                            </Button>
+                            {error && <span>{error.message}</span>}
+                          </Grid>
+                        </Grid>
+                      ))}
+                      <Box mt={2}>
+                        {error && (
+                          handleErrorButtonClick()
+                        )}
+                      </Box>
+                    </>
+                  )
                 )}
               </Box>
             </Box>

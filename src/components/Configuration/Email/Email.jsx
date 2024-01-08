@@ -1,11 +1,14 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { withTranslation } from 'react-i18next'
 import { useMutation, gql } from '@apollo/client'
 import { validateFunc } from '../../../constraints/constraints'
 import { saveEmailConfiguration } from '../../../apollo'
 import useStyles from '../styles'
 import useGlobalStyles from '../../../utils/globalStyles'
-import { Box, Switch, Typography, Input, Button, Grid } from '@mui/material'
+import { Box, Switch, Typography, Input, Button, Grid, Alert, Checkbox } from '@mui/material'
+import InputAdornment from '@mui/material/InputAdornment';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 const SAVE_EMAIL_CONFIGURATION = gql`
   ${saveEmailConfiguration}
 `
@@ -20,6 +23,8 @@ function Email(props) {
   const [passwordError, passwordErrorSetter] = useState(null)
   const [emailNameError, emailNameErrorSetter] = useState(null)
   const [enableEmail, setEnabaleEmail] = useState(!!props.enabled)
+  const [showPassword, setShowPassword] = useState(false);
+  //const [isEndAdornmentEnabled, setIsEndAdornmentEnabled] = useState(false);
   const [mutate, { loading }] = useMutation(SAVE_EMAIL_CONFIGURATION)
 
   const onBlur = (setter, field, state) => {
@@ -48,6 +53,29 @@ function Email(props) {
   }
   const classes = useStyles()
   const globalClasses = useGlobalStyles()
+  const [successMessage, setSuccessMessage] = useState('');
+  const handleSuccess = (message) => {
+    setSuccessMessage(message);
+  };
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setSuccessMessage('');
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [successMessage, setSuccessMessage]);
+  const [errorMessage, setErrorMessage] = useState('');
+  const handleError = (error) => {
+    setErrorMessage('An error occurred while saving configuration.');
+    console.error('Mutation error:', error);
+  };
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setErrorMessage('');
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [errorMessage, setErrorMessage]);
 
   return (
     <Box container className={classes.container}>
@@ -134,7 +162,7 @@ function Email(props) {
                   id="input-password"
                   name="input-password"
                   placeholder={t('PHFood')}
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   defaultValue={password}
                   onBlur={event =>
                     onBlur(passwordErrorSetter, 'password', event.target.value)
@@ -148,6 +176,19 @@ function Email(props) {
                         ? globalClasses.inputSuccess
                         : ''
                   ]}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      {false && (
+                        <Checkbox
+                          checked={showPassword}
+                          onChange={() => setShowPassword(!showPassword)}
+                          color="primary"
+                          icon={<VisibilityOffIcon />}
+                          checkedIcon={<VisibilityIcon />}
+                        />
+                      )}
+                    </InputAdornment>
+                  }
                 />
               </Box>
             </Grid>
@@ -167,12 +208,38 @@ function Email(props) {
                         password: formRef.current['input-password'].value,
                         enableEmail: enableEmail
                       }
-                    }
+                    },
+                    onCompleted: (data) => {
+                      handleSuccess('Configuration saved successfully!');
+                    },
+                    onError: (error) => {
+                      handleError(error);
+                    },
                   })
                 }
               }}>
               {t('Save')}
             </Button>
+          </Box>
+          <Box mt={2}>
+            {successMessage && (
+              <Alert
+                  className={globalClasses.alertSuccess}
+                  variant="filled"
+                  severity="success"
+                >
+                  {successMessage}
+                </Alert>
+            )}
+            {errorMessage && (
+              <Alert
+                className={globalClasses.alertError}
+                variant="filled"
+                severity="error"
+              >
+                {errorMessage}
+              </Alert>
+            )}
           </Box>
         </form>
       </Box>

@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import React, { useState, useEffect } from 'react'
 import { withTranslation } from 'react-i18next'
-import { Container, MenuItem, Select } from '@mui/material'
+import { Container, MenuItem, Select, useTheme } from '@mui/material'
 import { useQuery, useMutation, useSubscription, gql } from '@apollo/client'
 import DataTable from 'react-data-table-component'
 import { getActiveOrders, subscriptionOrder, updateStatus } from '../apollo'
@@ -25,6 +25,7 @@ const GET_ACTIVE_ORDERS = gql`
 `
 
 const DispatchRestaurant = props => {
+  const theme = useTheme();
   const { t } = props;
   const params = useParams()
 
@@ -166,7 +167,7 @@ const DispatchRestaurant = props => {
     {
       when: row => ['DELIVERED', 'CANCELLED'].includes(row.orderStatus),
       style: {
-        backgroundColor: '#FDEFDD'
+        backgroundColor: theme.palette.success.dark
       }
     }
   ]

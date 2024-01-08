@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useQuery, gql } from '@apollo/client'
 import { restaurantByOwner } from '../apollo'
 import CreateRestaurant from '../components/Restaurant/CreateRestaurant'
-import { Box, Button, Modal, Container, Grid } from '@mui/material'
+import { Box, Button, Modal, Container, Grid, useTheme } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import useGlobalStyles from '../utils/globalStyles'
 import { withTranslation } from 'react-i18next'
@@ -13,6 +13,7 @@ const RESTAURANT_BY_OWNER = gql`
   ${restaurantByOwner}
 `
 const Restaurant = props => {
+  const theme = useTheme();
   const { t } = props;
   const [owner, setOwner] = useState()
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -56,7 +57,7 @@ const Restaurant = props => {
           height: '160px',
           width: '100%',
           background:
-            'linear-gradient(91.18deg, #90EA93 1.49%, #6FCF97 99.86%);',
+            `linear-gradient(91.18deg, ${theme.palette.warning.dark} 1.49%, ${theme.palette.primary.main} 99.86%)`,
           borderRadius: '0 0 40px 40px',
           marginBottom: 1,
           mt: -10
@@ -81,11 +82,11 @@ const Restaurant = props => {
               toggleModal()
             }}
             style={{
-              backgroundColor: '#000',
-              color: '#90EA93',
+              backgroundColor: theme.palette.common.black,
+              color: theme.palette.warning.dark,
               borderRadius: 10
             }}
-            startIcon={<AddIcon fill="#000" />}>
+            startIcon={<AddIcon fill={theme.palette.common.black} />}>
             {t('AddNewRestaurant')}
           </Button>
         </Box>

@@ -1,10 +1,11 @@
 import * as React from 'react'
-import { Box, Link, BottomNavigation, Typography } from '@mui/material'
+import { Box, Link, BottomNavigation, Typography, useTheme } from '@mui/material'
 import useStyles from './styles'
 import { withTranslation } from 'react-i18next'
 
 
 function AdminFooter(props) {
+  const theme = useTheme();
   const { t } = props;
   const [value, setValue] = React.useState(0)
   const classes = useStyles()
@@ -12,13 +13,13 @@ function AdminFooter(props) {
   return (
     <Box
       sx={{
-        background: 'linear-gradient(237.49deg, #EEF4FA 0.63%, #DEE6ED 85.49%)'
+        background: `linear-gradient(237.49deg, ${theme.palette.success.lightest} 0.63%, ${theme.palette.success.darkest} 85.49%)`
       }}
       className={classes.footer}>
       <BottomNavigation
         sx={{
           background:
-            'linear-gradient(237.49deg, #EEF4FA 0.63%, #DEE6ED 85.49%)'
+            `linear-gradient(237.49deg, ${theme.palette.success.lightest} 0.63%, ${theme.palette.success.darkest} 85.49%)`
         }}
         showLabels
         value={value}

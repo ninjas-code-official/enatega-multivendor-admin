@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Typography, Input, Alert, Button, Grid } from '@mui/material'
+import { Box, Typography, Input, Alert, Button, Grid, useTheme } from '@mui/material'
 import { withTranslation } from 'react-i18next'
 import { useMutation, gql } from '@apollo/client'
 import { createOptions, editOption } from '../../apollo'
@@ -18,6 +18,7 @@ const EDIT_OPTION = gql`
 `
 
 function Option(props) {
+  const theme = useTheme();
   const { t } = props;
   const [option, optionSetter] = useState(
     props.option
@@ -206,8 +207,8 @@ function Option(props) {
                   <div className={classes.labelText}>
                     <RemoveIcon
                       style={{
-                        backgroundColor: '#000',
-                        color: '#90EA93',
+                        backgroundColor: theme.palette.common.black,
+                        color: theme.palette.warning.dark,
                         borderRadius: '50%',
                         marginTop: 12,
                         marginRight: 10,
@@ -218,8 +219,8 @@ function Option(props) {
                     />
                     <AddIcon
                       style={{
-                        backgroundColor: '#90EA93',
-                        color: '#000',
+                        backgroundColor: theme.palette.warning.dark,
+                        color: theme.palette.common.black,
                         borderRadius: '50%',
                         marginTop: 12,
                       }}

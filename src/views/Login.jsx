@@ -20,11 +20,16 @@ import useStyles from '../components/Configuration/styles'
 import useGlobalStyles from '../utils/globalStyles'
 import LoginBg from '../assets/img/loginBg.png'
 import LoginPageIcon from '../assets/img/LoginPageIcon.png'
+import InputAdornment from '@mui/material/InputAdornment';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+
 
 const LOGIN = gql`
   ${ownerLogin}
 `
 const Login = props => {
+  const [showPassword, setShowPassword] = useState(false);
   const [stateData, setStateData] = useState({
     email: 'admin@gmail.com',
     password: '123123',
@@ -217,6 +222,7 @@ const Login = props => {
                     name="input-password"
                     placeholder={t('Password')}
                     value={stateData.password}
+                    type={showPassword ? 'text' : 'password'}
                     onChange={event => {
                       setStateData({
                         ...stateData,
@@ -235,6 +241,17 @@ const Login = props => {
                         ? globalClasses.inputSuccess
                         : ''
                     ]}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <Checkbox
+                          checked={showPassword}
+                          onChange={() => setShowPassword(!showPassword)}
+                          color="primary"
+                          icon={<VisibilityOffIcon />}
+                          checkedIcon={<VisibilityIcon />}
+                        />
+                      </InputAdornment>
+                    }
                   />
                 </Box>
                 <Box
