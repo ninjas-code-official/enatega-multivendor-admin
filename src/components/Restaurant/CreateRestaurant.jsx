@@ -3,8 +3,12 @@ import { validateFunc } from '../../constraints/constraints'
 import { withTranslation } from 'react-i18next'
 import { useMutation, gql } from '@apollo/client'
 import { createRestaurant, restaurantByOwner } from '../../apollo'
-import { CLOUDINARY_UPLOAD_URL, CLOUDINARY_FOOD } from '../../config/constants'
+
 import { Box, Alert, Typography, Button, Input, Switch, Grid, Checkbox } from '@mui/material'
+
+import ConfigurableValues from '../../config/constants'
+
+
 import useStyles from './styles'
 import useGlobalStyles from '../../utils/globalStyles'
 import InputAdornment from '@mui/material/InputAdornment';
@@ -19,7 +23,11 @@ const RESTAURANT_BY_OWNER = gql`
 `
 
 const CreateRestaurant = props => {
+
+  const { CLOUDINARY_UPLOAD_URL, CLOUDINARY_FOOD } = ConfigurableValues()
+
   const { t } = props;
+
   const owner = props.owner
   const [showPassword, setShowPassword] = useState(false);
   const [imgUrl, setImgUrl] = useState('')
