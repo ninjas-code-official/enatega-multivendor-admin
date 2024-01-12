@@ -13,7 +13,7 @@ import { Grid } from '@mui/material'
 import { ReactComponent as ConfigIcon } from '../assets/svg/svg/Configuration.svg'
 import TwilioConfiguration from '../components/Configuration/Twilio/Twilio'
 import SendGridConfiguration from '../components/Configuration/SendGrid/SendGrid';
-
+import ColorConfiguration from '../components/Configuration/Colors/Colors'
 
 import SentryConfiguration from '../components/Configuration/Sentry/Sentry';  
 import GoogleApiKeyConfiguration from '../components/Configuration/GoogleApi/GoogleApi'; 
@@ -113,6 +113,7 @@ const { t } = props;
               googleColor={data && data.configuration.googleColor}
             />
           </Grid>
+
           <Grid item sx={12} md={12} lg={5}>
             <SentryConfiguration
               dashboardSentryUrl={data && data.configuration.dashboardSentryUrl}
@@ -168,7 +169,14 @@ const { t } = props;
         testOtp={data && data.configuration.testOtp}
       />
        </Grid>
-        </Grid>
+       <Grid item sx={12} md={12} lg={5}>
+  <ColorConfiguration
+    primaryColor={data && data.configuration.primaryColor}
+    secondaryColor={data && data.configuration.secondaryColor}
+    tertiaryColor={data && data.configuration.tertiaryColor}
+  />
+</Grid>
+        </Grid>                                                                                                                             
       )}
     </>
   )

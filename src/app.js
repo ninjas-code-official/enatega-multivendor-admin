@@ -15,6 +15,8 @@ import { uploadToken } from './apollo'
 import { gql, useApolloClient } from '@apollo/client'
 import ConfigurableValues from './config/constants.js'
 import TawkMessengerReact from '@tawk.to/tawk-messenger-react'
+import { ThemeProvider, StyledEngineProvider } from '@mui/material'
+import CustomTheme from './utils/theme'
 
 require('./i18n')
 
@@ -32,7 +34,10 @@ const App = () => {
     MSG_SENDER_ID,
     APP_ID,
     MEASUREMENT_ID,
-    GOOGLE_MAPS_KEY
+    GOOGLE_MAPS_KEY,
+    PRIMERY_COLOR,
+    SECONDARY_COLOR,
+    TERTIARY_COLOR
   } = ConfigurableValues()
   console.log('GOOGLE_MAPS_KEY_App', GOOGLE_MAPS_KEY)
   // const [mapsKey, setMapsKey] = useState(null)
@@ -124,29 +129,34 @@ const App = () => {
         }}
       />
       {GOOGLE_MAPS_KEY ? (
-        <GoogleMapsLoader GOOGLE_MAPS_KEY={GOOGLE_MAPS_KEY}>
-          <HashRouter basename="/">
-            <Switch>
-              <AdminPrivateRoute
-                path="/super_admin"
-                component={props => <SuperAdminLayout {...props} />}
-              />
-              <PrivateRoute
-                path="/restaurant"
-                component={props => <RestaurantLayout {...props} />}
-              />
-              <PrivateRoute
-                path="/admin"
-                component={props => <AdminLayout {...props} />}
-              />
-              <Route
-                path="/auth"
-                component={props => <AuthLayout {...props} />}
-              />
-              <Redirect from="/" to={route} />
-            </Switch>
-          </HashRouter>
-        </GoogleMapsLoader>
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider
+            theme={CustomTheme(PRIMERY_COLOR, SECONDARY_COLOR, TERTIARY_COLOR)}>
+            <GoogleMapsLoader GOOGLE_MAPS_KEY={GOOGLE_MAPS_KEY}>
+              <HashRouter basename="/">
+                <Switch>
+                  <AdminPrivateRoute
+                    path="/super_admin"
+                    component={props => <SuperAdminLayout {...props} />}
+                  />
+                  <PrivateRoute
+                    path="/restaurant"
+                    component={props => <RestaurantLayout {...props} />}
+                  />
+                  <PrivateRoute
+                    path="/admin"
+                    component={props => <AdminLayout {...props} />}
+                  />
+                  <Route
+                    path="/auth"
+                    component={props => <AuthLayout {...props} />}
+                  />
+                  <Redirect from="/" to={route} />
+                </Switch>
+              </HashRouter>
+            </GoogleMapsLoader>
+          </ThemeProvider>
+        </StyledEngineProvider>
       ) : (
         <Box
           component="div"

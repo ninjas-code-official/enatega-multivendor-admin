@@ -20,8 +20,6 @@ import ConfigurableValues from './config/constants'
 import { ConfigurationProvider } from './context/Configuration'
 import App from './app'
 import { RestProvider } from './context/Restaurant'
-import { ThemeProvider, StyledEngineProvider } from '@mui/material'
-import theme from './utils/theme'
 
 function Main() {
   const {
@@ -98,28 +96,9 @@ function Main() {
   return (
     <ApolloProvider client={client}>
       <ConfigurationProvider>
-        {/* <LoadScript
-          id="script-loader"
-          googleMapsApiKey={GOOGLE_MAPS_KEY}
-          libraries={[
-            'drawing',
-            'places',
-            'geometry',
-            'localContext',
-            'visualization'
-          ]}> */}
-
-        <StyledEngineProvider injectFirst>
-          <ThemeProvider theme={theme}>
-            <RestProvider>
-              {/* <GoogleMapsLoader> */}
-              <App />
-              {/* </GoogleMapsLoader> */}
-            </RestProvider>
-          </ThemeProvider>
-        </StyledEngineProvider>
-
-        {/* </LoadScript> */}
+        <RestProvider>
+          <App />
+        </RestProvider>
       </ConfigurationProvider>
     </ApolloProvider>
   )

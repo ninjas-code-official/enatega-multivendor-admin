@@ -4,8 +4,8 @@ import ConfigurationContext from '../context/Configuration'
 const ConfigurableValues = () => {
   const configuration = useContext(ConfigurationContext)
   console.log('configuration', configuration)
-  const SERVER_URL = 'https://enatega-multivendor.up.railway.app'
-  const WS_SERVER_URL = 'wss://enatega-multivendor.up.railway.app'
+  const SERVER_URL = 'http://10.97.35.175:8001'
+  const WS_SERVER_URL = 'ws://10.97.35.175:8001'
   const GOOGLE_MAPS_KEY = configuration.googleApiKey
   const FIREBASE_KEY = configuration.firebaseKey
   const APP_ID = configuration.appId
@@ -19,6 +19,9 @@ const ConfigurableValues = () => {
   const CLOUDINARY_FOOD = configuration.cloudinaryApiKey
   const VAPID_KEY =
     'BOpVOtmawD0hzOR0F5NQTz_7oTlNVwgKX_EgElDnFuILsaE_jWYPIExAMIIGS-nYmy1lhf2QWFHQnDEFWNG_Z5w'
+  const PRIMERY_COLOR = configuration.primaryColor
+  const SECONDARY_COLOR = configuration.secondaryColor
+  const TERTIARY_COLOR = configuration.tertiaryColor
 
   return {
     GOOGLE_MAPS_KEY,
@@ -34,7 +37,10 @@ const ConfigurableValues = () => {
     SENTRY_DSN,
     CLOUDINARY_UPLOAD_URL,
     CLOUDINARY_FOOD,
-    VAPID_KEY
+    VAPID_KEY,
+    PRIMERY_COLOR,
+    SECONDARY_COLOR,
+    TERTIARY_COLOR
   }
 }
 

@@ -245,7 +245,6 @@ export const getConfiguration = `query GetConfiguration{
       androidClientID
       iOSClientID
       expoClientID
-     
       googleMapLibraries
       googleColor    
       termsAndConditions
@@ -258,6 +257,9 @@ export const getConfiguration = `query GetConfiguration{
       msgSenderId
       appId
       measurementId
+      primaryColor
+  secondaryColor
+  tertiaryColor
     }
   }`
 

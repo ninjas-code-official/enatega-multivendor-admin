@@ -227,6 +227,15 @@ export const saveSentryConfiguration = `
     }
   }
 `
+
+export const saveColorConfiguration = `mutation SaveColorConfiguration($configurationInput: ColorsConfigurationInput!) {
+  saveColorsConfiguration(configurationInput: $configurationInput) {
+    primaryColor
+    secondaryColor
+    tertiaryColor
+  }
+}
+`
 export const saveGoogleApiKeyConfiguration = `
   mutation SaveGoogleApiKeyConfiguration(
     $configurationInput: GoogleApiKeyConfigurationInput!
