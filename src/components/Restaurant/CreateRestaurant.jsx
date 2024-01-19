@@ -248,6 +248,9 @@ const CreateRestaurant = props => {
                         ? globalClasses.inputSuccess
                         : ''
                   ]}
+                  onChange={(event) => {
+                    event.target.value = event.target.value.trim().replace(/\s/g, '');
+                  }}
                 />
               </Box>
             </Grid>
