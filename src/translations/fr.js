@@ -290,7 +290,13 @@ const fr = {
     FRI: "Ven",
     SAT: "Sam",
     SUN: "Dim",
-    Open: "Ouvert"
+    Open: "Ouvert",
+    ACCEPTED: "ACCEPTÉ",
+    PENDING: "EN ATTENTE",
+    PICKED: "CHOISI",
+    ASSIGNED: "ATTRIBUÉ",
+    DELIVERED: "LIVRÉ",
+    REJECTED: "REJETÉ"
   }
 }
 

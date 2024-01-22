@@ -76,8 +76,7 @@ const Commission = () => {
                               className={globalClasses.input}
                               id={restaurant._id}
                               placeholder={t('PHCommission')}
-                              min={0}
-                              max={100}
+                              inputProps={{ min: 0 }}
                               type="number"
                               step="1"
                               defaultValue={restaurant.commissionRate}

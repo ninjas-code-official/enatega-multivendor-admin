@@ -290,7 +290,13 @@ const zh = {
     FRI: "星期五",
     SAT: "星期六",
     SUN: "星期日",
-    Open: "打开"
+    Open: "打开",
+    ACCEPTED: "已接受",
+    PENDING: "待处理",
+    PICKED: "已选择",
+    ASSIGNED: "已分配",
+    DELIVERED: "已交付",
+    REJECTED: "已拒绝"
   }
 }
 export default zh

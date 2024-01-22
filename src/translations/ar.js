@@ -290,7 +290,13 @@ const ar = {
         FRI: "الجمعة",
         SAT: "السبت",
         SUN: "الأحد",
-        Open: "مفتوح"
+        Open: "مفتوح",
+        ACCEPTED: "تم قبوله",
+        PENDING: "قيد الانتظار",
+        PICKED: "تم اختياره",
+        ASSIGNED: "تم التعيين",
+        DELIVERED: "تم التسليم",
+        REJECTED: "تم رفضه"
     }
 }
 

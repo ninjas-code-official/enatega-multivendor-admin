@@ -290,7 +290,13 @@ const de = {
     FRI: "Fr",
     SAT: "Sa",
     SUN: "So",
-    Open: "Geöffnet"
+    Open: "Geöffnet",
+    ACCEPTED: "GEACCEPTEERD",
+    PENDING: "IN AFWACHTING",
+    PICKED: "GEKOZEN",
+    ASSIGNED: "TOEGEWEZEN",
+    DELIVERED: "BEZORGD",
+    REJECTED: "AFGEWEZEN"
   }
 }
 

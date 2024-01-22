@@ -290,7 +290,13 @@ const en = {
     FRI: 'FRI',
     SAT: 'SAT',
     SUN: 'SUN',
-    Open: 'Open'
+    Open: 'Open',
+    ACCEPTED: 'ACCEPTED',
+    PENDING: 'PENDING',
+    PICKED: 'PICKED',
+    ASSIGNED: 'ASSIGNED',
+    DELIVERED: 'DELIVERED',
+    REJECTED: 'REJECTED'
   }
 }
 
