@@ -23,6 +23,7 @@ import {
 } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
+import defaultImage from '../../assets/img/default-image.jpeg'
 const CREATE_FOOD = gql`
   ${createFood}
 `
@@ -410,7 +411,7 @@ function Food(props) {
               <img
                 className={classes.image}
                 alt="..."
-                src={imgMenu || 'https://enatega.com/wp-content/uploads/2023/11/man-suit-having-breakfast-kitchen-side-view.webp'}
+                src={imgMenu || defaultImage}
               />
               <label htmlFor="file-upload" className={classes.fileUpload}>
                 {t('UploadAnImage')}

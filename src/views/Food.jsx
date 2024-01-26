@@ -27,6 +27,7 @@ import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import TableHeader from '../components/TableHeader'
 import Alert from '../components/Alert'
+import defaultImage from '.././assets/img/default-image.jpeg'
 
 const GET_FOODS = gql`
   ${getRestaurantDetail}
@@ -104,7 +105,7 @@ const Food = props => {
           <img
             className="img-responsive"
             style={{ width: 30, height: 30, borderRadius: 15 }}
-            src={row.image || 'https://enatega.com/wp-content/uploads/2023/11/man-suit-having-breakfast-kitchen-side-view.webp'}
+            src={row.image || defaultImage}
             alt={row.image ? 'img menu' : 'Default Image'}
           />
         </>

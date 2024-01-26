@@ -56,7 +56,7 @@ function WithdrawRequest() {
       selector: 'status',
       cell: row => (
         <div>
-          {row.status}
+          {t(row.status)}
           <br />
           {updateRequestStatus(row)}
         </div>

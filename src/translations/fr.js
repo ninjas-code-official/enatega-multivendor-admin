@@ -296,7 +296,8 @@ const fr = {
     PICKED: "CHOISI",
     ASSIGNED: "ATTRIBUÉ",
     DELIVERED: "LIVRÉ",
-    REJECTED: "REJETÉ"
+    REJECTED: "REJETÉ",
+    CANCELLED: 'ANNULÉE'
   }
 }
 

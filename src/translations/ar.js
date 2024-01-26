@@ -296,7 +296,8 @@ const ar = {
         PICKED: "تم اختياره",
         ASSIGNED: "تم التعيين",
         DELIVERED: "تم التسليم",
-        REJECTED: "تم رفضه"
+        REJECTED: "تم رفضه",
+        CANCELLED: 'ملغاة'
     }
 }
 
