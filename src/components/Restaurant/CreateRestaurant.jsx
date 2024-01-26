@@ -14,6 +14,7 @@ import useGlobalStyles from '../../utils/globalStyles'
 import InputAdornment from '@mui/material/InputAdornment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import defaultImage from '../../assets/img/default-image.jpeg'
 
 const CREATE_RESTAURANT = gql`
   ${createRestaurant}
@@ -341,6 +342,7 @@ const CreateRestaurant = props => {
                   placeholder={t("DeliveryTime")}
                   type="number"
                   disableUnderline
+                  inputProps={{ min: 1 }}
                   className={[
                     globalClasses.input,
                     deliveryTimeError === false
@@ -362,6 +364,7 @@ const CreateRestaurant = props => {
                   placeholder={t("MinOrder")}
                   type="number"
                   disableUnderline
+                  inputProps={{ min: 1 }}
                   className={[
                     globalClasses.input,
                     minimumOrderError === false
@@ -383,6 +386,7 @@ const CreateRestaurant = props => {
                   placeholder={t("SalesTax")}
                   type="number"
                   disableUnderline
+                  inputProps={{ min: 0 }}
                   className={[
                     globalClasses.input,
                     salesTaxError === false
@@ -404,8 +408,7 @@ const CreateRestaurant = props => {
               className={classes.image}
               alt="..."
               src={
-                imgUrl ||
-                'https://enatega.com/wp-content/uploads/2023/11/man-suit-having-breakfast-kitchen-side-view.webp'
+                imgUrl || defaultImage
               }
             />
             <label htmlFor="file-upload" className={classes.fileUpload}>
@@ -444,8 +447,7 @@ const CreateRestaurant = props => {
                         name,
                         address,
                         image:
-                          imgUpload ||
-                          'https://enatega.com/wp-content/uploads/2023/11/man-suit-having-breakfast-kitchen-side-view.webp',
+                          imgUpload || defaultImage,
                         deliveryTime: Number(deliveryTime),
                         minimumOrder: Number(minimumOrder),
                         username,

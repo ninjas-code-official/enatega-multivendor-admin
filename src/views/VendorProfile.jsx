@@ -13,6 +13,7 @@ import CustomLoader from '../components/Loader/CustomLoader'
 import InputAdornment from '@mui/material/InputAdornment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import defaultImage from '.././assets/img/default-image.jpeg'
 
 const GET_PROFILE = gql`
   ${getRestaurantProfile}
@@ -426,8 +427,7 @@ const VendorProfile = () => {
                     alt="..."
                     src={
                       imgUrl ||
-                      (data && data.restaurant.image) ||
-                      'https://enatega.com/wp-content/uploads/2023/11/man-suit-having-breakfast-kitchen-side-view.webp'
+                      (data && data.restaurant.image) || defaultImage
                     }
                   />
                   <label htmlFor="file-upload" className={classes.fileUpload}>
@@ -468,8 +468,7 @@ const VendorProfile = () => {
                               address,
                               image:
                                 imgUpload ||
-                                data.restaurant.image ||
-                                'https://enatega.com/wp-content/uploads/2023/11/man-suit-having-breakfast-kitchen-side-view.webp',
+                                data.restaurant.image || defaultImage,
                               orderPrefix: prefix,
                               deliveryTime: Number(deliveryTime),
                               minimumOrder: Number(minimumOrder),

@@ -296,7 +296,8 @@ const zh = {
     PICKED: "已选择",
     ASSIGNED: "已分配",
     DELIVERED: "已交付",
-    REJECTED: "已拒绝"
+    REJECTED: "已拒绝",
+    CANCELLED: '已取消'
   }
 }
 export default zh
