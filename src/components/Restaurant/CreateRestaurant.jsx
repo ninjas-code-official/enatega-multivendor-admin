@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next'
 import { useMutation, gql } from '@apollo/client'
 import { createRestaurant, restaurantByOwner } from '../../apollo'
 
-import { Box, Alert, Typography, Button, Input, Switch, Grid, Checkbox } from '@mui/material'
+import { Box, Alert, Typography, Button, Input, Switch, Grid, Checkbox, Select, MenuItem } from '@mui/material'
 
 import ConfigurableValues from '../../config/constants'
 
@@ -373,7 +373,7 @@ const CreateRestaurant = props => {
                 />
               </Box>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <Box>
                 <Typography className={classes.labelText}>{t("SalesTax")}</Typography>
                 <Input
@@ -392,6 +392,38 @@ const CreateRestaurant = props => {
                         : ''
                   ]}
                 />
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+            <Box >
+            <Typography className={classes.labelText} style={{}}>{t("Shop Category")}</Typography>
+                <Select
+                style={{ margin: '0 0 0 0',padding: '0px 0px',}}
+                  id="input-category"
+                  name="input-category"
+                  defaultValue={['']}
+                  value={''}
+                  onChange={e => {}}
+                  onBlur={event => { }}
+                  displayEmpty
+                  // inputProps={{ 'aria-label': 'Without label' }}
+                  className={[
+                    globalClasses.input
+                  ]}>
+                  <MenuItem value="" style={{ color: 'black' }}>
+                    {t('SelectCategory')}
+                  </MenuItem>
+
+                  {
+                    [{_id:'1', title:'Grocery'},{_id:'2', title:'Restaurant'}].map(category => (
+                      <MenuItem
+                        value={category._id}
+                        key={category._id}
+                        style={{ color: 'black' }}>
+                        {category.title}
+                      </MenuItem>
+                    ))}
+                </Select>
               </Box>
             </Grid>
           </Grid>
