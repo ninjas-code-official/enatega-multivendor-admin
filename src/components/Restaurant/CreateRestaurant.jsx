@@ -22,6 +22,11 @@ const RESTAURANT_BY_OWNER = gql`
   ${restaurantByOwner}
 `
 
+const SHOP_TYPE = {
+  GROCERY: 'grocery',
+  RESTAURANT: 'restaurant'
+}
+
 const CreateRestaurant = props => {
 
   const { CLOUDINARY_UPLOAD_URL, CLOUDINARY_FOOD } = ConfigurableValues()
@@ -38,6 +43,7 @@ const CreateRestaurant = props => {
   const [deliveryTimeError, setDeliveryTimeError] = useState(null)
   const [minimumOrderError, setMinimumOrderError] = useState(null)
   const [salesTaxError, setSalesTaxError] = useState(null)
+  const [shopType, setShopType] = useState(SHOP_TYPE.RESTAURANT)
   const [errors, setErrors] = useState('')
   const [success, setSuccess] = useState('')
   const onCompleted = data => {
@@ -65,7 +71,7 @@ const CreateRestaurant = props => {
     setMinimumOrderError(null)
     setSalesTaxError(null)
     setSuccess('')
-    if (graphQLErrors) {
+    if (graphQLErrors && graphQLErrors.length) {
       setErrors(graphQLErrors[0].message)
     }
     if (networkError) {
@@ -402,25 +408,19 @@ const CreateRestaurant = props => {
                   id="input-category"
                   name="input-category"
                   defaultValue={['']}
-                  value={''}
-                  onChange={e => {}}
-                  onBlur={event => { }}
+                  value={shopType}
+                  onChange={e => {setShopType(e.target.value)}}
                   displayEmpty
-                  // inputProps={{ 'aria-label': 'Without label' }}
                   className={[
                     globalClasses.input
                   ]}>
-                  <MenuItem value="" style={{ color: 'black' }}>
-                    {t('SelectCategory')}
-                  </MenuItem>
-
                   {
-                    [{_id:'1', title:'Grocery'},{_id:'2', title:'Restaurant'}].map(category => (
+                    Object.values(SHOP_TYPE).map(category => (
                       <MenuItem
-                        value={category._id}
-                        key={category._id}
+                        value={category}
+                        key={category}
                         style={{ color: 'black' }}>
-                        {category.title}
+                        {category.toUpperCase()}
                       </MenuItem>
                     ))}
                 </Select>
@@ -481,7 +481,8 @@ const CreateRestaurant = props => {
                         deliveryTime: Number(deliveryTime),
                         minimumOrder: Number(minimumOrder),
                         username,
-                        password
+                        password,
+                        shopType
                       }
                     }
                   })

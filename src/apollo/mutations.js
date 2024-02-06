@@ -752,6 +752,7 @@ export const createRestaurant = `mutation CreateRestaurant($restaurant:Restauran
     minimumOrder
     tax
     location{coordinates}
+    shopType
   }
 }`
 

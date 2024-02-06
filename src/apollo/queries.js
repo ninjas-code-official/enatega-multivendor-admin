@@ -385,6 +385,7 @@ export const getVendors = `query Vendors{
           _id
           title
         }
+        shopType
       }
     }
 }`
@@ -403,6 +404,7 @@ export const getVendor = `query GetVendor($id:String!){
           image
           address
           location{coordinates}
+          shopType
         }
     }
 }`
