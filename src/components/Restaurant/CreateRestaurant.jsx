@@ -14,6 +14,7 @@ import useGlobalStyles from '../../utils/globalStyles'
 import InputAdornment from '@mui/material/InputAdornment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { SHOP_TYPE } from '../../utils/enums'
 
 const CREATE_RESTAURANT = gql`
   ${createRestaurant}
@@ -21,11 +22,6 @@ const CREATE_RESTAURANT = gql`
 const RESTAURANT_BY_OWNER = gql`
   ${restaurantByOwner}
 `
-
-const SHOP_TYPE = {
-  GROCERY: 'grocery',
-  RESTAURANT: 'restaurant'
-}
 
 const CreateRestaurant = props => {
 
@@ -43,7 +39,7 @@ const CreateRestaurant = props => {
   const [deliveryTimeError, setDeliveryTimeError] = useState(null)
   const [minimumOrderError, setMinimumOrderError] = useState(null)
   const [salesTaxError, setSalesTaxError] = useState(null)
-  const [shopType, setShopType] = useState(SHOP_TYPE.RESTAURANT)
+  // const [shopType, setShopType] = useState(SHOP_TYPE.RESTAURANT)
   const [errors, setErrors] = useState('')
   const [success, setSuccess] = useState('')
   const onCompleted = data => {
@@ -405,11 +401,11 @@ const CreateRestaurant = props => {
             <Typography className={classes.labelText} style={{}}>{t("Shop Category")}</Typography>
                 <Select
                 style={{ margin: '0 0 0 0',padding: '0px 0px',}}
-                  id="input-category"
-                  name="input-category"
-                  defaultValue={['']}
-                  value={shopType}
-                  onChange={e => {setShopType(e.target.value)}}
+                  id="shop-type"
+                  name="shopType"
+                  defaultValue={SHOP_TYPE.RESTAURANT}
+                  // value={shopType}
+                  // onChange={e => {setShopType(e.target.value)}}
                   displayEmpty
                   className={[
                     globalClasses.input
@@ -468,6 +464,7 @@ const CreateRestaurant = props => {
                   const minimumOrder = form.minimumOrder.value
                   const username = form.username.value
                   const password = form.password.value
+                  const shopType = form.shopType.value
 
                   mutate({
                     variables: {
