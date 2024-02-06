@@ -670,6 +670,7 @@ export const editRestaurant = `mutation EditRestaurant($restaurantInput:Restaura
           endTime
         }
       }
+      shopType
     }
 }`
 
