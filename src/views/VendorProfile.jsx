@@ -7,13 +7,14 @@ import { getRestaurantProfile, editRestaurant } from '../apollo'
 import ConfigurableValues from '../config/constants'
 import useStyles from '../components/Restaurant/styles'
 import useGlobalStyles from '../utils/globalStyles'
-import { Box, Alert, Typography, Button, Input, Grid, Checkbox, Select, MenuItem } from '@mui/material'
+import { Box, Alert, Typography, Button, Input, Grid, Checkbox } from '@mui/material'
 import { Container } from '@mui/system'
 import CustomLoader from '../components/Loader/CustomLoader'
 import InputAdornment from '@mui/material/InputAdornment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { SHOP_TYPE } from '../utils/enums'
+import Dropdown from '../components/Dropdown';
 
 const GET_PROFILE = gql`
   ${getRestaurantProfile}
@@ -418,29 +419,16 @@ const VendorProfile = () => {
                     </Box>
                   </Grid>
                   <Grid item xs={12} sm={6}>
-                    <Box>
-                      <Typography className={classes.labelText} style={{}}>
-                        {t('Shop Category')}
-                      </Typography>
-                      <Select
-                        style={{ margin: '0 0 0 0', padding: '0px 0px' }}
-                        id="shop-type"
-                        name="shopType"
-                        defaultValue={data.restaurant.shopType|| SHOP_TYPE.RESTAURANT}
-                        displayEmpty
-                        className={[globalClasses.input]}
-                      >
-                        {Object.values(SHOP_TYPE).map((category) => (
-                          <MenuItem
-                            value={category}
-                            key={category}
-                            style={{ color: 'black' }}
-                          >
-                            {category.toUpperCase()}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </Box>
+                    <Dropdown
+                      title={t('Shop Category')}
+                      values={Object.values(SHOP_TYPE)}
+                      defaultValue={
+                        data.restaurant.shopType || SHOP_TYPE.RESTAURANT
+                      }
+                      id={'shop-type'}
+                      name={'shopType'}
+                      displayEmpty={true}
+                    />
                   </Grid>
                 </Grid>
                 <Box
