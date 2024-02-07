@@ -13,6 +13,8 @@ import CustomLoader from '../components/Loader/CustomLoader'
 import InputAdornment from '@mui/material/InputAdornment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { SHOP_TYPE } from '../utils/enums'
+import Dropdown from '../components/Dropdown';
 
 const GET_PROFILE = gql`
   ${getRestaurantProfile}
@@ -416,6 +418,18 @@ const VendorProfile = () => {
                       />
                     </Box>
                   </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <Dropdown
+                      title={t('Shop Category')}
+                      values={Object.values(SHOP_TYPE)}
+                      defaultValue={
+                        data.restaurant.shopType || SHOP_TYPE.RESTAURANT
+                      }
+                      id={'shop-type'}
+                      name={'shopType'}
+                      displayEmpty={true}
+                    />
+                  </Grid>
                 </Grid>
                 <Box
                   mt={3}
@@ -460,6 +474,7 @@ const VendorProfile = () => {
                         const username = form.username.value
                         const password = form.password.value
                         const salesTax = form.salesTax.value
+                        const shopType = form.shopType.value
                         mutate({
                           variables: {
                             restaurantInput: {
@@ -475,7 +490,8 @@ const VendorProfile = () => {
                               minimumOrder: Number(minimumOrder),
                               username: username,
                               password: password,
-                              salesTax: +salesTax
+                              salesTax: +salesTax,
+                              shopType
                             }
                           }
                         })

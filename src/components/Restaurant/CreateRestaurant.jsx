@@ -14,6 +14,8 @@ import useGlobalStyles from '../../utils/globalStyles'
 import InputAdornment from '@mui/material/InputAdornment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { SHOP_TYPE } from '../../utils/enums'
+import Dropdown from '../Dropdown';
 
 const CREATE_RESTAURANT = gql`
   ${createRestaurant}
@@ -38,6 +40,7 @@ const CreateRestaurant = props => {
   const [deliveryTimeError, setDeliveryTimeError] = useState(null)
   const [minimumOrderError, setMinimumOrderError] = useState(null)
   const [salesTaxError, setSalesTaxError] = useState(null)
+  // const [shopType, setShopType] = useState(SHOP_TYPE.RESTAURANT)
   const [errors, setErrors] = useState('')
   const [success, setSuccess] = useState('')
   const onCompleted = data => {
@@ -65,7 +68,7 @@ const CreateRestaurant = props => {
     setMinimumOrderError(null)
     setSalesTaxError(null)
     setSuccess('')
-    if (graphQLErrors) {
+    if (graphQLErrors && graphQLErrors.length) {
       setErrors(graphQLErrors[0].message)
     }
     if (networkError) {
@@ -373,7 +376,7 @@ const CreateRestaurant = props => {
                 />
               </Box>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} sm={6}>
               <Box>
                 <Typography className={classes.labelText}>{t("SalesTax")}</Typography>
                 <Input
@@ -393,6 +396,16 @@ const CreateRestaurant = props => {
                   ]}
                 />
               </Box>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Dropdown
+                title={t('Shop Category')}
+                values={Object.values(SHOP_TYPE)}
+                defaultValue={SHOP_TYPE.RESTAURANT}
+                id={'shop-type'}
+                name={'shopType'}
+                displayEmpty={true}
+              />
             </Grid>
           </Grid>
 
@@ -436,6 +449,7 @@ const CreateRestaurant = props => {
                   const minimumOrder = form.minimumOrder.value
                   const username = form.username.value
                   const password = form.password.value
+                  const shopType = form.shopType.value
 
                   mutate({
                     variables: {
@@ -449,7 +463,8 @@ const CreateRestaurant = props => {
                         deliveryTime: Number(deliveryTime),
                         minimumOrder: Number(minimumOrder),
                         username,
-                        password
+                        password,
+                        shopType
                       }
                     }
                   })

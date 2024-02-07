@@ -670,6 +670,7 @@ export const editRestaurant = `mutation EditRestaurant($restaurantInput:Restaura
           endTime
         }
       }
+      shopType
     }
 }`
 
@@ -752,6 +753,7 @@ export const createRestaurant = `mutation CreateRestaurant($restaurant:Restauran
     minimumOrder
     tax
     location{coordinates}
+    shopType
   }
 }`
 

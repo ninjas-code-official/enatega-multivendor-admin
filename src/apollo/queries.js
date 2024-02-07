@@ -385,6 +385,7 @@ export const getVendors = `query Vendors{
           _id
           title
         }
+        shopType
       }
     }
 }`
@@ -403,6 +404,7 @@ export const getVendor = `query GetVendor($id:String!){
           image
           address
           location{coordinates}
+          shopType
         }
     }
 }`
@@ -476,6 +478,7 @@ export const restaurantByOwner = `query RestaurantByOwner($id:String){
     username
     password
     location{coordinates}
+    shopType
     }
   }
 }`
@@ -505,6 +508,7 @@ export const restaurants = `query Restaurants{
       _id
       email
     }
+    shopType
   }
 }
 `
@@ -541,6 +545,7 @@ export const getRestaurantProfile = `query Restaurant($id:String){
         _id
         email
       }
+      shopType
     }
 }`
 
@@ -589,7 +594,7 @@ export const getRestaurantDetail = `query Restaurant($id:String){
         quantityMinimum
         quantityMaximum
       }
-      
+      shopType
     }
 }`
 
