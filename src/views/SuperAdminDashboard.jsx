@@ -49,6 +49,7 @@ const GET_VENDORS = gql`
 `;
 
 const SuperAdminDashboard = (props) => {
+  const theme = useTheme();
   const { t } = props;
   const theme = useTheme();
   console.log('superadmin props: ', props);
@@ -80,8 +81,8 @@ const SuperAdminDashboard = (props) => {
       {
         label: t('Restaurants'),
         data: [1, 2, 3, 4, 5, 6, 7],
-        borderColor: theme.palette.warning.dark,
-        backgroundColor: theme.palette.warning.dark,
+        borderColor: theme.palette.primary.main2,
+        backgroundColor: theme.palette.primary.main2,
       },
       {
         label: t('Vendors'),

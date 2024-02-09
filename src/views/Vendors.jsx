@@ -40,6 +40,7 @@ const DELETE_VENDOR = gql`
 const Vendors = props => {
   const theme = useTheme();
   const { t } = props;
+  const theme = useTheme();
   const [editModal, setEditModal] = useState(false)
   const [vendors, setVendor] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -124,7 +125,7 @@ const Vendors = props => {
           sx={{
             color: 'black',
             fontWeight: 'bold',
-            backgroundColor: theme.palette.warning.dark,
+            backgroundColor: theme.palette.primary.main2,
             padding: 0,
             height: '15px',
             fontSize: '7px',
@@ -171,9 +172,9 @@ const Vendors = props => {
                 }}
                 style={{ height: 25 }}>
                 <ListItemIcon>
-                  <EditIcon fontSize="small" style={{ color: 'green' }} />
+                  <EditIcon fontSize="small" style={{ color: theme.palette.primary.main2 }} />
                 </ListItemIcon>
-                <Typography color="green">{t('Edit')}</Typography>
+                <Typography color={theme.palette.primary.main2}>{t('Edit')}</Typography>
               </MenuItem>
               <MenuItem
                 onClick={e => {

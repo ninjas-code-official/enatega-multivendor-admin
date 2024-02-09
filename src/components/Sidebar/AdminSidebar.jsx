@@ -145,7 +145,7 @@ function AdminSidebar(props) {
               boxSizing: 'border-box',
               width: drawerWidth,
               background:
-                `linear-gradient(180deg, ${theme.palette.warning.dark} 50%, transparent 50%)`,
+                `linear-gradient(180deg, ${theme.palette.primary.main2} 50%, transparent 50%)`,
               borderRight: 'none'
             }
           }}

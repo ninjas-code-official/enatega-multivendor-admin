@@ -22,6 +22,7 @@ const GET_RESTAURANT_PROFILE = gql`
 `
 
 function DeliveryBoundsAndLocation() {
+  const theme = useTheme();
   const { t } = useTranslation();
   const theme = useTheme();
   const restaurantId = localStorage.getItem('restaurantId')
@@ -243,13 +244,13 @@ function DeliveryBoundsAndLocation() {
               padding: '0 30px'
             }}>
             <Button
-              style={{ color: theme.palette.warning.dark, backgroundColor: theme.palette.common.black }}
+              style={{ color: theme.palette.primary.main2, backgroundColor: theme.palette.common.black }}
               className={globalClasses.button}
               onClick={() => toggleDrawingMode('polygon')}>
               {t('DrawDeliveryBounds')}
             </Button>
             <Button
-              style={{ color: theme.palette.warning.dark, backgroundColor: theme.palette.common.black }}
+              style={{ color: theme.palette.primary.main2, backgroundColor: theme.palette.common.black }}
               className={globalClasses.button}
               onClick={() => toggleDrawingMode('marker')}>
               {t('SetRestaurantLocation')}

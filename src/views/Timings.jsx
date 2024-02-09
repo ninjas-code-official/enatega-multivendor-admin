@@ -166,6 +166,7 @@ const Timings = props => {
 
 export default withTranslation()(Timings)
 const DayComponent = ({ day, value, onChangeTime }) => {
+  const theme = useTheme();
   const { t } = useTranslation();
   const theme = useTheme();
   useEffect(() => {
@@ -198,7 +199,7 @@ const DayComponent = ({ day, value, onChangeTime }) => {
             {index === values.length - 1 && (
               <AddIcon
                 style={{
-                  backgroundColor: theme.palette.warning.dark,
+                  backgroundColor: theme.palette.primary.main2,
                   color: theme.palette.common.black,
                   borderRadius: '50%',
                   marginBottom: -5,
@@ -214,7 +215,7 @@ const DayComponent = ({ day, value, onChangeTime }) => {
               <RemoveIcon
                 style={{
                   backgroundColor: theme.palette.common.black,
-                  color: theme.palette.warning.dark,
+                  color: theme.palette.primary.main2,
                   borderRadius: '50%',
                   marginLeft: 10,
                   marginRight: 10,

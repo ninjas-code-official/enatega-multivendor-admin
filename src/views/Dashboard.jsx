@@ -54,6 +54,7 @@ const GET_ORDERS = gql`
 
 
 const Dashboard = props => {
+  const theme = useTheme();
   const { t } = props;
   const theme = useTheme();
   const restaurantId = localStorage.getItem('restaurantId')
@@ -71,8 +72,8 @@ const Dashboard = props => {
     datasets: {
       label: t('OrderCount'),
       // label: 'Order count',
-      backgroundColor: theme.palette.warning.dark,
-      borderColor: theme.palette.warning.dark
+      backgroundColor: theme.palette.primary.main2,
+      borderColor: theme.palette.primary.main2
     }
   }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Box, useMediaQuery, useTheme } from '@mui/material'
 import HeaderIcon from '../../assets/svg/header.svg'
+import { useTheme } from '@mui/material'
 function Header() {
   const theme = useTheme();
   const matches = useMediaQuery('(min-width:1350px)')
@@ -16,7 +17,7 @@ function Header() {
           backgroundSize: '105% 188px',
           backgroundPosition: 'center',
           background: matches
-            ? `linear-gradient(91.15deg, ${theme.palette.warning.dark} 4.41%, ${theme.palette.primary.main} 99.86%)`
+            ? `linear-gradient(91.15deg, ${theme.palette.primary.main2} 4.41%, ${theme.palette.primary.main} 99.86%)`
             : '',
           borderRadius: matches ? '0 0 40px 40px' : '',
           marginLeft: matches ? 0 : -3.5,

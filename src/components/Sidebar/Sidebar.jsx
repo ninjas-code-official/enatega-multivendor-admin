@@ -191,7 +191,7 @@ function Sidebar(props) {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
-              background: `linear-gradient(180deg, ${theme.palette.warning.dark} 50%, transparent 50%);`,
+              background: `linear-gradient(180deg, ${theme.palette.primary.main2} 50%, transparent 50%);`,
               borderRight: 'none'
             }
           }}

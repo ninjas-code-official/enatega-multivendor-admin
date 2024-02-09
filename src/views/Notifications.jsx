@@ -158,7 +158,7 @@ const Notifications = (props) => {
                           setError('');
                         }}
                       >
-                        {t('Save')}
+                        {t('send')}
                       </Button>
                     </Box>
                   </form>

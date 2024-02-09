@@ -37,9 +37,7 @@ const GET_ADDONS = gql`
 `
 
 function Food(props) {
-
   const theme = useTheme();
-
   const { CLOUDINARY_UPLOAD_URL, CLOUDINARY_FOOD } = ConfigurableValues()
   const formRef = useRef()
   const mutation = props.food ? EDIT_FOOD : CREATE_FOOD
@@ -523,7 +521,7 @@ function Food(props) {
                       <RemoveIcon
                         style={{
                           backgroundColor: theme.palette.common.black,
-                          color: theme.palette.warning.dark,
+                          color: theme.palette.primary.main2,
                           borderRadius: '50%',
                           marginTop: 12,
                           marginRight: 10
@@ -534,7 +532,7 @@ function Food(props) {
                       />
                       <AddIcon
                         style={{
-                          backgroundColor: theme.palette.warning.dark,
+                          backgroundColor: theme.palette.primary.main2,
                           color: theme.palette.common.black,
                           borderRadius: '50%',
                           marginTop: 12

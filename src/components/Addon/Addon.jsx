@@ -14,6 +14,7 @@ import {
   Grid,
   Checkbox,
   FormControlLabel,
+  useTheme,
   useTheme
 } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
@@ -235,7 +236,7 @@ function Addon(props) {
               <RemoveIcon
                 style={{
                   backgroundColor: theme.palette.common.black,
-                  color: theme.palette.warning.dark,
+                  color: theme.palette.primary.main2,
                   borderRadius: '50%',
                   marginLeft: 12,
                   marginRight: 10
@@ -246,7 +247,7 @@ function Addon(props) {
               />
               <AddIcon
                 style={{
-                  backgroundColor: theme.palette.warning.dark,
+                  backgroundColor: theme.palette.primary.main2,
                   color: theme.palette.common.black,
                   borderRadius: '50%'
                 }}

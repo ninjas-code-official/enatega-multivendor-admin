@@ -208,7 +208,7 @@ function Option(props) {
                     <RemoveIcon
                       style={{
                         backgroundColor: theme.palette.common.black,
-                        color: theme.palette.warning.dark,
+                        color: theme.palette.primary.main2,
                         borderRadius: '50%',
                         marginTop: 12,
                         marginRight: 10,
@@ -219,7 +219,7 @@ function Option(props) {
                     />
                     <AddIcon
                       style={{
-                        backgroundColor: theme.palette.warning.dark,
+                        backgroundColor: theme.palette.primary.main2,
                         color: theme.palette.common.black,
                         borderRadius: '50%',
                         marginTop: 12,

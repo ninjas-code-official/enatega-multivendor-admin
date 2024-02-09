@@ -24,6 +24,7 @@ const DELETE_RESTAURANT = gql`
 `
 
 const Restaurants = props => {
+  const theme = useTheme();
   const { t } = props;
   const [searchQuery, setSearchQuery] = useState('')
   const onChangeSearch = e => setSearchQuery(e.target.value)

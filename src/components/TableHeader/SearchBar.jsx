@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, InputAdornment, IconButton, Box , useTheme} from '@mui/material'
+import { Input, InputAdornment, IconButton, Box, useTheme } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import useStyles from './styles'
@@ -8,14 +8,15 @@ import { withTranslation, useTranslation } from 'react-i18next'
 function SearchBar(props) {
   const theme = useTheme();
   const { t } = useTranslation();
-  const classes = useStyles()
+   const classes = useStyles()
+   const theme = useTheme();
 
   return (
     <Box className={classes.container}>
       <IconButton onClick={props.onClick}>
         <RefreshIcon
           sx={{
-            color: theme.palette.primary.main
+            color: theme.palette.primary.main2
           }}
         />
       </IconButton>
@@ -36,7 +37,7 @@ function SearchBar(props) {
           <InputAdornment
             position="end"
             sx={{
-              color: theme.palette.primary.main
+              color: theme.palette.primary.main2
             }}>
             <SearchIcon />
           </InputAdornment>

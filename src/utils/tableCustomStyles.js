@@ -1,3 +1,7 @@
+import CustomTheme from './theme'
+
+const theme = CustomTheme()
+
 export const customStyles = {
   header: {
     style: {
@@ -11,8 +15,8 @@ export const customStyles = {
   },
   headRow: {
     style: {
-      backgroundColor: '#6FCF97',
-      color: '#FFFFFF',
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.common.white,
       fontSize: '16px',
       fontWeight: 'bold',
       minHeight: '40px',
@@ -51,7 +55,7 @@ export const customStyles = {
         borderBottomWidth: '0px'
       },
       '&:hover': {
-        backgroundColor: '#f9fafc'
+        backgroundColor: theme.palette.background.primary
       }
     }
   },
@@ -67,14 +71,14 @@ export const customStyles = {
       '&:disabled': {
         cursor: 'unset',
         color: 'red',
-        fill: '#5A5858'
+        fill: theme.palette.text.disabled
       },
       '&:hover:not(:disabled)': {
-        backgroundColor: '#90EA93'
+        backgroundColor: theme.palette.primary.main
       },
       '&:focus': {
         outline: 'none',
-        backgroundColor: '#90EA93'
+        backgroundColor: theme.palette.primary.main
       }
     }
   }
