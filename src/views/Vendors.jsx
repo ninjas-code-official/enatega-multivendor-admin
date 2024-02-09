@@ -40,7 +40,6 @@ const DELETE_VENDOR = gql`
 const Vendors = props => {
   const theme = useTheme();
   const { t } = props;
-  const theme = useTheme();
   const [editModal, setEditModal] = useState(false)
   const [vendors, setVendor] = useState(null)
   const [isOpen, setIsOpen] = useState(false)

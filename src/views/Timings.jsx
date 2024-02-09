@@ -168,7 +168,6 @@ export default withTranslation()(Timings)
 const DayComponent = ({ day, value, onChangeTime }) => {
   const theme = useTheme();
   const { t } = useTranslation();
-  const theme = useTheme();
   useEffect(() => {
     onChangeTime(day, values)
   })

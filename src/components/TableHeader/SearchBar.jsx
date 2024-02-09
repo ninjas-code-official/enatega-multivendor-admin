@@ -8,8 +8,7 @@ import { withTranslation, useTranslation } from 'react-i18next'
 function SearchBar(props) {
   const theme = useTheme();
   const { t } = useTranslation();
-   const classes = useStyles()
-   const theme = useTheme();
+  const classes = useStyles()
 
   return (
     <Box className={classes.container}>

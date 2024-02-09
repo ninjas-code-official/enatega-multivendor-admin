@@ -24,7 +24,6 @@ const GET_RESTAURANT_PROFILE = gql`
 function DeliveryBoundsAndLocation() {
   const theme = useTheme();
   const { t } = useTranslation();
-  const theme = useTheme();
   const restaurantId = localStorage.getItem('restaurantId')
 
   const [drawBoundsOrMarker, setDrawBoundsOrMarker] = useState('marker') // polygon

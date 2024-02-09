@@ -51,7 +51,6 @@ const GET_VENDORS = gql`
 const SuperAdminDashboard = (props) => {
   const theme = useTheme();
   const { t } = props;
-  const theme = useTheme();
   console.log('superadmin props: ', props);
   const globalClasses = useGlobalStyles();
   const { loading: loadingVendors, data: vendors } = useQuery(GET_VENDORS);

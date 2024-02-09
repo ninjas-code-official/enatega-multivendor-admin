@@ -56,7 +56,6 @@ const GET_ORDERS = gql`
 const Dashboard = props => {
   const theme = useTheme();
   const { t } = props;
-  const theme = useTheme();
   const restaurantId = localStorage.getItem('restaurantId')
 
 

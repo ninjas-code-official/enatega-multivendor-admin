@@ -107,7 +107,6 @@ const Restaurants = props => {
       cell: row => <>{actionButtons(row)}</>
     }
   ]
-  const theme = useTheme();
   const actionButtons = row => {
     return (
       <>
