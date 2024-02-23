@@ -35,12 +35,12 @@ const Commission = () => {
   const classes = useStyles()
   const { t } = useTranslation();
   const handleSuccessButtonClick = () => {
-  NotificationManager.success('Update Successful', 'Commission Rates', 3000, {
+  NotificationManager.success(t('UpdateSuccessful'), t('CommissionRates'), 3000, {
     className: 'customNotification',
   });
   };
   const handleErrorButtonClick = () => {
-  NotificationManager.error('Update Error', 'Commission Rates', 3000, {
+  NotificationManager.error(t('UpdateError'), t('CommissionRates'), 3000, {
     className: 'customNotification',
   });
   };

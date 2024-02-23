@@ -300,7 +300,9 @@ const en = {
     PICKED: 'PICKED',
     ASSIGNED: 'ASSIGNED',
     DELIVERED: 'DELIVERED',
-    REJECTED: 'REJECTED'
+    REJECTED: 'REJECTED',
+    UpdateSuccessful: 'Update Successful',
+    UpdateError: 'Update Error'
   }
 }
 

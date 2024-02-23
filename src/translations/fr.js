@@ -307,7 +307,9 @@ const fr = {
     PICKED: 'CHOISI',
     ASSIGNED: 'ATTRIBUÉ',
     DELIVERED: 'LIVRÉ',
-    REJECTED: 'REJETÉ'
+    REJECTED: 'REJETÉ',
+    UpdateSuccessful: 'Mise à jour réussie',
+    UpdateError: 'Erreur de mise à jour',
   }
 }
 

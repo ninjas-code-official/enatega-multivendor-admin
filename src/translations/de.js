@@ -308,7 +308,9 @@ const de = {
     PICKED: 'GEKOZEN',
     ASSIGNED: 'TOEGEWEZEN',
     DELIVERED: 'BEZORGD',
-    REJECTED: 'AFGEWEZEN'
+    REJECTED: 'AFGEWEZEN',
+    UpdateSuccessful: 'Aktualisierung erfolgreich',
+    UpdateError: 'Aktualisierungsfehler'
   }
 }
 

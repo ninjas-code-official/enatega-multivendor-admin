@@ -300,7 +300,9 @@ const km = {
     PICKED: 'ត្រូវបានជ្រើសរើស',
     ASSIGNED: 'ត្រូវបានផ្ដល់បន្ថែម',
     DELIVERED: 'ត្រូវបានដឹកជញ្ជូន',
-    REJECTED: 'ត្រូវបានបដិសេធចោល'
+    REJECTED: 'ត្រូវបានបដិសេធចោល',
+    UpdateSuccessful: 'អាប់ដេតបានជោគជ័យ',
+    UpdateError: 'អាប់ដេតកំហុស'
   }
 }
 
