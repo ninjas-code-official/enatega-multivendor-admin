@@ -291,6 +291,7 @@ const zh = {
     SAT: "星期六",
     SUN: "星期日",
     Open: "打开",
+    send: '发送',
     ACCEPTED: "已接受",
     PENDING: "待处理",
     PICKED: "已选择",
