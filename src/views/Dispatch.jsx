@@ -145,7 +145,7 @@ const Orders = props => {
                       orderStatus: 'CANCELLED'
                     },
                     onCompleted: (data)=>{
-                      handleStatusSuccessNotification('Rejected');
+                      handleStatusSuccessNotification('REJECTED');
                       refetchOrders();
                     },
                     onError: (error) => {
@@ -218,7 +218,7 @@ const Orders = props => {
       selector: 'orderStatus',
       cell: row => (
         <div style={{ overflow: 'visible' }}>
-          {row.orderStatus}
+          {t(row.orderStatus)}
           <br />
           {!['CANCELLED', 'DELIVERED'].includes(row.orderStatus) &&
             statusFunc(row)}

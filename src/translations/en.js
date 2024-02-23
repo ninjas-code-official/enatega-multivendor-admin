@@ -291,7 +291,12 @@ const en = {
     SAT: 'SAT',
     SUN: 'SUN',
     Open: 'Open',
-    send: 'Send',
+    ACCEPTED: 'ACCEPTED',
+    PENDING: 'PENDING',
+    PICKED: 'PICKED',
+    ASSIGNED: 'ASSIGNED',
+    DELIVERED: 'DELIVERED',
+    REJECTED: 'REJECTED'
   }
 }
 

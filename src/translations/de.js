@@ -294,15 +294,20 @@ const de = {
     AddCoupon: 'Gutschein hinzufügen',
     SalesAmount: 'Verkaufsbetrag',
     OrderCount: 'Bestellanzahl',
-    MON: 'Mo',
-    TUE: 'Di',
-    WED: 'Mi',
-    THU: 'Do',
-    FRI: 'Fr',
-    SAT: 'Sa',
-    SUN: 'So',
-    Open: 'Geöffnet',
-    send: 'schicken'
+    MON: "Mo",
+    TUE: "Di",
+    WED: "Mi",
+    THU: "Do",
+    FRI: "Fr",
+    SAT: "Sa",
+    SUN: "So",
+    Open: "Geöffnet",
+    ACCEPTED: "GEACCEPTEERD",
+    PENDING: "IN AFWACHTING",
+    PICKED: "GEKOZEN",
+    ASSIGNED: "TOEGEWEZEN",
+    DELIVERED: "BEZORGD",
+    REJECTED: "AFGEWEZEN"
   }
 }
 
